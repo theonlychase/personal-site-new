@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-dark: rgb(36, 36, 36);
+  }
+  html {
+    @apply font-sans min-w-[360px];
+  }
+
+  #app {
+    @apply min-h-screen flex flex-col;
+  }
+
+  h1 {
+    @apply text-3xl md:text-5xl !important;
+  }
+  h2 {
+    @apply text-2xl md:text-3xl !important;
+  }
+  h3 {
+    @apply text-xl md:text-2xl !important;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply text-gray-800 dark:text-gray-200 font-semibold leading-tight tracking-tight !important;
+  }
+  a {
+    @apply text-green-500 hover:text-green-600 transition-colors;
+  }
+  .dark .prose .hljs-string {
+    @apply text-green-500;
+  }
+}
+
+@layer components {
+  .text-autofill:-webkit-autofill {
+    -webkit-text-fill-color: currentColor;
+  }
+
+  .input-autofill {
+    @apply text-autofill;
+    @apply autofill:shadow-[inset_0_0_0px_1000px_white] dark:autofill:shadow-[inset_0_0_0px_1000px_#242424];
+  }
+}
+
+.router-link-exact-active {
+  @apply text-green-500 hover:text-green-600 font-semibold !important;
+}
+
+.nav-link {
+  @apply text-gray-800 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-600 text-lg;
+}
