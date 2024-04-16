@@ -1,14 +1,16 @@
 <script setup lang="ts">
-definePageMeta({
-  title: 'Chase Isley - Contact',
-  description: 'Send Chase Isley a Message',
+useHead({
+  templateParams: {
+    title: 'Contact Me',
+    description: 'Send Chase Isley a Message',
+  },
 })
 </script>
 
 <template>
-  <h1 class="mb-12">
-    Contact
-  </h1>
+  <UPageHeader
+    title="Contact"
+  />
 
   <ContactForm />
 </template>

@@ -1,3 +1,5 @@
+import UnheadVite from '@unhead/addons/vite'
+
 export default defineNuxtConfig({
   colorMode: {
     classSuffix: '',
@@ -10,6 +12,7 @@ export default defineNuxtConfig({
     },
   ],
   experimental: {
+    headNext: true,
     scanPageMeta: true,
     sharedPrerenderData: true,
   },
@@ -44,5 +47,10 @@ export default defineNuxtConfig({
   srcDir: 'src/',
   tailwindcss: {
     configPath: '~~/tailwind.config.ts',
+  },
+  vite: {
+    plugins: [
+      UnheadVite(),
+    ],
   },
 })

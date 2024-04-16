@@ -7,35 +7,35 @@ import { nav } from '~/helpers/data'
     <template #top>
       <hr class="w-full border-t border-gray-300 dark:border-gray-600 mb-8">
 
-      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full">
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full text-lg">
         <div class="flex flex-col">
           <NuxtLink
             v-for="item in nav"
             :key="item.text"
             :to="`${item.to}`"
             :title="item.text"
-            class="nav-link px-3 py-2"
+            class="link-secondary px-3 py-2"
           >
             {{ item.text }}
           </NuxtLink>
         </div>
         <div class="flex flex-col">
-          <a
+          <NuxtLink
             href="https://github.com/theonlychase"
             target="_blank"
             title="Github"
-            class="nav-link px-3 py-2"
+            class="link-secondary px-3 py-2"
           >
             Github
-          </a>
-          <a
+          </NuxtLink>
+          <NuxtLink
             href="https://www.linkedin.com/in/chaseisley/"
             target="_blank"
             title="LinkedIn"
-            class="nav-link px-3 py-2"
+            class="link-secondary px-3 py-2"
           >
             LinkedIn
-          </a>
+          </NuxtLink>
         </div>
       </div>
     </template>

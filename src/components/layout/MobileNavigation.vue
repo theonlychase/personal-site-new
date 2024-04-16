@@ -1,12 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { nav } from '~/helpers/data'
 
-  interface MobileNavProps {
-    show?: boolean;
-  }
-
-withDefaults(defineProps<MobileNavProps>(), {
+withDefaults(defineProps<{ show?: boolean; }>(), {
   show: false,
 })
 
@@ -53,7 +48,7 @@ const onAfterLeave = () => {
     >
       <ul
         v-if="showMenu"
-        class="h-screen absolute flex flex-col left-0 w-full space-y-4 px-4 z-20 bg-background pt-8 mt-1"
+        class="h-screen absolute flex flex-col left-0 w-full space-y-4 px-4 z-20 bg-background pt-8 mt-1 text-lg"
       >
         <li
           v-for="item in nav"
@@ -62,7 +57,7 @@ const onAfterLeave = () => {
           :class="[childTransitions, item.delay]"
         >
           <NuxtLink
-            class="nav-link w-full sm:px-3 sm:py-2 rounded-lg"
+            class="link-secondary w-full sm:px-3 sm:py-2 rounded-lg"
             :to="item.to"
             @click="showMenu = false"
           >
@@ -75,7 +70,7 @@ const onAfterLeave = () => {
         >
           <UButton
             :padded="false"
-            class="text-lg text-gray-800 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-600 px-3 py-2 transition-colors"
+            class="link-secondary px-3 py-2 transition-colors"
             target="_blank"
             to="https://github.com/theonlychase"
             color="gray"
@@ -86,7 +81,7 @@ const onAfterLeave = () => {
           </UButton>
           <UButton
             :padded="false"
-            class="text-lg text-gray-800 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-600 px-3 py-2 transition-colors"
+            class="link-secondary px-3 py-2 transition-colors"
             target="_blank"
             to="https://www.linkedin.com/in/chaseisley/"
             color="gray"
