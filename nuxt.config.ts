@@ -47,6 +47,7 @@ export default defineNuxtConfig({
   srcDir: 'src/',
   tailwindcss: {
     configPath: '~~/tailwind.config.ts',
+    viewer: false,
   },
   vite: {
     plugins: [
