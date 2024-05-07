@@ -29,6 +29,10 @@ export default defineNuxtConfig({
     sharedPrerenderData: true,
   },
   extends: ['@nuxt/ui-pro'],
+  image: {
+    provider: 'netlify',
+    domains: ['picsum.photos'],
+  },
   modules: [
     '@nuxt/content',
     '@nuxt/ui',
@@ -40,6 +44,7 @@ export default defineNuxtConfig({
     public: {
       emailId: '',
       emailKey: '',
+      studioTokens: '',
       templateId: '',
     },
   },
