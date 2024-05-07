@@ -39,7 +39,7 @@ export default defineAppConfig({
     page: {
       wrapper: 'max-w-2xl py-8 px-4 md:px-0 mx-auto',
       header: {
-        wrapper: 'pt-0',
+        wrapper: 'pt-0 border-b-0',
       },
     },
     textarea: {

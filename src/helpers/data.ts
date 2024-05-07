@@ -5,12 +5,12 @@ const nav = [
     to: '/',
     delay: '',
   },
-  // {
-  //   text: 'Snippets',
-  //   name: 'snippets',
-  //   to: '/snippets',
-  //   delay: 'delay-75',
-  // },
+  {
+    text: 'Blog',
+    name: 'blog',
+    to: '/blog',
+    delay: 'delay-75',
+  },
   {
     text: 'Contact',
     name: 'contact',

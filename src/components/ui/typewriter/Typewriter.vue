@@ -18,15 +18,18 @@ const props = withDefaults(
 
 const state = reactive({ text: '', complete: false, index: 0 })
 
-addText()
-function addText() {
+addText({ initial: true })
+
+function addText({ initial = false } = {}) {
   if (state.text.length < props.data[state.index].length && !state.complete) {
-    state.text += props.data[state.index].charAt(state.text.length)
-    setTimeout(addText, props.enter)
+    if (!initial) {
+      state.text += props.data[state.index].charAt(state.text.length)
+    }
+    useTimeoutFn(addText, props.enter)
   }
   if (state.text.length === props.data[state.index].length) {
     state.complete = true
-    setTimeout(removeText, props.end)
+    useTimeoutFn(removeText, props.end)
   }
 }
 
@@ -35,7 +38,7 @@ function removeText() {
     const t = state.text.split('')
     t.pop()
     state.text = t.join('')
-    setTimeout(removeText, props.leave)
+    useTimeoutFn(removeText, props.leave)
   }
   if (state.text.length === 0 && state.complete) {
     state.complete = false
@@ -44,8 +47,7 @@ function removeText() {
     } else {
       state.index++
     }
-
-    setTimeout(addText, props.start)
+    useTimeoutFn(addText, props.start)
   }
 }
 </script>

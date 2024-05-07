@@ -18,7 +18,9 @@
     "zod": "^3.23.6"
   },
   "devDependencies": {
+    "@nuxt/image": "^1.7.0",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
+    "@nuxtjs/supabase": "^1.2.2",
     "@unhead/addons": "^1.9.8",
     "@vueuse/components": "^10.9.0",
     "@vueuse/core": "^10.9.0",
