@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@nuxt/image": "^1.7.0",
+    "@nuxthq/studio": "^1.0.15",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/supabase": "^1.2.2",
     "@unhead/addons": "^1.9.8",
