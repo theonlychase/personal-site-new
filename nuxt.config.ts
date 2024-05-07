@@ -30,8 +30,8 @@ export default defineNuxtConfig({
   },
   extends: ['@nuxt/ui-pro'],
   image: {
-    provider: 'netlify',
-    domains: ['picsum.photos'],
+    provider: 'netlifyImageCdn',
+    domains: ['picsum.photos', 'fastly.picsum.photos'],
   },
   modules: [
     '@nuxt/content',
@@ -39,12 +39,13 @@ export default defineNuxtConfig({
     ['@vueuse/nuxt', { ssrHandlers: true }],
     '@nuxtjs/supabase',
     '@nuxt/image',
+    '@nuxthq/studio',
   ],
   runtimeConfig: {
     public: {
       emailId: '',
       emailKey: '',
-      studioTokens: '',
+      studioTokens: process.env.STUDIO_TOKENS,
       templateId: '',
     },
   },
