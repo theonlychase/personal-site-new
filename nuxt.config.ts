@@ -11,6 +11,18 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
+  content: {
+    api: {
+      baseURL: '/api/content',
+    },
+    highlight: {
+      theme: 'night-owl',
+      langs: ['css', 'js', 'ts', 'vue'],
+    },
+    markdown: {
+      anchorLinks: false,
+    },
+  },
   experimental: {
     headNext: true,
     scanPageMeta: true,
@@ -18,24 +30,11 @@ export default defineNuxtConfig({
   },
   extends: ['@nuxt/ui-pro'],
   modules: [
-    [
-      '@nuxt/content',
-      {
-        markdown: {
-          anchorLinks: false,
-        },
-        highlight: {
-          theme: {
-            default: 'material-theme-darker',
-          },
-          preload: ['vue'],
-        },
-        yaml: false,
-      },
-    ],
+    '@nuxt/content',
     '@nuxt/ui',
     ['@vueuse/nuxt', { ssrHandlers: true }],
-    '@vueuse/motion/nuxt',
+    '@nuxtjs/supabase',
+    '@nuxt/image',
   ],
   runtimeConfig: {
     public: {
@@ -45,8 +44,16 @@ export default defineNuxtConfig({
     },
   },
   srcDir: 'src/',
+  supabase: {
+    redirectOptions: {
+      login: '/',
+      callback: '/confirm',
+      include: ['/admin(/*)?'],
+    },
+  },
   tailwindcss: {
     configPath: '~~/tailwind.config.ts',
+    viewer: false,
   },
   vite: {
     plugins: [

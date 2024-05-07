@@ -51,6 +51,6 @@
 }
 
 /* Nuxt Link Active Class */
-.router-link-exact-active {
+.router-link-exact-active, .router-link-active {
   @apply text-green-500 hover:text-green-600 font-semibold !important;
 }

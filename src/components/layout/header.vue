@@ -19,7 +19,11 @@ import MobileNavigation from '~/components/layout/MobileNavigation.vue'
         :ui="{ rounded: 'rounded-full' }"
         @click="$colorMode.preference = $colorMode.preference === 'dark' ? 'light' : 'dark'"
       >
-        <UIcon class="h-7 w-7" :name="$colorMode.unknown ? 'i-mdi-sun-moon-stars' : $colorMode.value === 'dark' ? 'i-heroicons-sun' : 'i-heroicons-moon'" dynamic />
+        <UIcon
+          class="h-7 w-7"
+          :name="$colorMode.unknown ? 'i-mdi-sun-moon-stars' : $colorMode.value === 'dark' ? 'i-heroicons-sun' : 'i-heroicons-moon'"
+          dynamic
+        />
       </UButton>
     </template>
   </UHeader>

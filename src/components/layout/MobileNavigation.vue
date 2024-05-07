@@ -57,7 +57,7 @@ const onAfterLeave = () => {
           :class="[childTransitions, item.delay]"
         >
           <NuxtLink
-            class="link-secondary w-full sm:px-3 sm:py-2 rounded-lg"
+            :class="['link-secondary w-full sm:px-3 sm:py-2 rounded-lg', { 'router-link-active': $route.path.includes(item.name) }]"
             :to="item.to"
             @click="showMenu = false"
           >
