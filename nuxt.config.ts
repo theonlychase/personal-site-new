@@ -31,7 +31,7 @@ export default defineNuxtConfig({
   extends: ['@nuxt/ui-pro'],
   image: {
     provider: 'netlifyImageCdn',
-    domains: ['picsum.photos', 'fastly.picsum.photos'],
+    domains: ['picsum.photos', 'fastly.picsum.photos', 'images.unsplash.com'],
   },
   modules: [
     '@nuxt/content',
@@ -41,6 +41,13 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxthq/studio',
   ],
+  nitro: {
+    netlify: {
+      images: {
+        remote_images: ['https://picsum.photos/.*', 'https://fastly.picsum.photos/.*', 'https://images.unsplash.com/.*'],
+      },
+    },
+  },
   runtimeConfig: {
     public: {
       emailId: '',
