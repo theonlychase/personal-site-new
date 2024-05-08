@@ -23,6 +23,11 @@ export default defineNuxtConfig({
       anchorLinks: false,
     },
   },
+  eslint: {
+    config: {
+      stylistic: true,
+    },
+  },
   experimental: {
     headNext: true,
     scanPageMeta: true,
@@ -40,6 +45,7 @@ export default defineNuxtConfig({
     '@nuxtjs/supabase',
     '@nuxt/image',
     '@nuxthq/studio',
+    '@nuxt/eslint',
   ],
   nitro: {
     netlify: {
