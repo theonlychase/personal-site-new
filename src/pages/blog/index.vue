@@ -25,7 +25,10 @@ useHead({
           :title="i.short"
           :to="i._path"
         >
-          <template v-if="i.tags" #badge>
+          <template
+            v-if="i.tags"
+            #badge
+          >
             <UBadge
               v-for="tag in i.tags"
               :key="tag"
