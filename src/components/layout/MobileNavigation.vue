@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { nav } from '~/helpers/data'
 
-withDefaults(defineProps<{ show?: boolean; }>(), {
+withDefaults(defineProps<{ show?: boolean }>(), {
   show: false,
 })
 
@@ -29,11 +29,15 @@ const onAfterLeave = () => {
       :padded="false"
       color="gray"
       variant="ghost"
-      class="md:hidden"
+      class="md:hidden !bg-transparent"
       title="Mobile Menu"
       @click="toggleMenu"
     >
-      <UIcon class="h-6 w-6" name="i-lucide-menu" dynamic />
+      <UIcon
+        class="h-6 w-6"
+        name="i-lucide-menu"
+        dynamic
+      />
     </UButton>
 
     <Transition
@@ -48,7 +52,7 @@ const onAfterLeave = () => {
     >
       <ul
         v-if="showMenu"
-        class="h-screen absolute flex flex-col left-0 w-full space-y-4 px-4 z-20 bg-background pt-8 mt-1 text-lg"
+        class="h-screen absolute flex flex-col left-0 w-full space-y-4 px-4 z-20 bg-background top-[--header-height] pt-6 text-lg"
       >
         <li
           v-for="item in nav"
@@ -77,7 +81,11 @@ const onAfterLeave = () => {
             variant="link"
             title="Github"
           >
-            <UIcon class="h-6 w-6" name="i-lucide-github" dynamic />
+            <UIcon
+              class="h-6 w-6"
+              name="i-lucide-github"
+              dynamic
+            />
           </UButton>
           <UButton
             :padded="false"
@@ -88,7 +96,11 @@ const onAfterLeave = () => {
             variant="link"
             title="LinkedIn"
           >
-            <UIcon class="h-6 w-6" name="i-lucide-linkedin" dynamic />
+            <UIcon
+              class="h-6 w-6"
+              name="i-lucide-linkedin"
+              dynamic
+            />
           </UButton>
         </li>
       </ul>

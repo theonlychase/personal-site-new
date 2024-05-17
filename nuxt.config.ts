@@ -36,12 +36,12 @@ export default defineNuxtConfig({
   extends: ['@nuxt/ui-pro'],
   image: {
     provider: 'netlifyImageCdn',
-    domains: ['picsum.photos', 'fastly.picsum.photos', 'images.unsplash.com'],
+    domains: ['picsum.photos', 'fastly.picsum.photos', 'images.unsplash.com', 'source.unsplash.com'],
   },
   modules: [
     '@nuxt/content',
     '@nuxt/ui',
-    ['@vueuse/nuxt', { ssrHandlers: true }],
+    '@vueuse/nuxt',
     '@nuxtjs/supabase',
     '@nuxt/image',
     '@nuxthq/studio',
@@ -50,7 +50,7 @@ export default defineNuxtConfig({
   nitro: {
     netlify: {
       images: {
-        remote_images: ['https://picsum.photos/.*', 'https://fastly.picsum.photos/.*', 'https://images.unsplash.com/.*'],
+        remote_images: ['https://picsum.photos/.*', 'https://fastly.picsum.photos/.*', 'https://images.unsplash.com/.*', 'https://source.unsplash.com/.*'],
       },
     },
   },

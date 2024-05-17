@@ -7,6 +7,10 @@ export default defineAppConfig({
         },
       },
     },
+    card: {
+      ring: 'ring-gray-300 dark:ring-gray-600',
+      background: 'bg-white dark:bg-dark',
+    },
     footer: {
       wrapper: 'mt-auto',
       top: {

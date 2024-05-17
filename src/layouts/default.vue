@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header />
+    <Header :page-scroll="$route.meta.pageScroll" />
 
     <Page>
       <slot />
