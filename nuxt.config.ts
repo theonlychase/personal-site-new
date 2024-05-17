@@ -23,6 +23,13 @@ export default defineNuxtConfig({
       anchorLinks: false,
     },
   },
+  $development: {
+    runtimeConfig: {
+      public: {
+        baseUrl: 'http://localhost:8888',
+      },
+    },
+  },
   eslint: {
     config: {
       stylistic: true,
@@ -54,6 +61,13 @@ export default defineNuxtConfig({
       },
     },
   },
+  $production: {
+    runtimeConfig: {
+      public: {
+        baseUrl: process.env.BASE_URL,
+      },
+    },
+  },
   runtimeConfig: {
     public: {
       emailId: '',
@@ -65,7 +79,7 @@ export default defineNuxtConfig({
   srcDir: 'src/',
   supabase: {
     redirectOptions: {
-      login: '/',
+      login: '/login',
       callback: '/confirm',
       include: ['/admin(/*)?'],
     },

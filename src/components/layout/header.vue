@@ -1,9 +1,10 @@
 <script setup lang="ts">
-const props = withDefaults(defineProps<{ pageScroll?: boolean }>(), {
-  pageScroll: false,
-})
+const route = useRoute()
+const { progress, stop } = useScrollProgress()
 
-const progress = props.pageScroll ? useScrollProgress() : 0
+if (!route.meta.pageScroll) {
+  stop()
+}
 </script>
 
 <template>
@@ -33,7 +34,7 @@ const progress = props.pageScroll ? useScrollProgress() : 0
 
     <template #bottom>
       <UMeter
-        v-if="pageScroll"
+        v-if="$route.meta.pageScroll"
         size="sm"
         :value="progress"
       />

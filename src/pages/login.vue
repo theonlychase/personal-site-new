@@ -1,4 +1,8 @@
 <script setup lang="ts">
+// TODO - Finish Auth Form Functionality
+definePageMeta({
+  redirect: '/',
+})
 useHead({
   templateParams: {
     title: 'Login',
