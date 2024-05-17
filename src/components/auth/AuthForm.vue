@@ -1,12 +1,17 @@
 <script setup lang="ts">
 import type { FormError } from '#ui/types'
 
+const { auth } = useSupabaseClient()
+
 const fields = [{
   name: 'email',
   type: 'text',
   label: 'Email',
   placeholder: 'Enter your email',
 }]
+const loading = ref(false)
+const success = ref(false)
+const formState = ref({})
 
 const validate = (state: any) => {
   const errors: FormError[] = []
@@ -14,57 +19,58 @@ const validate = (state: any) => {
   return errors
 }
 
-const providers = [{
-  label: 'Continue with GitHub',
-  icon: 'i-simple-icons-github',
-  color: 'white' as const,
-  click: () => {
-    console.log('Redirect to GitHub')
-  },
-}]
+// const providers = [{
+//   label: 'Continue with GitHub',
+//   icon: 'i-simple-icons-github',
+//   color: 'white' as const,
+//   click: () => {
+//     console.log('Redirect to GitHub')
+//   },
+// }]
 
-function onSubmit(data: any) {
-  console.log('Submitted', data)
+async function handleLogin(data: any) {
+  try {
+    loading.value = true
+    const { error } = await auth.signInWithOtp({ email: data.email })
+    if (error) throw error
+  }
+  catch (error) {
+    alert(error.error_description || error.message)
+  }
+  finally {
+    formState.value.state.email = ''
+    loading.value = false
+  }
 }
 </script>
 
 <template>
   <UCard class="max-w-sm w-full">
     <UAuthForm
+      ref="formState"
       :fields="fields"
       :validate="validate"
-      :providers="providers"
-      title="Welcome back!"
+      title="Welcome back"
       align="top"
       icon="i-heroicons-lock-closed"
+      :submit-button="{ label: 'Sign in', color: 'primary', loading }"
       :ui="{ base: 'text-center', footer: 'text-center' }"
-      @submit="onSubmit"
+      @submit="handleLogin"
     >
       <template #description>
-        Don't have an account? <NuxtLink
-          to="/"
-          class="text-primary font-medium"
-        >Sign up</NuxtLink>.
+        Please enter your email to sign in.
       </template>
 
-      <template #password-hint>
-        <NuxtLink
-          to="/"
-          class="text-primary font-medium"
-        >Forgot password?</NuxtLink>
-      </template>
-      <template #validation>
+      <template
+        v-if="success"
+        #validation
+      >
         <UAlert
-          color="red"
-          icon="i-heroicons-information-circle-20-solid"
-          title="Error signing in"
+          color="green"
+          icon="i-heroicons-check-circle-20-solid"
+          title="Check your email for the login link"
+          variant="soft"
         />
-      </template>
-      <template #footer>
-        By signing in, you agree to our <NuxtLink
-          to="/"
-          class="text-primary font-medium"
-        >Terms of Service</NuxtLink>.
       </template>
     </UAuthForm>
   </UCard>

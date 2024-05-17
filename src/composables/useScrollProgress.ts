@@ -6,7 +6,7 @@ export function useScrollProgress(): { progress: Ref<number>, stop: () => void }
     const { y } = useWindowScroll()
 
     const getProgress = (scrollY: number) => {
-      const height = document?.documentElement.scrollHeight ?? 0 - window?.innerHeight ?? 0
+      const height = (document?.documentElement.scrollHeight ?? 0) - (window?.innerHeight ?? 0)
       progress.value = ~~Math.floor((scrollY / height) * 100)
     }
 
