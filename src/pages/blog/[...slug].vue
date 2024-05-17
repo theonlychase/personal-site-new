@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { Typewriter } from '#components'
+
+definePageMeta({
+  pageScroll: true,
+})
 const { path } = useRoute()
 
 const { data }: any = await useAsyncData(`${path}`, async () => await $fetch(`/api/content${path}`, {
@@ -17,10 +21,13 @@ const { data }: any = await useAsyncData(`${path}`, async () => await $fetch(`/a
           :description="`${data.view[0].viewCount} Views`"
           :ui="{
             description: 'text-xs mt-2',
-            title: 'mb-0'
+            title: 'mb-0',
           }"
         />
-        <ContentRendererMarkdown :value="doc" :components="{ 'typewriter-md': Typewriter }" />
+        <ContentRendererMarkdown
+          :value="doc"
+          :components="{ 'typewriter-md': Typewriter }"
+        />
       </template>
 
       <template #not-found>

@@ -49,7 +49,7 @@ useHead({
 <template>
   <NuxtLayout>
     <NuxtLoadingIndicator
-      color="#ff7b00"
+      color="#00C16A"
       :height="2"
     />
     <NuxtPage />
@@ -65,6 +65,6 @@ useHead({
 .page-enter-from,
 .page-leave-to {
   opacity: 0%;
-  filter: blur(1px);
+  filter: blur(1rem);
 }
 </style>

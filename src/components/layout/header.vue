@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import MobileNavigation from '~/components/layout/MobileNavigation.vue'
+const props = withDefaults(defineProps<{ pageScroll?: boolean }>(), {
+  pageScroll: false,
+})
+
+const progress = props.pageScroll ? useScrollProgress() : 0
 </script>
 
 <template>
@@ -25,6 +29,14 @@ import MobileNavigation from '~/components/layout/MobileNavigation.vue'
           dynamic
         />
       </UButton>
+    </template>
+
+    <template #bottom>
+      <UMeter
+        v-if="pageScroll"
+        size="sm"
+        :value="progress"
+      />
     </template>
   </UHeader>
 </template>

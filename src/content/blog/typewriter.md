@@ -12,7 +12,7 @@ head:
     title: 'Chase Isley - Vue 3 Typewriter Component'
     description: 'Create a reusable Typewriter component using Vue 3, TypeScript, & Tailwind'
 image:
-  src: 'https://picsum.photos/640/360'
+  src: 'https://source.unsplash.com/random/640x360'
   alt: 'Typewriter Component'
 short: 'Vue 3 Typewriter Component'
 tags: ['Vue', 'Typescript', 'Tailwind']
