@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { FormError } from '#ui/types'
 
+const config = useRuntimeConfig()
 const { auth } = useSupabaseClient()
 
 const fields = [{
@@ -31,7 +32,9 @@ const validate = (state: any) => {
 async function handleLogin(data: any) {
   try {
     loading.value = true
-    const { error } = await auth.signInWithOtp({ email: data.email })
+    const { error } = await auth.signInWithOtp({ email: data.email, options: {
+      emailRedirectTo: config.public.baseUrl,
+    } })
     if (error) throw error
   }
   catch (error) {

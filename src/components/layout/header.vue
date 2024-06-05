@@ -4,6 +4,10 @@ const { auth } = useSupabaseClient()
 const route = useRoute()
 const { progress, stop } = useScrollProgress()
 
+if (!route.meta.pageScroll) {
+  stop()
+}
+
 const computedItems = computed(() => {
   return user.value
     ? [
@@ -35,10 +39,6 @@ const computedItems = computed(() => {
         }],
       ]
 })
-
-if (!route.meta.pageScroll) {
-  stop()
-}
 </script>
 
 <template>
