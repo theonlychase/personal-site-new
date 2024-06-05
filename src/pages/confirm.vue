@@ -1,15 +1,19 @@
 <script setup lang="ts">
-// TODO - Finish Auth Form Functionality
-definePageMeta({
-  redirect: '/',
-})
 const user = useSupabaseUser()
+const { query } = useRoute()
 
-watch(user, () => {
-  if (user.value) {
-    return navigateTo('/')
-  }
-}, { immediate: true })
+watch(
+  user,
+  () => {
+    if (user.value) {
+      const to = (query.redirectTo as string) ?? '/'
+      return navigateTo(to, {
+        replace: true,
+      })
+    }
+  },
+  { immediate: true },
+)
 </script>
 
 <template>

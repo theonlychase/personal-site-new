@@ -40,6 +40,7 @@ async function handleLogin(data: any) {
   finally {
     formState.value.state.email = ''
     loading.value = false
+    success.value = true
   }
 }
 </script>

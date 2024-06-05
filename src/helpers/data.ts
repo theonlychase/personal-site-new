@@ -17,11 +17,6 @@ const nav = [
     to: '/contact',
     delay: 'delay-150',
   },
-  // {
-  //   text: 'Snippets',
-  //   to: '/snippets',
-  //   delay: 'delay-150',
-  // },
 ]
 
 const gradients = [
