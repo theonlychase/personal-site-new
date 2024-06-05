@@ -24,6 +24,9 @@ export default defineNuxtConfig({
     },
   },
   $development: {
+    features: {
+      devLogs: true,
+    },
     runtimeConfig: {
       public: {
         baseUrl: 'http://localhost:8888',

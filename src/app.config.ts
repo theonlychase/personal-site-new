@@ -11,6 +11,12 @@ export default defineAppConfig({
       ring: 'ring-gray-300 dark:ring-gray-600',
       background: 'bg-white dark:bg-dark',
     },
+    dropdown: {
+      background: 'dark:bg-white/[.04]',
+      item: {
+        active: 'bg-gray-100 dark:bg-dark text-gray-800',
+      },
+    },
     footer: {
       wrapper: 'mt-auto',
       top: {

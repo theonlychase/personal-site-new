@@ -18,22 +18,22 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@nuxt/eslint": "^0.3.12",
+    "@nuxt/eslint": "^0.3.13",
     "@nuxt/image": "^1.7.0",
-    "@nuxthq/studio": "^1.1.0",
+    "@nuxthq/studio": "^1.1.2",
     "@nuxtjs/supabase": "^1.2.2",
-    "@unhead/addons": "^1.9.10",
-    "@vueuse/components": "^10.9.0",
-    "@vueuse/core": "^10.9.0",
-    "@vueuse/motion": "^2.1.0",
-    "@vueuse/nuxt": "^10.9.0",
-    "eslint": "^9.2.0",
+    "@unhead/addons": "^1.9.12",
+    "@vueuse/components": "^10.10.0",
+    "@vueuse/core": "^10.10.0",
+    "@vueuse/motion": "^2.2.3",
+    "@vueuse/nuxt": "^10.10.0",
+    "eslint": "^9.4.0",
     "eslint-plugin-vue": "^9.26.0",
     "nuxt": "^3.11.2",
     "typescript": "^5.4.5"
   },
   "volta": {
-    "node": "20.11.1",
-    "npm": "10.2.4"
+    "node": "20.14.0",
+    "npm": "10.7.0"
   }
 }
