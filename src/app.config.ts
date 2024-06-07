@@ -12,7 +12,7 @@ export default defineAppConfig({
       background: 'bg-white dark:bg-dark',
     },
     dropdown: {
-      background: 'dark:bg-white/[.04]',
+      background: 'dark:bg-[#2d2d2d]',
       item: {
         active: 'bg-gray-100 dark:bg-dark text-gray-800',
       },
@@ -50,6 +50,9 @@ export default defineAppConfig({
       wrapper: 'max-w-2xl py-8 px-4 md:px-0 mx-auto',
       header: {
         wrapper: 'pt-0 border-b-0',
+      },
+      error: {
+        name: 'text-center',
       },
     },
     textarea: {
