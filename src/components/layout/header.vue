@@ -18,13 +18,13 @@ const computedItems = computed(() => {
         }],
         [{
           label: 'Your Profile',
-          icon: 'i-heroicons-user',
+          icon: 'i-line-md:account',
           to: '/profile',
           class: 'hover:text-gray-800',
         }],
         [{
           label: 'Logout',
-          icon: 'i-heroicons-arrow-right-start-on-rectangle',
+          icon: 'i-line-md:logout',
           click: async () => {
             await auth.signOut()
           },
@@ -33,7 +33,7 @@ const computedItems = computed(() => {
     : [
         [{
           label: 'Login',
-          icon: 'i-heroicons-arrow-right-end-on-rectangle',
+          icon: 'i-line-md:login',
           to: '/login',
           class: 'hover:text-gray-800',
         }],
@@ -59,8 +59,9 @@ const computedItems = computed(() => {
         @click="$colorMode.preference = $colorMode.preference === 'dark' ? 'light' : 'dark'"
       >
         <UIcon
+          :key="$colorMode.preference"
           class="h-7 w-7"
-          :name="$colorMode.unknown ? 'i-mdi-sun-moon-stars' : $colorMode.value === 'dark' ? 'i-heroicons-sun' : 'i-heroicons-moon'"
+          :name="$colorMode.unknown ? 'i-line-md:light-dark' : $colorMode.value === 'dark' ? 'i-line-md:sunny-outline' : 'i-line-md:moon-simple'"
           dynamic
         />
       </UButton>
@@ -72,7 +73,7 @@ const computedItems = computed(() => {
       >
         <UIcon
           class="h-7 w-7 text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 hover:scale-110 transition-all"
-          name="i-heroicons-user-circle"
+          name="i-line-md:account"
           dynamic
         />
 

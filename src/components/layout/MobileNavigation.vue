@@ -83,7 +83,7 @@ const onAfterLeave = () => {
           >
             <UIcon
               class="h-6 w-6"
-              name="i-lucide-github"
+              name="i-line-md:github"
               dynamic
             />
           </UButton>
@@ -98,7 +98,7 @@ const onAfterLeave = () => {
           >
             <UIcon
               class="h-6 w-6"
-              name="i-lucide-linkedin"
+              name="i-line-md:linkedin"
               dynamic
             />
           </UButton>
