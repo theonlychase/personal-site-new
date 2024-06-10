@@ -1,12 +1,12 @@
 <script setup lang="ts">
 const props = withDefaults(
   defineProps<{
-      data: Array<string>;
-      start?: number;
-      enter?: number;
-      end?: number;
-      leave?: number;
-    }>(),
+    data: Array<string>
+    start?: number
+    enter?: number
+    end?: number
+    leave?: number
+  }>(),
   {
     data: () => [],
     start: 1000,
@@ -44,7 +44,8 @@ function removeText() {
     state.complete = false
     if (state.index === props.data.length - 1) {
       state.index = 0
-    } else {
+    }
+    else {
       state.index++
     }
     useTimeoutFn(addText, props.start)

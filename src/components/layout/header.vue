@@ -1,12 +1,24 @@
 <script setup lang="ts">
 const user = useSupabaseUser()
 const { auth } = useSupabaseClient()
-const route = useRoute()
+const { meta, path, query } = useRoute()
 const { progress, stop } = useScrollProgress()
 
-if (!route.meta.pageScroll) {
+if (!meta.pageScroll) {
   stop()
 }
+
+watch(
+  user,
+  () => {
+    if (!user.value && path !== '/profile') {
+      const to = (query.redirectTo as string) ?? '/login'
+      return navigateTo(to, {
+        replace: true,
+      })
+    }
+  },
+)
 
 const computedItems = computed(() => {
   return user.value
@@ -92,7 +104,7 @@ const computedItems = computed(() => {
 
     <template #bottom>
       <UMeter
-        v-if="$route.meta.pageScroll"
+        v-if="meta.pageScroll"
         size="sm"
         :value="progress"
       />

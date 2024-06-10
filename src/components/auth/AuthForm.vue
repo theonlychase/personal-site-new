@@ -20,14 +20,19 @@ const validate = (state: any) => {
   return errors
 }
 
-// const providers = [{
-//   label: 'Continue with GitHub',
-//   icon: 'i-simple-icons-github',
-//   color: 'white' as const,
-//   click: () => {
-//     console.log('Redirect to GitHub')
-//   },
-// }]
+const providers = [{
+  label: 'Continue with GitHub',
+  icon: 'i-line-md:github',
+  color: 'black',
+  click: async () => {
+    await auth.signInWithOAuth({
+      provider: 'github',
+      options: {
+        redirectTo: config.public.baseUrl,
+      },
+    })
+  },
+}]
 
 async function handleLogin(data: any) {
   try {
@@ -54,6 +59,7 @@ async function handleLogin(data: any) {
       ref="formState"
       :fields="fields"
       :validate="validate"
+      :providers="providers"
       title="Welcome back"
       align="top"
       icon="i-heroicons-lock-closed"
