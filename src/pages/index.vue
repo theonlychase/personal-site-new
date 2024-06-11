@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { skills } from '~/helpers/data'
+
 useHead({
   templateParams: {
     title: 'Home',
