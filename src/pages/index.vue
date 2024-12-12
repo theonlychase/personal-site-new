@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { skills } from '~/helpers/data'
+import { skills } from '~/helpers/const'
 
 useHead({
   templateParams: {

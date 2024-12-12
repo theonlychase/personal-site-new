@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nav } from '~/helpers/data'
+import { nav } from '~/helpers/const'
 </script>
 
 <template>
@@ -12,7 +12,7 @@ import { nav } from '~/helpers/data'
           <NuxtLink
             v-for="item in nav"
             :key="item.text"
-            :to="`${item.to}`"
+            :to="item.to"
             :title="item.text"
             class="link-secondary px-3 py-2"
           >
