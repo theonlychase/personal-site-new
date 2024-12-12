@@ -8,17 +8,7 @@ if (!meta.pageScroll) {
   stop()
 }
 
-watch(
-  user,
-  () => {
-    if (!user.value && path !== '/profile') {
-      const to = (query.redirectTo as string) ?? '/login'
-      return navigateTo(to, {
-        replace: true,
-      })
-    }
-  },
-)
+const colorModeIcon = ref('i-line-md:light-dark')
 
 const computedItems = computed(() => {
   return user.value
@@ -51,6 +41,18 @@ const computedItems = computed(() => {
         }],
       ]
 })
+
+watch(
+  user,
+  () => {
+    if (!user.value && path !== '/profile') {
+      const to = (query.redirectTo as string) ?? '/login'
+      return navigateTo(to, {
+        replace: true,
+      })
+    }
+  },
+)
 </script>
 
 <template>
@@ -68,12 +70,15 @@ const computedItems = computed(() => {
         variant="link"
         title="Toggle Dark Mode"
         :ui="{ rounded: 'rounded-full' }"
-        @click="$colorMode.preference = $colorMode.preference === 'dark' ? 'light' : 'dark'"
+        @click="() => {
+          $colorMode.preference = $colorMode.preference === 'dark' ? 'light' : 'dark'
+          colorModeIcon = $colorMode.preference === 'dark' ? 'i-line-md:sunny-outline' : 'i-line-md:moon-simple'
+        }"
       >
         <UIcon
-          :key="$colorMode.preference"
+          :key="colorModeIcon"
           class="h-7 w-7"
-          :name="$colorMode.unknown ? 'i-line-md:light-dark' : $colorMode.value === 'dark' ? 'i-line-md:sunny-outline' : 'i-line-md:moon-simple'"
+          :name="colorModeIcon"
           dynamic
         />
       </UButton>

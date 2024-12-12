@@ -1,9 +1,5 @@
 <script setup lang="ts">
-  interface PageProps {
-    full?: boolean;
-  }
-
-withDefaults(defineProps<PageProps>(), {
+withDefaults(defineProps<{ full?: boolean }>(), {
   full: false,
 })
 </script>

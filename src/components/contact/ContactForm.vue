@@ -1,13 +1,15 @@
 <script setup lang="ts">
+import type { RuntimeConfig } from 'nuxt/schema'
+
 interface FormState {
-  [key: string]: '';
+  [key: string]: ''
 }
 const messages = {
   required: 'is required',
   email: 'Invalid Email',
   success: 'Your message was successfully sent!',
 }
-const config: any = useRuntimeConfig()
+const config: RuntimeConfig = useRuntimeConfig()
 
 const scriptLoaded = ref(false)
 const form = ref(null)
@@ -15,13 +17,13 @@ const formElement = ref<HTMLElement | null>(null)
 const loading = ref(false)
 const success = ref(false)
 const emailJs: Ref<{
-  init: (key: string) => void;
+  init: (key: string) => void
   sendForm: (
     serviceId: string,
     templateId: string,
     form: HTMLElement | null,
     publicKey: string,
-  ) => Promise<{ status: number; text: string }>;
+  ) => Promise<{ status: number, text: string }>
 } | null> = ref(null)
 
 const state: FormState = reactive({
@@ -49,7 +51,8 @@ async function onSubmit() {
         success.value = true
         resetForm()
       }
-    } catch (e) {
+    }
+    catch (e) {
       loading.value = false
       console.error(e)
     }
@@ -63,7 +66,7 @@ async function initEmailJs() {
       id: 'emailjs',
     })
     if (scriptLoaded.value && !emailJs.value) {
-      // @ts-ignore
+      // @ts-expect-error - emailjs on window
       emailJs.value = window?.emailjs
     }
   }
@@ -116,23 +119,61 @@ function resetForm() {
           class="grid gap-y-4 sm:grid-cols-2 sm:gap-x-8"
           @submit="onSubmit"
         >
-          <UFormGroup label="Name" name="name" required>
-            <UInput v-model="state.name" icon="i-lucide-contact" input-class="bg-white dark:bg-dark" placeholder="John Snow" size="xl" />
+          <UFormGroup
+            label="Name"
+            name="name"
+            required
+          >
+            <UInput
+              v-model="state.name"
+              icon="i-lucide-contact"
+              input-class="bg-white dark:bg-dark"
+              placeholder="John Snow"
+              size="xl"
+            />
           </UFormGroup>
 
-          <UFormGroup label="Email" name="email" required>
-            <UInput v-model="state.email" icon="i-lucide-mail" input-class="bg-white dark:bg-dark" placeholder="you@example.com" size="xl" />
+          <UFormGroup
+            label="Email"
+            name="email"
+            required
+          >
+            <UInput
+              v-model="state.email"
+              icon="i-lucide-mail"
+              input-class="bg-white dark:bg-dark"
+              placeholder="you@example.com"
+              size="xl"
+            />
           </UFormGroup>
           <div class="sm:col-span-2">
-            <UFormGroup label="Message" name="message" required>
-              <UTextarea v-model="state.message" textarea-class="bg-white dark:bg-dark" placeholder="Leave a brief message..." size="xl" />
+            <UFormGroup
+              label="Message"
+              name="message"
+              required
+            >
+              <UTextarea
+                v-model="state.message"
+                textarea-class="bg-white dark:bg-dark"
+                placeholder="Leave a brief message..."
+                size="xl"
+              />
             </UFormGroup>
           </div>
           <div class="relative sm:col-span-2">
-            <UButton type="submit" size="xl" :loading="loading" icon="i-lucide-send" trailing>
+            <UButton
+              type="submit"
+              size="xl"
+              :loading="loading"
+              icon="i-lucide-send"
+              trailing
+            >
               Submit
             </UButton>
-            <div v-if="success" class="animate-fadeIn absolute text-lg mt-4">
+            <div
+              v-if="success"
+              class="animate-fadeIn absolute text-lg mt-4"
+            >
               {{ messages.success }}
             </div>
           </div>

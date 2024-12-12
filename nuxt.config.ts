@@ -1,8 +1,32 @@
 import UnheadVite from '@unhead/addons/vite'
 
 export default defineNuxtConfig({
-  colorMode: {
-    classSuffix: '',
+  extends: ['@nuxt/ui-pro'],
+  modules: [
+    '@nuxt/content',
+    '@nuxt/ui',
+    '@vueuse/nuxt',
+    '@nuxtjs/supabase',
+    '@nuxt/image',
+    '@nuxthq/studio',
+    '@nuxt/eslint',
+  ],
+  $development: {
+    runtimeConfig: {
+      public: {
+        baseUrl: 'http://localhost:8888',
+      },
+    },
+    features: {
+      devLogs: true,
+    },
+  },
+  $production: {
+    runtimeConfig: {
+      public: {
+        baseUrl: process.env.BASE_URL,
+      },
+    },
   },
   components: [
     {
@@ -11,6 +35,9 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
+  colorMode: {
+    classSuffix: '',
+  },
   content: {
     api: {
       baseURL: '/api/content',
@@ -23,54 +50,6 @@ export default defineNuxtConfig({
       anchorLinks: false,
     },
   },
-  $development: {
-    features: {
-      devLogs: true,
-    },
-    runtimeConfig: {
-      public: {
-        baseUrl: 'http://localhost:8888',
-      },
-    },
-  },
-  eslint: {
-    config: {
-      stylistic: true,
-    },
-  },
-  experimental: {
-    headNext: true,
-    scanPageMeta: true,
-    sharedPrerenderData: true,
-  },
-  extends: ['@nuxt/ui-pro'],
-  image: {
-    provider: 'netlifyImageCdn',
-    domains: ['picsum.photos', 'fastly.picsum.photos', 'images.unsplash.com', 'source.unsplash.com'],
-  },
-  modules: [
-    '@nuxt/content',
-    '@nuxt/ui',
-    '@vueuse/nuxt',
-    '@nuxtjs/supabase',
-    '@nuxt/image',
-    '@nuxthq/studio',
-    '@nuxt/eslint',
-  ],
-  nitro: {
-    netlify: {
-      images: {
-        remote_images: ['https://picsum.photos/.*', 'https://fastly.picsum.photos/.*', 'https://images.unsplash.com/.*', 'https://source.unsplash.com/.*'],
-      },
-    },
-  },
-  $production: {
-    runtimeConfig: {
-      public: {
-        baseUrl: process.env.BASE_URL,
-      },
-    },
-  },
   runtimeConfig: {
     public: {
       emailId: '',
@@ -80,6 +59,32 @@ export default defineNuxtConfig({
     },
   },
   srcDir: 'src/',
+  experimental: {
+    headNext: true,
+    scanPageMeta: true,
+    sharedPrerenderData: true,
+  },
+  nitro: {
+    netlify: {
+      images: {
+        remote_images: ['https://picsum.photos/.*', 'https://fastly.picsum.photos/.*', 'https://images.unsplash.com/.*', 'https://source.unsplash.com/.*'],
+      },
+    },
+  },
+  vite: {
+    plugins: [
+      UnheadVite(),
+    ],
+  },
+  eslint: {
+    config: {
+      stylistic: true,
+    },
+  },
+  image: {
+    provider: 'netlifyImageCdn',
+    domains: ['picsum', 'picsum.photos', 'https://picsum.photos', 'fastly.picsum.photos', 'images.unsplash.com', 'source.unsplash.com'],
+  },
   supabase: {
     redirectOptions: {
       login: '/login',
@@ -90,10 +95,5 @@ export default defineNuxtConfig({
   tailwindcss: {
     configPath: '~~/tailwind.config.ts',
     viewer: false,
-  },
-  vite: {
-    plugins: [
-      UnheadVite(),
-    ],
   },
 })

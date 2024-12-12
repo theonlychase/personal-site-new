@@ -1,6 +1,6 @@
 import type { Config } from 'tailwindcss'
 
-// @ts-ignore
+// @ts-expect-error - keyframes type
 export default <Partial<Config>> {
   darkMode: 'class',
   content: [

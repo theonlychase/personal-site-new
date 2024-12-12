@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nav } from '~/helpers/data'
+import { nav } from '~/helpers/const'
 
 withDefaults(defineProps<{ show?: boolean }>(), {
   show: false,

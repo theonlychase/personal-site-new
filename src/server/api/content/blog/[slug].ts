@@ -14,7 +14,8 @@ export default defineEventHandler(async (event) => {
       // @ts-expect-error - insert should be able to take a type
       const { data } = await client.from('Views').insert({ slug, viewCount: 1 }).select()
       view = data
-    } else {
+    }
+    else {
       const { data } = await client.from('Views').update({ viewCount: view[0].viewCount + 1 }).eq('slug', slug).select()
       view = data
     }
