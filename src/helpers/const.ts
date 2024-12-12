@@ -1,4 +1,4 @@
-const nav = [
+export const nav = [
   {
     text: 'Home',
     name: 'index',
@@ -19,7 +19,7 @@ const nav = [
   },
 ]
 
-const gradients = [
+export const gradients = [
   'from-[#42b883] via-[#f7d486] to-[#f27a7d]',
   'from-[#84ffc9] via-[#aab2ff] to-[#eca0ff]',
   'from-[#4158D0] via-[#C850C0] to-[#FFCC70]',
@@ -27,7 +27,7 @@ const gradients = [
   'from-[#22c1c3] to-[#fdbb2d]',
 ]
 
-const bgs = [
+export const bgs = [
   'bg-green-500/20 dark:bg-green-200/90',
   'bg-blue-500/20  dark:bg-blue-200/90',
   'bg-red-500/20  dark:bg-red-200/90',
@@ -35,25 +35,42 @@ const bgs = [
   'bg-orange-500/20  dark:bg-orange-200/90',
 ]
 
-const projects = [
+export const projects = [
   {
-    url: 'https://flamboyant-heyrovsky-cb0a70.netlify.app',
-    title: 'Frontend Workshop for building UI Components',
-    description:
-      'Ultra-lite version of Storybook built in Vue 3, showcasing Vue 3 UI components & their variations.',
-    icon: 'vue',
-    viewBox: '0 0 24 24',
-  },
-  {
-    url: 'https://jovial-stroopwafel-e0a8b6.netlify.app/',
-    title: 'Storybook 7 UI Library',
-    description: 'Latest Storybook 7 with Vue 3, Vite, Typescript & UnoCss',
-    icon: 'storybook',
-    viewBox: '-31.5 0 319 319',
+    url: 'https://storybook-from-scratch.netlify.app',
+    title: 'Storybook From Scratch',
+    description: 'Custom, lightweight alternative to Storybook for building Vue components in isolation.',
+    icons: [
+      {
+        name: 'i-devicon-vuejs',
+        title: 'VueJS',
+      },
+      {
+        name: 'i-simple-icons-primevue',
+        title: 'PrimeVue',
+      },
+      {
+        name: 'i-devicon-vitejs',
+        title: 'ViteJS',
+      },
+      {
+        name: 'i-devicon-tailwindcss',
+        title: 'TailwindCSS',
+      },
+      {
+        name: 'i-devicon-typescript',
+        title: 'Typescript',
+      },
+    ],
+    details: [
+      'Develop, test & document UI components',
+      'Auto generated routes for pages, components & stories',
+      'Reactive, auto generated controls for modifying component state',
+    ],
   },
 ]
 
-const skills = [
+export const skills = [
   'Modern Frontend Architecture',
   'User Interface/User Experience',
   'Design Systems',
@@ -61,28 +78,3 @@ const skills = [
   'Core Web Vitals Performance',
   'Solving Problems at Scale',
 ]
-
-const projectIcons = [
-  {
-    name: 'i-devicon-vuejs',
-    title: 'VueJS',
-  },
-  {
-    name: 'i-simple-icons-primevue',
-    title: 'PrimeVue',
-  },
-  {
-    name: 'i-devicon-vitejs',
-    title: 'ViteJS',
-  },
-  {
-    name: 'i-devicon-tailwindcss',
-    title: 'TailwindCSS',
-  },
-  {
-    name: 'i-devicon-typescript',
-    title: 'Typescript',
-  },
-]
-
-export { bgs, gradients, projectIcons, projects, nav, skills }
