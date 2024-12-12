@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { projectIcons, skills } from '~/helpers/const'
+import { projects, skills } from '~/helpers/const'
 
 useHead({
   templateParams: {
@@ -30,16 +30,18 @@ useHead({
 
     <ULandingGrid>
       <ULandingCard
+        v-for="project in projects"
+        :key="project.title"
         class="col-span-6 row-span-2"
         target="_blank"
-        title="Storybook From Scratch"
-        to="https://storybook-from-scratch.netlify.app"
+        :title="project.title"
+        :to="project.url"
         :ui="{ icon: { wrapper: 'pointer-events-auto' } }"
       >
         <template #icon>
           <div class="flex items-center gap-x-3">
             <UIcon
-              v-for="{ name, title } in projectIcons"
+              v-for="{ name, title } in project.icons"
               :key="name"
               class="w-8 h-8 z-10"
               :name="name"
@@ -54,29 +56,17 @@ useHead({
           </div>
 
           <ul class="space-y-2 text-sm">
-            <li class="flex items-start space-x-3">
+            <li
+              v-for="detail in project.details"
+              :key="detail"
+              class="flex items-start space-x-3"
+            >
               <UIcon
-                class="w-4 h-4 text-primary shrink-0 mt-1"
+                class="w-4 h-4 text-primary shrink-0"
                 name="i-lucide-circle-check"
                 title="Check"
               />
-              <span>Develop, test & document UI components</span>
-            </li>
-            <li class="flex items-start space-x-3">
-              <UIcon
-                class="w-4 h-4 text-primary shrink-0 mt-1"
-                name="i-lucide-circle-check"
-                title="Check"
-              />
-              <span>Auto generated routes for pages, components & stories</span>
-            </li>
-            <li class="flex items-start space-x-3">
-              <UIcon
-                class="w-4 h-4 text-primary shrink-0 mt-1"
-                name="i-lucide-circle-check"
-                title="Check"
-              />
-              <span>Reactive, auto generated controls for modifying component state</span>
+              <span>{{ detail }}</span>
             </li>
           </ul>
         </template>
