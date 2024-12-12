@@ -1,5 +1,12 @@
 export default defineAppConfig({
   ui: {
+    blog: {
+      post: {
+        image: {
+          wrapper: 'dark:ring-gray-600'
+        }
+      }
+    },
     button: {
       color: {
         primary: {
@@ -43,11 +50,20 @@ export default defineAppConfig({
     icons: {
       dynamic: true,
     },
+    landing: {
+      card: {
+        wrapper: 'dark:ring-gray-600',
+        background: 'bg-gray-100 dark:bg-[#2d2d2d]',
+      },
+    },
     main: {
       wrapper: 'min-h-full flex-1',
     },
     page: {
       wrapper: 'max-w-2xl py-8 px-4 md:px-0 mx-auto',
+      body: {
+        wrapper: ''
+      },
       header: {
         wrapper: 'pt-0 border-b-0',
       },

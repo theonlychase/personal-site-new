@@ -62,4 +62,27 @@ const skills = [
   'Solving Problems at Scale',
 ]
 
-export { bgs, gradients, projects, nav, skills }
+const projectIcons = [
+  {
+    name: 'i-devicon-vuejs',
+    title: 'VueJS',
+  },
+  {
+    name: 'i-simple-icons-primevue',
+    title: 'PrimeVue',
+  },
+  {
+    name: 'i-devicon-vitejs',
+    title: 'ViteJS',
+  },
+  {
+    name: 'i-devicon-tailwindcss',
+    title: 'TailwindCSS',
+  },
+  {
+    name: 'i-devicon-typescript',
+    title: 'Typescript',
+  },
+]
+
+export { bgs, gradients, projectIcons, projects, nav, skills }

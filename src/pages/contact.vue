@@ -8,9 +8,11 @@ useHead({
 </script>
 
 <template>
-  <UPageHeader
-    title="Contact"
-  />
+  <UPageBody>
+    <UPageHeader
+      title="Contact"
+    />
 
-  <ContactForm />
+    <ContactForm />
+  </UPageBody>
 </template>
