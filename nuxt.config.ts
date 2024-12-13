@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxt/image',
     '@nuxt/eslint',
-    '@nuxtjs/partytown',
+    // '@nuxtjs/partytown',
     '@nuxtjs/seo',
     '@nuxtjs/supabase',
     '@nuxthq/studio',
@@ -37,27 +37,27 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
-  app: {
-    head: {
-      script: [
-        {
-          type: 'text/partytown',
-          async: true,
-          children: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5HRV2GV');`,
-        },
-      ],
-      noscript: [
-        {
-          body: true,
-          children: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5HRV2GV" height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
-        },
-      ],
-    },
-  },
+  //   app: {
+  //     head: {
+  //       script: [
+  //         {
+  //           type: 'text/partytown',
+  //           async: true,
+  //           children: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  // new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  // j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  // 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  // })(window,document,'script','dataLayer','GTM-5HRV2GV');`,
+  //         },
+  //       ],
+  //       noscript: [
+  //         {
+  //           body: true,
+  //           children: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5HRV2GV" height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
+  //         },
+  //       ],
+  //     },
+  //   },
   site: {
     url: 'https://chaseisley.dev/',
     name: 'Chase Isley',
@@ -112,9 +112,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     provider: 'netlifyImageCdn',
     domains: ['picsum', 'picsum.photos', 'https://picsum.photos', 'fastly.picsum.photos', 'images.unsplash.com', 'source.unsplash.com'],
   },
-  partytown: {
-    forward: ['dataLayer.push'],
-  },
+  // partytown: {
+  //   forward: ['dataLayer.push'],
+  // },
   robots: {
     disallow: ['/confirm', '/profile'],
   },
