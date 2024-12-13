@@ -14,6 +14,8 @@ head:
 image:
   src: 'https://picsum.photos/640/360.webp'
   alt: 'Typewriter Component'
+sitemap:
+  loc: '/blog/create-a-typewriter-component-in-vue-3'
 short: 'Vue 3 Typewriter Component'
 tags: ['Vue', 'Typescript', 'Tailwind']
 _path: '/blog/create-a-typewriter-component-in-vue-3'
