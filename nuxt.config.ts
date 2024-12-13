@@ -3,14 +3,15 @@ import UnheadVite from '@unhead/addons/vite'
 export default defineNuxtConfig({
   extends: ['@nuxt/ui-pro'],
   modules: [
-    '@nuxtjs/partytown',
     '@nuxt/content',
     '@nuxt/ui',
-    '@vueuse/nuxt',
-    '@nuxtjs/supabase',
     '@nuxt/image',
-    '@nuxthq/studio',
     '@nuxt/eslint',
+    '@nuxtjs/partytown',
+    '@nuxtjs/seo',
+    '@nuxtjs/supabase',
+    '@nuxthq/studio',
+    '@vueuse/nuxt',
   ],
   $development: {
     runtimeConfig: {
@@ -56,6 +57,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         },
       ],
     },
+  },
+  site: {
+    url: 'https://chaseisley.dev/',
+    name: 'Chase Isley',
   },
   colorMode: {
     classSuffix: '',
@@ -109,6 +114,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   },
   partytown: {
     forward: ['dataLayer.push'],
+  },
+  robots: {
+    disallow: ['/confirm', '/profile'],
+  },
+  sitemap: {
+    strictNuxtContentPaths: true,
   },
   supabase: {
     redirectOptions: {
