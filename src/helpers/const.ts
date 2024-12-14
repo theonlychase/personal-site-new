@@ -35,7 +35,15 @@ export const bgs = [
   'bg-orange-500/20  dark:bg-orange-200/90',
 ]
 
-export const projects = [
+export interface Project {
+  url: string
+  title: string
+  description: string
+  icons: { name: string, title: string }[]
+  details: string[]
+}
+
+export const projects: Array<Project> = [
   {
     url: 'https://storybook-from-scratch.netlify.app',
     title: 'Storybook From Scratch',

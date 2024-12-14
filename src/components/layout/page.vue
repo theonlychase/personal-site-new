@@ -1,7 +1,5 @@
 <script setup lang="ts">
-withDefaults(defineProps<{ full?: boolean }>(), {
-  full: false,
-})
+defineProps<{ full?: boolean }>()
 </script>
 
 <template>
