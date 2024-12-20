@@ -54,3 +54,7 @@
 .router-link-exact-active, .router-link-active {
   @apply text-green-500 hover:text-green-600 font-semibold !important;
 }
+
+.prose pre {
+  @apply sm-max:whitespace-pre;
+}
