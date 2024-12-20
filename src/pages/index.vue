@@ -24,6 +24,14 @@ useHead({
       class="mb-12"
     />
 
+    <!--    <Slider :slides="projects[0].icons"> -->
+    <!--      <template #default> -->
+    <!--        <UCard :ui="{ body: { padding: '' } }"> -->
+    <!--          <USkeleton class="h-40" /> -->
+    <!--        </UCard> -->
+    <!--      </template> -->
+    <!--    </Slider> -->
+
     <h2 class="mb-6">
       Recent Playground Projects
     </h2>
