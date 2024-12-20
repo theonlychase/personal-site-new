@@ -1,35 +1,32 @@
 <script setup lang="ts">
-const props = withDefaults(
-  defineProps<{
-    data: Array<string>
-    start?: number
-    enter?: number
-    end?: number
-    leave?: number
-  }>(),
-  {
-    data: () => [],
-    start: 1000,
-    enter: 60,
-    end: 1500,
-    leave: 30,
-  },
-)
+const {
+  data = [],
+  start = 1000,
+  enter = 60,
+  end = 1500,
+  leave = 30,
+} = defineProps<{
+  data: Array<string>
+  start?: number
+  enter?: number
+  end?: number
+  leave?: number
+}>()
 
 const state = reactive({ text: '', complete: false, index: 0 })
 
 addText({ initial: true })
 
 function addText({ initial = false } = {}) {
-  if (state.text.length < props.data[state.index].length && !state.complete) {
+  if (state.text.length < data[state.index].length && !state.complete) {
     if (!initial) {
-      state.text += props.data[state.index].charAt(state.text.length)
+      state.text += data[state.index].charAt(state.text.length)
     }
-    useTimeoutFn(addText, props.enter)
+    useTimeoutFn(addText, enter)
   }
-  if (state.text.length === props.data[state.index].length) {
+  if (state.text.length === data[state.index].length) {
     state.complete = true
-    useTimeoutFn(removeText, props.end)
+    useTimeoutFn(removeText, end)
   }
 }
 
@@ -38,17 +35,17 @@ function removeText() {
     const t = state.text.split('')
     t.pop()
     state.text = t.join('')
-    useTimeoutFn(removeText, props.leave)
+    useTimeoutFn(removeText, leave)
   }
   if (state.text.length === 0 && state.complete) {
     state.complete = false
-    if (state.index === props.data.length - 1) {
+    if (state.index === data.length - 1) {
       state.index = 0
     }
     else {
       state.index++
     }
-    useTimeoutFn(addText, props.start)
+    useTimeoutFn(addText, start)
   }
 }
 </script>

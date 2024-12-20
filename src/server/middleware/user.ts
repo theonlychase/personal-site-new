@@ -1,15 +1,13 @@
-import { serverSupabaseUser } from '#supabase/server'
+import { serverSupabaseClient } from '#supabase/server'
 
 export default defineEventHandler(async (event) => {
   try {
-    const user = await serverSupabaseUser(event)
-    if (!user) {
-      event.context.user = null
-      // Handle unauthenticated case
-      return
-    }
+    const client = await serverSupabaseClient(event)
+    const { data } = await client.auth.getUser()
 
-    event.context.user = user
+    if (data.user) {
+      event.context.user = data.user
+    }
   }
   catch (error: unknown) {
     event.context.user = null
