@@ -1,19 +1,33 @@
 <script setup lang="ts">
-const { slides = [] } = defineProps<{ slides: Array<{ [key: string]: any }> }>()
+const {
+  columnGap = 12,
+  slides = [],
+} = defineProps<{
+  columnGap?: number
+  slides: Array<{ [key: string]: any }>
+}>()
 
 const activeIndex = ref(0)
 const container: Ref = ref(null)
 const childSlides: Ref<HTMLElement[]> = ref([])
 const disableBtns = ref(true)
-const endingIndex = ref(3)
+const endingIndex = ref(4)
 const entriesIntersected: Ref<number[]> = ref([])
-const lazyIndex = ref(3)
 const observer: Ref<IntersectionObserver | null> = ref(null)
 const showPrevBtn = ref(false)
 const showNextBtn = ref(false)
 const scrollToEnd = ref(false)
 const scrollToStart = ref(false)
 const transition = ref(0)
+const totalChildWidth = computed(() => {
+  return childSlides.value.reduce((acc, slide) => {
+    const width = acc + slide.offsetWidth
+    if (slide.offsetWidth && slide !== childSlides.value[childSlides.value.length - 2]) {
+      return width + columnGap
+    }
+    return width
+  }, 0)
+})
 
 const computedSlides = computed(() =>
   slides.slice(0, endingIndex.value),
@@ -33,16 +47,6 @@ onBeforeUnmount(() => {
   observer.value?.disconnect()
 })
 
-watch(
-  () => activeIndex.value,
-  (val) => {
-    if (val % lazyIndex.value === 0) {
-      endingIndex.value += lazyIndex.value
-    }
-  },
-  { immediate: true },
-)
-
 watchEffect(
   () => {
     initObserver()
@@ -51,31 +55,6 @@ watchEffect(
     flush: 'post',
   },
 )
-
-const scrollNext = () => {
-  const { offsetWidth, offsetParent } = container.value
-  const parentOffset = offsetWidth - offsetParent.offsetWidth
-
-  if (scrollToEnd.value) {
-    transition.value = parentOffset
-  }
-  else {
-    transition.value += childSlides.value[1].offsetWidth + 12
-  }
-
-  container.value.style.transform = `translate3d(${-transition.value}px, 0, 0)`
-}
-
-const scrollPrev = () => {
-  if (scrollToStart.value) {
-    transition.value = 0
-  }
-  else {
-    transition.value -= childSlides.value[1].offsetWidth + 12
-  }
-
-  container.value.style.transform = `translate3d(${-transition.value}px, 0, 0)`
-}
 
 const initObserver = () => {
   if (!observer.value) {
@@ -89,6 +68,35 @@ const initObserver = () => {
   childSlides.value.forEach((child) => {
     observer.value?.observe(child)
   })
+}
+
+const scrollNext = async () => {
+  const { offsetWidth, offsetParent } = container.value
+  const parentOffset = offsetWidth - offsetParent.offsetWidth
+
+  if (transition.value < totalChildWidth.value - offsetParent.offsetWidth) {
+    endingIndex.value += 1
+  }
+
+  if (scrollToEnd.value) {
+    transition.value = parentOffset
+  }
+  else {
+    transition.value += childSlides.value[1].offsetWidth + columnGap
+  }
+
+  container.value.style.transform = `translate3d(${-transition.value}px, 0, 0)`
+}
+
+const scrollPrev = () => {
+  if (scrollToStart.value) {
+    transition.value = 0
+  }
+  else {
+    transition.value -= childSlides.value[1].offsetWidth + columnGap
+  }
+
+  container.value.style.transform = `translate3d(${-transition.value}px, 0, 0)`
 }
 
 const handleIntersect: IntersectionObserverCallback = (entries, observer) => {
@@ -174,9 +182,13 @@ const unobserveEntry = ({ target }: { target: IntersectionObserverEntry['target'
       <div
         v-for="(slide, i) in computedSlides"
         :key="`slide-${i}`"
-        class="slider-slide flex flex-col w-64 mr-3 last-of-type:mr-0 overflow-hidden p-1"
+        :style="{ marginRight: i !== computedSlides.length -1 ? `${columnGap}px` : 0 }"
+        class="slider-slide flex flex-col max-w-full shrink-0 w-64 last-of-type:mr-0 overflow-hidden p-1"
       >
-        <slot :slide="slide" />
+        <slot
+          :slide="slide"
+          :index="i"
+        />
       </div>
 
       <span class="slider-slide__last" />
@@ -207,10 +219,6 @@ const unobserveEntry = ({ target }: { target: IntersectionObserverEntry['target'
   &::-webkit-scrollbar {
     width: 0;
     height: 0;
-  }
-
-  & > .slider-slide {
-    @apply max-w-full shrink-0;
   }
 }
 </style>
