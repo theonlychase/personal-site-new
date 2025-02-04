@@ -99,7 +99,7 @@ export default defineNuxtConfig({
   routeRules: {
     '/': { prerender: true },
     '/blog': { prerender: true },
-    '/blog/:slug': { prerender: true },
+    '/blog/**': { prerender: true },
   },
 
   experimental: {
