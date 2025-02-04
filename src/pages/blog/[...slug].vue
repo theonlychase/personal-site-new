@@ -8,9 +8,13 @@ defineRouteRules({
 })
 
 const { path } = useRoute()
-const { data } = await useAsyncData(path, () => {
+const { data, error } = await useAsyncData(path, () => {
   return queryCollection('blog').path(path).first()
 })
+
+if (error) {
+  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
+}
 
 useSeoMeta({
   title: data.value?.seo.title,
