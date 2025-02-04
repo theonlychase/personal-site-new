@@ -4,7 +4,8 @@ import { projects, skills } from '~/helpers/const'
 useHead({
   templateParams: {
     title: 'Home',
-    description: 'Chase Isley is a software engineer highly skilled at modern front-end architecture, design systems, and solving problems at scale.',
+    description:
+      'Chase Isley is a software engineer highly skilled at modern front-end architecture, design systems, and solving problems at scale.',
   },
 })
 </script>
@@ -40,12 +41,12 @@ useHead({
       Recent Playground Projects
     </h2>
 
-    <ULandingGrid>
+    <UPageGrid>
       <ProjectCard
         v-for="project in projects"
         :key="project.title"
         :project="project"
       />
-    </ULandingGrid>
+    </UPageGrid>
   </UPageBody>
 </template>

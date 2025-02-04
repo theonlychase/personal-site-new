@@ -1,42 +1,6 @@
 import UnheadVite from '@unhead/addons/vite'
 
 export default defineNuxtConfig({
-  extends: ['@nuxt/ui-pro'],
-  modules: [
-    '@nuxt/content',
-    '@nuxt/ui',
-    '@nuxt/image',
-    '@nuxt/eslint',
-    // '@nuxtjs/partytown',
-    '@nuxtjs/seo',
-    '@nuxtjs/supabase',
-    '@nuxthq/studio',
-    '@vueuse/nuxt',
-  ],
-  $development: {
-    runtimeConfig: {
-      public: {
-        baseUrl: 'http://localhost:8888',
-      },
-    },
-    features: {
-      devLogs: true,
-    },
-  },
-  $production: {
-    runtimeConfig: {
-      public: {
-        baseUrl: process.env.BASE_URL,
-      },
-    },
-  },
-  components: [
-    {
-      path: '~/components',
-      extensions: ['.vue'],
-      pathPrefix: false,
-    },
-  ],
   //   app: {
   //     head: {
   //       script: [
@@ -58,25 +22,69 @@ export default defineNuxtConfig({
   //       ],
   //     },
   //   },
+  modules: [
+    '@nuxt/ui-pro',
+    '@nuxtjs/seo',
+    '@nuxt/content',
+    '@nuxt/image',
+    '@vueuse/nuxt',
+    '@nuxt/eslint',
+    // '@nuxtjs/partytown',
+    '@nuxtjs/supabase',
+  ],
+
+  $development: {
+    runtimeConfig: {
+      public: {
+        baseUrl: 'http://localhost:8888',
+      },
+    },
+    features: {
+      devLogs: true,
+    },
+  },
+
+  $production: {
+    runtimeConfig: {
+      public: {
+        baseUrl: process.env.BASE_URL,
+      },
+    },
+  },
+
+  components: [
+    {
+      path: '~/components',
+      extensions: ['.vue'],
+      pathPrefix: false,
+    },
+  ],
+
+  css: ['~/assets/css/tailwind.css'],
+
   site: {
     url: 'https://chaseisley.dev/',
     name: 'Chase Isley',
   },
+
   colorMode: {
     classSuffix: '',
   },
+
   content: {
-    api: {
-      baseURL: '/api/content',
+    build: {
+      markdown: {
+        highlight: {
+          theme: 'night-owl',
+          langs: ['css', 'js', 'ts', 'vue'],
+        },
+      },
     },
-    highlight: {
-      theme: 'night-owl',
-      langs: ['css', 'js', 'ts', 'vue'],
-    },
-    markdown: {
+    renderer: {
       anchorLinks: false,
     },
   },
+
   runtimeConfig: {
     public: {
       emailId: '',
@@ -85,12 +93,17 @@ export default defineNuxtConfig({
       templateId: '',
     },
   },
+
   srcDir: 'src/',
+
   experimental: {
     headNext: true,
     scanPageMeta: true,
     sharedPrerenderData: true,
   },
+
+  // compatibilityDate: '2025-02-03',
+
   nitro: {
     netlify: {
       images: {
@@ -98,29 +111,34 @@ export default defineNuxtConfig({
       },
     },
   },
+
   vite: {
     plugins: [
       UnheadVite(),
     ],
   },
+
   eslint: {
     config: {
       stylistic: true,
     },
   },
+
+  icon: {
+    serverBundle: {
+      collections: ['devicon', 'lucide', 'line-md', 'simple-icons'],
+    },
+  },
+
   image: {
     provider: 'netlifyImageCdn',
     domains: ['picsum', 'picsum.photos', 'https://picsum.photos', 'fastly.picsum.photos', 'images.unsplash.com', 'source.unsplash.com'],
   },
-  // partytown: {
-  //   forward: ['dataLayer.push'],
-  // },
+
   robots: {
     disallow: ['/confirm', '/profile'],
   },
-  sitemap: {
-    strictNuxtContentPaths: true,
-  },
+
   supabase: {
     redirectOptions: {
       login: '/login',
@@ -128,8 +146,11 @@ export default defineNuxtConfig({
       include: ['/profile(/*)?'],
     },
   },
-  tailwindcss: {
-    configPath: '~~/tailwind.config.ts',
-    viewer: false,
+
+  // partytown: {
+  //   forward: ['dataLayer.push'],
+  // },
+  uiPro: {
+    license: process.env.NUXT_UI_PRO_LICENSE,
   },
 })

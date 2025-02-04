@@ -5,19 +5,18 @@ const { project } = defineProps<{ project: Project }>()
 </script>
 
 <template>
-  <ULandingCard
+  <UPageCard
     class="col-span-6 row-span-2"
     target="_blank"
     :title="project.title"
     :to="project.url"
-    :ui="{ icon: { wrapper: 'pointer-events-auto' } }"
   >
-    <template #icon>
+    <template #header>
       <div class="flex items-center gap-x-3">
         <UIcon
           v-for="{ name, title } in project.icons"
           :key="name"
-          class="w-8 h-8 z-10"
+          class="w-8 h-8 z-10 pointer-events-auto"
           :name="name"
           :title="title"
         />
@@ -44,5 +43,5 @@ const { project } = defineProps<{ project: Project }>()
         </li>
       </ul>
     </template>
-  </ULandingCard>
+  </UPageCard>
 </template>

@@ -5,44 +5,42 @@ useHead({
     description: 'Recent Blog Posts',
   },
 })
+
+const { path } = useRoute()
+
+const { data } = await useAsyncData(path, () => {
+  return queryCollection('blog').all()
+})
 </script>
 
 <template>
-  <ContentList path="/blog">
-    <template #default="{ list }">
-      <UPageHeader
-        title="Blog"
-      />
-      <UBlogList orientation="vertical">
-        <UBlogPost
-          v-for="i in list"
-          :key="i._path"
-          :authors="[{ ...i.author }]"
-          :date="i.created"
-          :description="i.description"
-          :image="i.image"
-          orientation="horizontal"
-          :title="i.short"
-          :to="i._path"
-        >
-          <template
-            v-if="i.tags"
-            #badge
-          >
-            <UBadge
-              v-for="tag in i.tags"
-              :key="tag"
-              :label="tag"
-              variant="subtle"
-              class="ml-2 first:ml-0"
-            />
-          </template>
-        </UBlogPost>
-      </UBlogList>
-    </template>
+  <UPageBody>
+    <UPageHeader
+      title="Blog"
+      class="mb-8"
+    />
 
-    <template #not-found>
-      No Content Found
-    </template>
-  </ContentList>
+    <UBlogPosts orientation="vertical">
+      <UBlogPost
+        v-for="(post, index) in data"
+        :key="index"
+        v-bind="post"
+        :to="post.path"
+        orientation="horizontal"
+      >
+        <template
+          v-if="post.tags"
+          #badge
+        >
+          <UBadge
+            v-for="tag in post.tags"
+            :key="tag"
+            :label="tag"
+            variant="subtle"
+            class="ml-1 first:ml-0"
+          />
+        </template>
+      </UBlogPost>
+    </UBlogPosts>
+  </UPageBody>
 </template>

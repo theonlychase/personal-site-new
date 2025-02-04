@@ -10,6 +10,7 @@ useHead({
 <template>
   <UPageBody>
     <UPageHeader
+      class="mb-8"
       title="Contact"
     />
 

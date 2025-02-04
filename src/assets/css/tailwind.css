@@ -1,60 +1,136 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "@nuxt/ui-pro";
+
+@source "../../../content";
+
+@theme inline {
+  /* Header Sizes */
+  --header-1: --spacing(7);
+  --header-2: --spacing(6.5);
+  --header-3: --spacing(6);
+  --header-4: --spacing(5);
+  --header-5: --spacing(4.5);
+  --header-6: --spacing(4);
+
+  /* Animations */
+  --animate-blink: blink 1s infinite;
+
+  @keyframes blink {
+    0% {
+      border-color: transparent;
+    }
+
+    45% {
+      border-color: transparent;
+    }
+
+    50% {
+      border-color: var(--color-gray-400);
+    }
+
+    100% {
+      border-color: var(--color-gray-400);
+    }
+  }
+}
+
+@utility header-* {
+  font-size: --value(--header-*);
+
+  font-weight: --modifier(--font-weight-*, [length], [*]);
+}
+
+/* Aspect Ratios */
+@utility aspect-* {
+  @supports (aspect-ratio: 1 / 1) {
+    aspect-ratio: --value(--aspect-ratio-*, ratio, [ratio]);
+  }
+
+  @supports not (aspect-ratio: 1 / 1) {
+    &::before {
+      content: '';
+      float: left;
+      padding-top: calc(100% / --value(--aspect-ratio-*));
+    }
+
+    &::after {
+      clear: left;
+      content: '';
+      display: block;
+    }
+  }
+}
 
 @layer base {
   :root {
-    --color-dark: 36 36 36;
+    --color-dark: oklch(26.03% 0 0);
+    --ui-container: var(--container-2xl);
+    --ui-bg: var(--color-gray-50);
+    --ui-text: var(--color-gray-700);
+    --ui-border: var(--color-gray-300);
+    --ui-bg-muted: var(--color-gray-100);
+    --ui-bg-elevated: var(--color-gray-100);
   }
+
+  .dark {
+    --ui-bg: var(--color-dark);
+    --ui-text: var(--color-gray-400);
+    --ui-border: var(--color-gray-600);
+    --ui-bg-muted: oklch(0.3 0 0 / 1);
+    --ui-border-muted: var(--color-gray-600);
+    --ui-bg-elevated: oklch(0.3 0 0 / 1);
+  }
+
   html {
-    @apply font-sans min-w-[360px];
+    font-family: var(--font-sans);
   }
 
   #app {
-    @apply min-h-screen flex flex-col;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 
   h1 {
-    @apply text-3xl md:text-5xl !important;
+    font-size: var(--header-1);
   }
   h2 {
-    @apply text-2xl md:text-3xl !important;
+    font-size: var(--header-2);
   }
   h3 {
-    @apply text-xl md:text-2xl !important;
+    font-size: var(--header-3);
   }
   h1,
   h2,
   h3 {
-    @apply text-gray-800 dark:text-gray-200 font-semibold leading-tight tracking-tight !important;
-  }
-  a {
-    @apply text-green-500 hover:text-green-600 transition-colors;
-  }
-  .dark .prose .hljs-string {
-    @apply text-green-500;
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
   }
 }
 
-@layer components {
-  .autofill-color:-webkit-autofill {
-    -webkit-text-fill-color: currentColor;
-  }
-
-  .input-autofill {
-    @apply autofill-color autofill:shadow-[inset_0_0_0px_1000px_white] dark:autofill:shadow-[inset_0_0_0px_1000px_#242424];
-  }
-
-  .link-secondary {
-    @apply text-gray-800 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-600;
-  }
+.dark .prose .hljs-string {
+  color: var(--color-green-500);
 }
 
 /* Nuxt Link Active Class */
 .router-link-exact-active, .router-link-active {
-  @apply text-green-500 hover:text-green-600 font-semibold !important;
+  color: var(--color-green-500);
+  font-width: var(--font-weight-semibold);
+}
+
+a {
+  &:hover {
+    color: var(--color-green-600);
+  }
 }
 
 .prose pre {
-  @apply sm-max:whitespace-pre;
+  @media screen and (max-width: 767px) {
+    white-space: pre;
+  }
+}
+
+pre.night-owl {
+  background-color: oklch(0.3 0 0 / 1);
 }
