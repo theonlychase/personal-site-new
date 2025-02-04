@@ -53,7 +53,7 @@ async function handleLogin() {
 <template>
   <UCard class="max-w-sm w-full bg-white dark:bg-[var(--ui-bg-muted)]">
     <div class="text-center mb-6">
-      <div class="mb-2 pointer-events-none">
+      <div class="mb-2 pointer-events-none w-10 h-10 mx-auto">
         <UIcon
           class="w-10 h-10"
           name="i-lucide:lock"
