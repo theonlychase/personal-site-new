@@ -52,12 +52,12 @@ const onAfterLeave = () => {
     >
       <ul
         v-if="showMenu"
-        class="h-screen absolute flex flex-col left-0 w-full space-y-4 px-4 z-20 bg-[var(--ui-bg)] top-[var(--ui-header-height)] pt-6 text-lg"
+        class="h-screen absolute flex flex-col left-0 w-full px-4 z-20 bg-[var(--ui-bg)] top-[var(--ui-header-height)] pt-6 text-lg"
       >
         <li
           v-for="item in nav"
           :key="item.text"
-          class="flex transition-all ease duration-300 border-b border-gray-300 dark:border-gray-600 pb-4"
+          class="flex transition-all ease duration-300 border-b border-gray-300 dark:border-gray-600 pb-4 mb-4 last:mb-0"
           :class="[childTransitions, item.delay]"
         >
           <NuxtLink
