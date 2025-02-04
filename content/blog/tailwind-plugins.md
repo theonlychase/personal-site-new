@@ -105,7 +105,3 @@ To use the new utility, simply add a valid aspect ratio value, such as `aspect-[
 ```
 
 To Be Continued...
-
-
-
-
