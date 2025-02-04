@@ -96,6 +96,12 @@ export default defineNuxtConfig({
 
   srcDir: 'src/',
 
+  routeRules: {
+    '/': { prerender: true },
+    '/blog': { prerender: true },
+    '/blog/:slug': { prerender: true },
+  },
+
   experimental: {
     headNext: true,
     scanPageMeta: true,
