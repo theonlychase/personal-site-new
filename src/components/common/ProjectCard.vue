@@ -28,14 +28,14 @@ const { project } = defineProps<{ project: Project }>()
         {{ project.description }}
       </div>
 
-      <ul class="space-y-2 text-sm">
+      <ul class="flex flex-col gap-y-2 text-sm">
         <li
           v-for="detail in project.details"
           :key="detail"
-          class="flex items-start space-x-3"
+          class="flex items-start gap-x-3"
         >
           <UIcon
-            class="w-4 h-4 text-primary shrink-0 mt-0.5"
+            class="w-4 h-4 text-green-500 shrink-0 mt-0.5"
             name="i-lucide-circle-check"
             title="Check"
           />
