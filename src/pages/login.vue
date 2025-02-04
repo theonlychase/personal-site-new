@@ -2,7 +2,7 @@
 useHead({
   templateParams: {
     title: 'Login',
-    description: 'Login Yo Your Account',
+    description: 'Login To Your Account',
   },
 })
 definePageMeta({
@@ -11,5 +11,7 @@ definePageMeta({
 </script>
 
 <template>
-  <AuthForm class="mx-auto" />
+  <UPageBody>
+    <AuthForm class="mx-auto" />
+  </UPageBody>
 </template>

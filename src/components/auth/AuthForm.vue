@@ -4,84 +4,111 @@ import type { FormError } from '#ui/types'
 const config = useRuntimeConfig()
 const { auth } = useSupabaseClient()
 
-const fields = [{
-  name: 'email',
-  type: 'text',
-  label: 'Email',
-  placeholder: 'Enter your email',
-}]
-const loading = ref(false)
+const oAuthLoading = ref(false)
+const otpLoading = ref(false)
 const success = ref(false)
-const formState = ref({})
+const state: { email: string } = reactive({ email: '' })
+const toast = useToast()
 
-const validate = (state: any) => {
+const validate = () => {
   const errors: FormError[] = []
-  if (!state.email) errors.push({ path: 'email', message: 'Email is required' })
+  if (!state.email) errors.push({ name: 'email', message: 'Email is required' })
+
+  if (!validateEmail(state.email)) {
+    errors.push({ name: 'email', message: 'Invalid Email' })
+  }
   return errors
 }
 
-const providers = [{
-  label: 'Continue with GitHub',
-  icon: 'i-line-md:github',
-  color: 'black',
-  click: async () => {
-    await auth.signInWithOAuth({
-      provider: 'github',
-      options: {
-        redirectTo: config.public.baseUrl,
-      },
-    })
-  },
-}]
+async function handleOAuth() {
+  oAuthLoading.value = true
+  await auth.signInWithOAuth({
+    provider: 'github',
+    options: {
+      redirectTo: config.public.baseUrl,
+    },
+  })
+}
 
-async function handleLogin(data: any) {
+async function handleLogin() {
   try {
-    loading.value = true
-    const { error } = await auth.signInWithOtp({ email: data.email, options: {
+    otpLoading.value = true
+    const { error } = await auth.signInWithOtp({ email: state.email, options: {
       emailRedirectTo: config.public.baseUrl,
     } })
     if (error) throw error
+    await toast.add({ title: 'Success', description: 'Check Your Email For The Login Link.', color: 'success' })
   }
   catch (error) {
     alert(error.error_description || error.message)
   }
   finally {
-    formState.value.state.email = ''
-    loading.value = false
+    state.email = ''
+    otpLoading.value = false
     success.value = true
   }
 }
 </script>
 
 <template>
-  <UCard class="max-w-sm w-full">
-    <UAuthForm
+  <UCard class="max-w-sm w-full bg-white dark:bg-[var(--ui-bg-muted)]">
+    <div class="text-center mb-6">
+      <div class="mb-2 pointer-events-none">
+        <UIcon
+          class="w-10 h-10"
+          name="i-lucide:lock"
+          dynamic
+        />
+      </div>
+      <div class="text-2xl text-gray-900 dark:text-white font-bold">
+        Welcome back
+      </div>
+      <div class="text-gray-500 dark:text-gray-400 mt-1">
+        Please enter your email to sign in.
+      </div>
+    </div>
+
+    <UForm
       ref="formState"
-      :fields="fields"
+      :disabled="oAuthLoading || otpLoading"
+      :state="state"
       :validate="validate"
-      :providers="providers"
-      title="Welcome back"
-      align="top"
-      icon="i-heroicons-lock-closed"
-      :submit-button="{ label: 'Sign in', color: 'primary', loading }"
-      :ui="{ base: 'text-center', footer: 'text-center' }"
+      class="grid gap-y-4"
       @submit="handleLogin"
     >
-      <template #description>
-        Please enter your email to sign in.
-      </template>
-
-      <template
-        v-if="success"
-        #validation
+      <UFormField
+        label="Email"
+        name="email"
       >
-        <UAlert
-          color="green"
-          icon="i-heroicons-check-circle-20-solid"
-          title="Check your email for the login link"
-          variant="soft"
+        <UInput
+          v-model="state.email"
+          class="w-full"
+          placeholder="you@example.com"
         />
-      </template>
-    </UAuthForm>
+      </UFormField>
+
+      <UButton
+        class="justify-center"
+        type="submit"
+        :loading="otpLoading"
+      >
+        Sign In
+      </UButton>
+    </UForm>
+
+    <USeparator
+      class="my-6"
+      label="or"
+    />
+
+    <UButton
+      class="w-full justify-center"
+      :loading="oAuthLoading"
+      color="neutral"
+      icon="i-line-md:github"
+      @click="handleOAuth"
+    >
+      Continue with GitHub
+    </UButton>
   </UCard>
 </template>

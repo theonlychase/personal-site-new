@@ -50,7 +50,7 @@ useHead({
 </script>
 
 <template>
-  <UApp>
+  <UApp :toaster="{ position: 'top-right' }">
     <NuxtLayout>
       <NuxtLoadingIndicator
         color="#00C16A"

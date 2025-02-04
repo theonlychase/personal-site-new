@@ -25,6 +25,7 @@ const { data } = await useAsyncData(path, () => {
         v-for="(post, index) in data"
         :key="index"
         v-bind="post"
+        :title="post.short"
         :to="post.path"
         orientation="horizontal"
       >

@@ -25,14 +25,14 @@ const computedItems = computed(() => {
             label: 'Your Profile',
             icon: 'i-line-md:account',
             to: '/profile',
-            class: 'hover:text-gray-800',
+            class: 'custom-link',
           },
         ],
         [
           {
             label: 'Logout',
             icon: 'i-line-md:logout',
-            click: async () => {
+            onSelect: async () => {
               await auth.signOut()
             },
           },
@@ -44,7 +44,7 @@ const computedItems = computed(() => {
             label: 'Login',
             icon: 'i-line-md:login',
             to: '/login',
-            class: 'hover:text-gray-800',
+            class: 'custom-link',
           },
         ],
       ]

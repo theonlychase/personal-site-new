@@ -11,7 +11,9 @@ definePageMeta({
 </script>
 
 <template>
-  <UPageHeader
-    title="Profile"
-  />
+  <UPageBody>
+    <UPageHeader
+      title="Profile"
+    />
+  </UPageBody>
 </template>

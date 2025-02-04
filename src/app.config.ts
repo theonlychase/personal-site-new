@@ -1,6 +1,9 @@
 export default defineAppConfig({
   ui: {
     button: {
+      slots: {
+        base: 'cursor-pointer',
+      },
       compoundVariants: [
         {
           color: 'primary',
@@ -31,13 +34,6 @@ export default defineAppConfig({
         header: 'h-full',
       },
     },
-    blog: {
-      post: {
-        image: {
-          wrapper: 'dark:ring-gray-600',
-        },
-      },
-    },
     footer: {
       slots: {
         root: 'mt-auto',
@@ -48,15 +44,6 @@ export default defineAppConfig({
     header: {
       slots: {
         container: 'max-w-2xl mx-auto px-4 md:px-0 sm:px-0 lg:px-0',
-      },
-    },
-    icons: {
-      dynamic: true,
-    },
-    landing: {
-      card: {
-        wrapper: 'dark:ring-gray-600',
-        background: 'bg-gray-100 dark:bg-[#2d2d2d]',
       },
     },
     main: {
@@ -71,19 +58,6 @@ export default defineAppConfig({
     pageHeader: {
       slots: {
         root: 'py-0 mb-0 border-b-0',
-      },
-    },
-    page: {
-      error: {
-        name: 'text-center',
-      },
-    },
-    textarea: {
-      base: 'input-autofill',
-      color: {
-        white: {
-          outline: 'bg-white dark:bg-dark',
-        },
       },
     },
   },
