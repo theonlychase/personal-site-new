@@ -13,46 +13,51 @@ const colorModeIcon = ref('i-line-md:light-dark')
 const computedItems = computed(() => {
   return user.value
     ? [
-        [{
-          label: user.value.email,
-          slot: 'account',
-          disabled: true,
-        }],
-        [{
-          label: 'Your Profile',
-          icon: 'i-line-md:account',
-          to: '/profile',
-          class: 'hover:text-gray-800',
-        }],
-        [{
-          label: 'Logout',
-          icon: 'i-line-md:logout',
-          click: async () => {
-            await auth.signOut()
+        [
+          {
+            label: user.value.email,
+            slot: 'account',
+            disabled: true,
           },
-        }],
+        ],
+        [
+          {
+            label: 'Your Profile',
+            icon: 'i-line-md:account',
+            to: '/profile',
+            class: 'custom-link',
+          },
+        ],
+        [
+          {
+            label: 'Logout',
+            icon: 'i-line-md:logout',
+            onSelect: async () => {
+              await auth.signOut()
+            },
+          },
+        ],
       ]
     : [
-        [{
-          label: 'Login',
-          icon: 'i-line-md:login',
-          to: '/login',
-          class: 'hover:text-gray-800',
-        }],
+        [
+          {
+            label: 'Login',
+            icon: 'i-line-md:login',
+            to: '/login',
+            class: 'custom-link',
+          },
+        ],
       ]
 })
 
-watch(
-  user,
-  () => {
-    if (!user.value && path !== '/profile') {
-      const to = (query.redirectTo as string) ?? '/login'
-      return navigateTo(to, {
-        replace: true,
-      })
-    }
-  },
-)
+watch(user, () => {
+  if (!user.value && path !== '/profile') {
+    const to = (query.redirectTo as string) ?? '/login'
+    return navigateTo(to, {
+      replace: true,
+    })
+  }
+})
 </script>
 
 <template>
@@ -66,14 +71,20 @@ watch(
     <template #right>
       <UButton
         class="text-gray-800 dark:text-gray-400 hover:scale-110 focus-visible:ring-0 transition-all p-1"
-        color="gray"
+        color="neutral"
         variant="link"
         title="Toggle Dark Mode"
-        :ui="{ rounded: 'rounded-full' }"
-        @click="() => {
-          $colorMode.preference = $colorMode.preference === 'dark' ? 'light' : 'dark'
-          colorModeIcon = $colorMode.preference === 'dark' ? 'i-line-md:sunny-outline' : 'i-line-md:moon-simple'
-        }"
+        :ui="{ base: 'rounded-full' }"
+        @click="
+          () => {
+            $colorMode.preference
+              = $colorMode.preference === 'dark' ? 'light' : 'dark';
+            colorModeIcon
+              = $colorMode.preference === 'dark'
+                ? 'i-line-md:sunny-outline'
+                : 'i-line-md:moon-simple';
+          }
+        "
       >
         <UIcon
           :key="colorModeIcon"
@@ -83,9 +94,9 @@ watch(
         />
       </UButton>
 
-      <UDropdown
+      <UDropdownMenu
         :items="computedItems"
-        :ui="{ item: { disabled: 'cursor-text select-text' } }"
+        :ui="{ item: 'data-disabled:cursor-text data-disabled:select-text' }"
         :popper="{ placement: 'bottom-start' }"
       >
         <UIcon
@@ -96,22 +107,20 @@ watch(
 
         <template #account="{ item }">
           <div class="text-left">
-            <p>
-              Signed in as
-            </p>
+            <p>Signed in as</p>
             <p class="truncate font-medium text-gray-800 dark:text-gray-200">
               {{ item.label }}
             </p>
           </div>
         </template>
-      </UDropdown>
+      </UDropdownMenu>
     </template>
 
     <template #bottom>
-      <UMeter
+      <UProgress
         v-if="meta.pageScroll"
+        v-model="progress"
         size="sm"
-        :value="progress"
       />
     </template>
   </UHeader>

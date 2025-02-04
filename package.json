@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "personal-site",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,32 +10,33 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxt/content": "^2.13.4",
-    "@nuxt/ui": "^2.20.0",
-    "@nuxt/ui-pro": "^1.6.0",
-    "@nuxtjs/seo": "^2.0.2",
+    "@nuxt/content": "^3.1.0",
+    "@nuxt/image": "^1.9.0",
+    "@nuxt/ui": "^3.0.0-alpha.12",
+    "@nuxt/ui-pro": "^3.0.0-alpha.12",
+    "@nuxtjs/partytown": "^1.6.0",
+    "@nuxtjs/seo": "^2.1.1",
+    "@nuxtjs/supabase": "^1.4.6",
+    "@unhead/addons": "^1.11.18",
+    "@vueuse/components": "^12.5.0",
+    "@vueuse/core": "^12.5.0",
+    "@vueuse/motion": "^2.2.6",
+    "@vueuse/nuxt": "^12.5.0",
+    "nuxt": "^3.15.4",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0",
     "zod": "^3.24.1"
   },
   "devDependencies": {
-    "@nuxt/eslint": "^0.7.3",
-    "@nuxt/image": "^1.8.1",
-    "@nuxthq/studio": "^2.2.1",
-    "@nuxtjs/partytown": "^1.5.0",
-    "@nuxtjs/supabase": "^1.4.5",
-    "@unhead/addons": "^1.11.14",
-    "@vueuse/components": "^12.0.0",
-    "@vueuse/core": "^12.0.0",
-    "@vueuse/motion": "^2.2.6",
-    "@vueuse/nuxt": "^12.0.0",
-    "eslint": "^9.17.0",
+    "@iconify-json/devicon": "^1.2.13",
+    "@iconify-json/lucide": "^1.2.25",
+    "@iconify-json/line-md": "^1.2.5",
+    "@iconify-json/simple-icons": "^1.2.23",
+    "@nuxt/eslint": "^1.0.0",
+    "eslint": "^9.19.0",
     "eslint-plugin-vue": "^9.32.0",
-    "nuxt": "^3.14.1592",
-    "typescript": "^5.7.2"
-  },
-  "volta": {
-    "node": "20.14.0",
-    "npm": "10.7.0"
+    "stylelint": "^16.14.1",
+    "stylelint-config-recommended": "^15.0.0",
+    "typescript": "^5.7.3"
   }
 }

@@ -14,24 +14,26 @@ head:
 image:
   src: 'https://picsum.photos/640/360.webp'
   alt: 'Typewriter Component'
+seo: 
+  title: 'Chase Isley - Vue 3 Typewriter Component'
+  description: 'Create a reusable Typewriter component using Vue 3, TypeScript, & Tailwind'
 sitemap:
   loc: '/blog/create-a-typewriter-component-in-vue-3'
 short: 'Vue 3 Typewriter Component'
 tags: ['Vue', 'Typescript', 'Tailwind']
-_path: '/blog/create-a-typewriter-component-in-vue-3'
+path: '/blog/create-a-typewriter-component-in-vue-3'
 created: 'Feb 5, 2023'
 ---
 
 > Create the Typewriter component
 
-::typewriter-md
+::typewriter
 ---
 data: ['Typewriter Component', 'Built with Vue 3, TypeScript, & Tailwind']
 ---
 ::
 
-```vue
-<!-- Typewriter.vue -->
+```vue [Typewriter.vue] meta-info=val
 <script setup lang="ts">
   // Vue 3.5+ - Reactive Prop Destructure 
   const { 
@@ -93,38 +95,36 @@ data: ['Typewriter Component', 'Built with Vue 3, TypeScript, & Tailwind']
 </template>
 ```
 
-> Extend TW config by creating the blink animation
+> Add blink animation to tailwind stylesheet
 
-```js
-// tailwind.config.js
-module.exports = {
-  extend: {
-    animation: {
-      blink: 'blink 1s infinite',
-    },
-    keyframes: {
-      blink: {
-        '0%': {
-          borderColor: 'transparent',
-        },
-        '45%': {
-          borderColor: 'transparent',
-        },
-        '50%': {
-          borderColor: '#9CA3AF',
-        },
-        '100%': {
-          borderColor: '#9CA3AF',
-        },
-      },
+```css [tailwind.css] meta-info=val
+/* tailwind 4+ */
+@theme {
+  --animate-blink: blink 1s infinite;
+
+  @keyframes blink {
+    0% {
+      border-color: transparent;
     }
-  },
+
+    45% {
+      border-color: transparent;
+    }
+
+    50% {
+      border-color: var(--color-gray-400);
+    }
+
+    100% {
+      border-color: var(--color-gray-400);
+    }
+  }
 }
 ```
 
 > Usage
 
-```vue
+```vue [component.vue] meta-info=val
 <script>
 const data = [
   'Typewriter Component',
@@ -139,7 +139,7 @@ const data = [
 
 > Result
 
-::typewriter-md
+::typewriter
 ---
 data: ['Typewriter Component', 'Built with Vue 3, TypeScript, & Tailwind']
 ---

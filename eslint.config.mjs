@@ -10,6 +10,7 @@ export default withNuxt(
         ignore: [],
       }],
       'space-before-function-paren': 'off',
+      // '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: true }],
       '@typescript-eslint/space-before-function-paren': 'off',
       '@typescript-eslint/no-inferrable-types': 'off',
       'vue/component-name-in-template-casing': ['error', 'PascalCase', {
@@ -22,5 +23,5 @@ export default withNuxt(
       ],
       'vue/multi-word-component-names': 'off',
     },
-  }
+  },
 )

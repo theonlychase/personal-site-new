@@ -1,7 +1,11 @@
 <template>
-  <NuxtLayout>
-    <UPageError :error="error" />
-  </NuxtLayout>
+  <UApp>
+    <UHeader />
+
+    <UError :error="error" />
+
+    <UFooter />
+  </UApp>
 </template>
 
 <script setup>

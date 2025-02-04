@@ -1,14 +1,17 @@
 <script setup lang="ts">
-useSeoMeta({
-  title: () => '%title',
-  description: () => '%description',
-  ogDescription: () => '%description',
-  ogTitle: () => '%title',
-  twitterTitle: () => '%title',
-  twitterDescription: () => '%title',
-}, {
-  mode: 'server',
-})
+useSeoMeta(
+  {
+    title: () => '%title',
+    description: () => '%description',
+    ogDescription: () => '%description',
+    ogTitle: () => '%title',
+    twitterTitle: () => '%title',
+    twitterDescription: () => '%title',
+  },
+  {
+    mode: 'server',
+  },
+)
 
 useHead({
   htmlAttrs: {
@@ -47,13 +50,16 @@ useHead({
 </script>
 
 <template>
-  <NuxtLayout>
-    <NuxtLoadingIndicator
-      color="#00C16A"
-      :height="2"
-    />
-    <NuxtPage />
-  </NuxtLayout>
+  <UApp :toaster="{ position: 'top-right' }">
+    <NuxtLayout>
+      <NuxtLoadingIndicator
+        color="#00C16A"
+        :height="2"
+      />
+
+      <NuxtPage />
+    </NuxtLayout>
+  </UApp>
 </template>
 
 <style>

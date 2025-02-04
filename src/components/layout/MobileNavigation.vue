@@ -27,7 +27,7 @@ const onAfterLeave = () => {
   <div class="md:hidden">
     <UButton
       :padded="false"
-      color="gray"
+      color="neutral"
       variant="ghost"
       class="md:hidden !bg-transparent"
       title="Mobile Menu"
@@ -52,7 +52,7 @@ const onAfterLeave = () => {
     >
       <ul
         v-if="showMenu"
-        class="h-screen absolute flex flex-col left-0 w-full space-y-4 px-4 z-20 bg-background top-[--header-height] pt-6 text-lg"
+        class="h-screen absolute flex flex-col left-0 w-full space-y-4 px-4 z-20 bg-[var(--ui-bg)] top-[var(--ui-header-height)] pt-6 text-lg"
       >
         <li
           v-for="item in nav"
@@ -61,7 +61,10 @@ const onAfterLeave = () => {
           :class="[childTransitions, item.delay]"
         >
           <NuxtLink
-            :class="['link-secondary w-full sm:px-3 sm:py-2 rounded-lg', { 'router-link-active': $route.path.includes(item.name) }]"
+            :class="[
+              'link-secondary w-full sm:px-3 sm:py-2 rounded-lg',
+              { 'router-link-active': $route.path.includes(item.name) },
+            ]"
             :to="item.to"
             @click="showMenu = false"
           >
@@ -77,7 +80,7 @@ const onAfterLeave = () => {
             class="link-secondary px-3 py-2 transition-colors"
             target="_blank"
             to="https://github.com/theonlychase"
-            color="gray"
+            color="neutral"
             variant="link"
             title="Github"
           >
@@ -92,7 +95,7 @@ const onAfterLeave = () => {
             class="link-secondary px-3 py-2 transition-colors"
             target="_blank"
             to="https://www.linkedin.com/in/chaseisley/"
-            color="gray"
+            color="neutral"
             variant="link"
             title="LinkedIn"
           >

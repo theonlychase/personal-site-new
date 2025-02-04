@@ -1,92 +1,63 @@
 export default defineAppConfig({
   ui: {
-    blog: {
-      post: {
-        image: {
-          wrapper: 'dark:ring-gray-600',
-        },
-      },
-    },
     button: {
-      color: {
-        primary: {
-          solid: 'bg-green-500 hover:bg-green-600 text-white',
+      slots: {
+        base: 'cursor-pointer',
+      },
+      compoundVariants: [
+        {
+          color: 'primary',
+          variant: 'solid',
+          class: 'bg-green-500 hover:bg-green-600 text-white',
         },
-      },
+      ],
     },
-    card: {
-      ring: 'ring-gray-300 dark:ring-gray-600',
-      background: 'bg-white dark:bg-dark',
-    },
-    dropdown: {
-      background: 'dark:bg-[#2d2d2d]',
-      item: {
-        active: 'bg-gray-100 dark:bg-dark text-gray-800',
+    formField: {
+      slots: {
+        error: 'capitalize',
       },
-    },
-    footer: {
-      wrapper: 'mt-auto',
-      top: {
-        container: 'max-w-2xl mx-auto !px-4 md:!px-0',
-      },
-      bottom: {
-        wrapper: 'hidden',
-      },
-    },
-    formGroup: {
-      error: 'capitalize',
     },
     input: {
-      base: 'input-autofill',
-      color: {
-        white: {
-          outline: 'bg-white dark:bg-dark',
-        },
-      },
-    },
-    header: {
-      container: 'max-w-2xl mx-auto !px-4 md:!px-0',
-    },
-    icons: {
-      dynamic: true,
-    },
-    landing: {
-      card: {
-        wrapper: 'dark:ring-gray-600',
-        background: 'bg-gray-100 dark:bg-[#2d2d2d]',
-      },
-    },
-    main: {
-      wrapper: 'min-h-full flex-1',
-    },
-    page: {
-      wrapper: 'max-w-2xl py-8 px-4 md:px-0 mx-auto',
-      body: {
-        wrapper: '',
-      },
-      header: {
-        wrapper: 'pt-0 border-b-0',
-      },
-      error: {
-        name: 'text-center',
+      slots: {
+        base: 'input-autofill',
       },
     },
     textarea: {
-      base: 'input-autofill',
-      color: {
-        white: {
-          outline: 'bg-white dark:bg-dark',
-        },
+      slots: {
+        base: 'input-autofill',
       },
     },
-    variables: {
-      dark: {
-        background: 'var(--color-dark)',
-        foreground: 'var(--color-gray-400)',
+  },
+  uiPro: {
+    blogPost: {
+      slots: {
+        header: 'h-full',
       },
-      light: {
-        background: 'var(--color-gray-50)',
-        foreground: 'var(--color-gray-700)',
+    },
+    footer: {
+      slots: {
+        root: 'mt-auto',
+        top: 'max-w-2xl mx-auto !px-4 md:!px-0',
+        container: '!hidden',
+      },
+    },
+    header: {
+      slots: {
+        container: 'max-w-2xl mx-auto px-4 md:px-0 sm:px-0 lg:px-0',
+      },
+    },
+    main: {
+      base: 'min-h-full flex-1',
+    },
+    pageBody: {
+      base: 'max-w-2xl py-8 px-4 md:px-0 mx-auto',
+    },
+    pageGrid: {
+      base: 'sm:grid-cols-12 lg:grid-cols-12',
+    },
+    pageHeader: {
+      slots: {
+        root: 'py-0 mb-0 border-b-0',
       },
     },
   },

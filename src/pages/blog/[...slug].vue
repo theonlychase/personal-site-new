@@ -1,38 +1,34 @@
 <script setup lang="ts">
-import { Typewriter } from '#components'
-
 definePageMeta({
   pageScroll: true,
 })
-const { path } = useRoute()
 
-const { data }: any = await useAsyncData(`${path}`, async () => await $fetch(`/api/content${path}`, {
-  headers: useRequestHeaders(['cookie']),
-}))
+const { path } = useRoute()
+const { data } = await useAsyncData(path, () => {
+  return queryCollection('blog').path(path).first()
+})
+
+if (!data.value) {
+  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
+}
+
+useSeoMeta({
+  title: data.value.seo.title,
+  ogTitle: data.value.seo.title,
+  description: data.value.seo.description,
+  ogDescription: data.value.seo.description,
+})
 </script>
 
 <template>
-  <article class="prose dark:prose-invert">
-    <ContentDoc>
-      <template #default="{ doc }">
-        <UPageHeader
-          class="pb-0"
-          :title="doc?.short"
-          :description="`${data.view[0].viewCount} Views`"
-          :ui="{
-            description: 'text-xs mt-2',
-            title: 'mb-0',
-          }"
-        />
-        <ContentRendererMarkdown
-          :value="doc"
-          :components="{ 'typewriter-md': Typewriter }"
-        />
-      </template>
+  <UPageBody>
+    <UPageHeader
+      :title="data?.short"
+    />
 
-      <template #not-found>
-        No Content Found
-      </template>
-    </ContentDoc>
-  </article>
+    <ContentRenderer
+      v-if="data"
+      :value="data"
+    />
+  </UPageBody>
 </template>
