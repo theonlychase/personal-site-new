@@ -15,6 +15,7 @@ const { path } = useRoute()
 const { data } = await useAsyncData(path, () => {
   return queryCollection('blog').all()
 })
+prerenderRoutes(data.value?.map(post => post.path) ?? [])
 </script>
 
 <template>
