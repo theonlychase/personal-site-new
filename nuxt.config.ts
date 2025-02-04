@@ -109,7 +109,7 @@ export default defineNuxtConfig({
     },
     netlify: {
       images: {
-        remote_images: ['https://picsum.photos/.*', 'https://fastly.picsum.photos/.*', 'https://images.unsplash.com/.*', 'https://source.unsplash.com/.*'],
+        remote_images: ['https://picsum.photos/.*', 'https://fastly.picsum.photos/.*', 'https://images.unsplash.com/.*', 'https://source.unsplash.com/.*', 'https://github.com/.*'],
       },
     },
   },
@@ -134,7 +134,7 @@ export default defineNuxtConfig({
 
   image: {
     provider: 'netlifyImageCdn',
-    domains: ['picsum', 'picsum.photos', 'https://picsum.photos', 'fastly.picsum.photos', 'images.unsplash.com', 'source.unsplash.com'],
+    domains: ['picsum', 'picsum.photos', 'https://picsum.photos', 'fastly.picsum.photos', 'images.unsplash.com', 'source.unsplash.com', 'github.com'],
   },
 
   robots: {
