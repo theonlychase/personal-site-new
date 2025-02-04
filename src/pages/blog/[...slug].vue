@@ -24,6 +24,7 @@ useSeoMeta({
   <UPageBody>
     <UPageHeader
       :title="data?.short"
+      :description="data?.created"
     />
 
     <ContentRenderer
