@@ -34,6 +34,9 @@ export default defineAppConfig({
         header: 'h-full',
       },
     },
+    blogPosts: {
+      base: 'gap-6 lg:gap-6',
+    },
     footer: {
       slots: {
         root: 'mt-auto',
@@ -58,6 +61,14 @@ export default defineAppConfig({
     pageHeader: {
       slots: {
         root: 'py-0 mb-0 border-b-0',
+        description: 'text-sm',
+      },
+      variants: {
+        title: {
+          true: {
+            description: 'mt-1',
+          },
+        },
       },
     },
   },

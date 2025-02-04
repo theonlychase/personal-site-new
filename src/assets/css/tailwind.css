@@ -50,7 +50,7 @@
     &::before {
       content: '';
       float: left;
-      padding-top: calc(100% / --value(--aspect-ratio-*));
+      padding-top: calc(100% / (--value(--aspect-ratio-*, ratio, [ratio])));
     }
 
     &::after {
@@ -125,10 +125,8 @@ a:not(.custom-link) {
   }
 }
 
-.prose pre {
-  @media screen and (max-width: 767px) {
-    white-space: pre;
-  }
+pre {
+  white-space: pre;
 }
 
 pre.night-owl {
