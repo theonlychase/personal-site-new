@@ -3,6 +3,10 @@ definePageMeta({
   pageScroll: true,
 })
 
+defineRouteRules({
+  prerender: true,
+})
+
 const { path } = useRoute()
 const { data } = await useAsyncData(path, () => {
   return queryCollection('blog').path(path).first()

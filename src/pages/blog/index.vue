@@ -6,6 +6,10 @@ useHead({
   },
 })
 
+defineRouteRules({
+  prerender: true,
+})
+
 const { path } = useRoute()
 
 const { data } = await useAsyncData(path, () => {

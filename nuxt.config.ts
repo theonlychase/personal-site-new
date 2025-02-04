@@ -96,14 +96,9 @@ export default defineNuxtConfig({
 
   srcDir: 'src/',
 
-  routeRules: {
-    '/': { prerender: true },
-    '/blog': { prerender: true },
-    '/blog/**': { prerender: true },
-  },
-
   experimental: {
     headNext: true,
+    inlineRouteRules: true,
     scanPageMeta: true,
     sharedPrerenderData: true,
   },

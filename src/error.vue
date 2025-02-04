@@ -1,10 +1,12 @@
 <template>
   <UApp>
-    <UHeader />
+    <Header />
 
-    <UError :error="error" />
+    <UPageBody>
+      <UError :error="error" />
+    </UPageBody>
 
-    <UFooter />
+    <Footer />
   </UApp>
 </template>
 
