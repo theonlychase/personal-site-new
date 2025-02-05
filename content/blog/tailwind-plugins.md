@@ -22,7 +22,7 @@ sitemap:
 short: 'Tailwind 4 Plugin Migration'
 tags: ['CSS', 'Tailwind', 'Nuxt']
 path: '/blog/migrating-tailwind-3-plugins-to-tailwind-4'
-created: 'Feb 4, 2025'
+created: '2025-02-04'
 ---
 
 It's been awhile since I last updated this site. I decided to take on the task of

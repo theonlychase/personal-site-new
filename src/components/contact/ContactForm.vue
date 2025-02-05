@@ -11,7 +11,6 @@ const messages = {
 }
 const config: RuntimeConfig = useRuntimeConfig()
 
-const scriptLoaded = ref(false)
 const form = ref(null)
 const formElement = ref<HTMLElement | null>(null)
 const loading = ref(false)
@@ -60,15 +59,13 @@ async function onSubmit() {
 }
 
 async function initEmailJs() {
-  if (!scriptLoaded.value) {
-    scriptLoaded.value = await useInjectScript({
-      src: 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js',
-      id: 'emailjs',
-    })
-    if (scriptLoaded.value && !emailJs.value) {
-      // @ts-expect-error - emailjs on window
-      emailJs.value = window?.emailjs
-    }
+  const loaded = await useInjectScript({
+    src: 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js',
+    id: 'emailjs',
+  })
+  if (loaded && !emailJs.value) {
+    // @ts-expect-error - emailjs on window
+    emailJs.value = window?.emailjs
   }
 }
 
