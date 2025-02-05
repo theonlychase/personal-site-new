@@ -25,18 +25,6 @@ useHead({
       class="mb-12"
     />
 
-    <!--    <Slider :slides="[...projects[0].icons, ...projects[0].icons]"> -->
-    <!--      <template #default="{ slide }"> -->
-    <!--        <UCard :ui="{ body: { base: 'h-40 flex justify-center items-center', padding: '' } }"> -->
-    <!--          <UIcon -->
-    <!--            class="w-10 h-10 text-primary shrink-0" -->
-    <!--            :name="slide.name" -->
-    <!--            :title="slide.title" -->
-    <!--          /> -->
-    <!--        </UCard> -->
-    <!--      </template> -->
-    <!--    </Slider> -->
-
     <h2 class="mb-6">
       Recent Playground Projects
     </h2>

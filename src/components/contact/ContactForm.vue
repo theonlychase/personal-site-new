@@ -95,7 +95,7 @@ function resetForm() {
 
 <template>
   <div
-    class="overflow-hidden rounded-lg bg-[var(--ui-bg-muted)] py-16 px-6 lg:px-8"
+    class="overflow-hidden rounded-lg bg-[var(--ui-bg-muted)] py-16 px-6 lg:px-8 border border-[var(--ui-border)]"
   >
     <div class="relative mx-auto max-w-xl">
       <div class="text-center">
