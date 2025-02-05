@@ -37,6 +37,11 @@ export default defineAppConfig({
     blogPosts: {
       base: 'gap-6 lg:gap-6',
     },
+    contentSurround: {
+      slots: {
+        root: 'mt-8',
+      },
+    },
     footer: {
       slots: {
         root: 'mt-auto',
@@ -53,7 +58,7 @@ export default defineAppConfig({
       base: 'min-h-full flex-1',
     },
     pageBody: {
-      base: 'max-w-2xl py-8 px-4 md:px-0 mx-auto',
+      base: 'max-w-2xl py-0 px-4 md:px-0 mx-auto',
     },
     pageGrid: {
       base: 'sm:grid-cols-12 lg:grid-cols-12',
