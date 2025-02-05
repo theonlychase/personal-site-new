@@ -38,6 +38,7 @@ export default defineContentConfig({
         short: z.string(),
         tags: z.array(z.string()),
         path: z.string(),
+        slug: z.string(),
         created: z.string(),
       }),
     }),

@@ -14,6 +14,9 @@ definePageMeta({
   <UPageBody>
     <UPageHeader
       title="Profile"
+      class="mb-8"
     />
+
+    Work in progress...
   </UPageBody>
 </template>

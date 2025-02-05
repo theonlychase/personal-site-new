@@ -51,7 +51,7 @@ async function handleLogin() {
 </script>
 
 <template>
-  <UCard class="max-w-sm w-full bg-white dark:bg-[var(--ui-bg-muted)]">
+  <UCard class="max-w-sm w-full bg-[var(--ui-bg-muted)]">
     <div class="text-center mb-6">
       <div class="mb-2 pointer-events-none w-10 h-10 mx-auto">
         <UIcon
@@ -73,6 +73,7 @@ async function handleLogin() {
       :disabled="oAuthLoading || otpLoading"
       :state="state"
       :validate="validate"
+      :validate-on="['input', 'change']"
       class="grid gap-y-4"
       @submit="handleLogin"
     >

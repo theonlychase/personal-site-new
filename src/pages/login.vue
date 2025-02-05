@@ -12,11 +12,6 @@ definePageMeta({
 
 <template>
   <UPageBody>
-    <UPageHeader
-      title="Login"
-      class="mb-8"
-    />
-
-    <AuthForm class="mx-auto" />
+    <AuthForm class="mx-auto mt-16" />
   </UPageBody>
 </template>
