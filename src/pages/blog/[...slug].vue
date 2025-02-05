@@ -8,28 +8,36 @@ defineRouteRules({
 })
 
 const { path } = useRoute()
-const { data } = await useAsyncData(path, () => {
-  return queryCollection('blog').path(path).first()
+const { data } = await useAsyncData(path, async () => {
+  const [content, surround] = await Promise.all([
+    queryCollection('blog').path(path).first(),
+    queryCollectionItemSurroundings('blog', path, {
+      fields: ['description'],
+    }),
+  ])
+  return { content, surround }
 })
 
 useSeoMeta({
-  title: data.value?.seo.title,
-  ogTitle: data.value?.seo.title,
-  description: data.value?.seo.description,
-  ogDescription: data.value?.seo.description,
+  title: data.value?.content.seo.title,
+  ogTitle: data.value?.content.seo.title,
+  description: data.value?.content.seo.description,
+  ogDescription: data.value?.content.seo.description,
 })
 </script>
 
 <template>
   <UPageBody>
     <UPageHeader
-      :title="data?.short"
-      :description="data?.created"
+      :title="data?.content.short"
+      :description="data?.content.created"
     />
 
     <ContentRenderer
-      v-if="data"
-      :value="data"
+      v-if="data?.content"
+      :value="data.content"
     />
+
+    <UContentSurround :surround="data?.surround" />
   </UPageBody>
 </template>

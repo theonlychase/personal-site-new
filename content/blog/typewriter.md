@@ -5,7 +5,7 @@ author:
     target: '_blank'
   name: 'Chase Isley'
   to: 'https://chaseisley.dev/'
-title: 'Chase Isley - Vue 3 Typewriter Component'
+title: 'Vue 3 Typewriter Component'
 description: 'Create a reusable Typewriter component using Vue 3, TypeScript, & Tailwind'
 head:
   templateParams:

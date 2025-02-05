@@ -5,7 +5,7 @@ author:
     target: '_blank'
   name: 'Chase Isley'
   to: 'https://chaseisley.dev/'
-title: 'Chase Isley - Dynamic Script Injection in Nuxt 3'
+title: 'Dynamic Script Injection in Nuxt 3'
 description: 'Load Scripts Dynamically with useInjectScript Composable'
 head:
   templateParams:
