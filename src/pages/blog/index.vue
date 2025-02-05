@@ -34,6 +34,7 @@ prerenderRoutes(data.value?.map(post => post.path) ?? [])
         :description="post.description"
         :to="post.path"
         orientation="horizontal"
+        variant="subtle"
       >
         <template
           v-if="post.tags"

@@ -45,7 +45,7 @@ export default defineAppConfig({
     footer: {
       slots: {
         root: 'mt-auto',
-        top: 'max-w-2xl mx-auto !px-4 md:!px-0',
+        top: 'max-w-2xl mx-auto !px-4 md:!px-0 !pb-4 pt-12 lg:pt-12',
         container: '!hidden',
       },
     },
