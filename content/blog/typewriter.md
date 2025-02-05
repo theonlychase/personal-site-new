@@ -22,7 +22,7 @@ sitemap:
 short: 'Vue 3 Typewriter Component'
 tags: ['Vue', 'Typescript', 'Tailwind']
 path: '/blog/create-a-typewriter-component-in-vue-3'
-created: 'Feb 5, 2023'
+created: '2023-02-05'
 ---
 
 > Create the Typewriter component
