@@ -112,6 +112,7 @@ function resetForm() {
           ref="form"
           :state="state"
           :validate="validate"
+          :validate-on="['input', 'change']"
           class="grid gap-y-4 sm:grid-cols-2 sm:gap-x-8"
           @submit="onSubmit"
         >

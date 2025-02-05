@@ -22,6 +22,7 @@ sitemap:
 short: 'Dynamic Script Injection in Nuxt 3'
 tags: ['Vue', 'Nuxt', 'Typescript']
 path: '/blog/dynamic-script-injection-in-nuxt-3'
+slug: 'dynamic-script-injection-in-nuxt-3'
 created: '2025-02-05'
 ---
 
