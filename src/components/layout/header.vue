@@ -70,7 +70,7 @@ watch(user, () => {
 
     <template #right>
       <UButton
-        class="text-gray-800 dark:text-gray-400 hover:scale-110 focus-visible:ring-0 transition-all p-1"
+        class="hover:scale-110 focus-visible:ring-0 transition-all p-1"
         color="neutral"
         variant="link"
         title="Toggle Dark Mode"
@@ -100,7 +100,7 @@ watch(user, () => {
         :popper="{ placement: 'bottom-start' }"
       >
         <UIcon
-          class="h-7 w-7 text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 hover:scale-110 transition-all"
+          class="h-7 w-7 hover:scale-110 transition-all"
           name="i-line-md:account"
           dynamic
         />
@@ -108,7 +108,7 @@ watch(user, () => {
         <template #account="{ item }">
           <div class="text-left">
             <p>Signed in as</p>
-            <p class="truncate font-medium text-gray-800 dark:text-gray-200">
+            <p class="truncate font-medium">
               {{ item.label }}
             </p>
           </div>

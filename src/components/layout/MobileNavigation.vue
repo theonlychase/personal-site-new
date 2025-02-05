@@ -62,7 +62,7 @@ const onAfterLeave = () => {
         >
           <NuxtLink
             :class="[
-              'link-secondary w-full sm:px-3 sm:py-2 rounded-lg',
+              'w-full sm:px-3 sm:py-2 rounded-lg',
               { 'router-link-active': $route.path.includes(item.name) },
             ]"
             :to="item.to"
@@ -77,7 +77,7 @@ const onAfterLeave = () => {
         >
           <UButton
             :padded="false"
-            class="link-secondary px-3 py-2 transition-colors"
+            class="px-3 py-2 transition-colors"
             target="_blank"
             to="https://github.com/theonlychase"
             color="neutral"
@@ -92,7 +92,7 @@ const onAfterLeave = () => {
           </UButton>
           <UButton
             :padded="false"
-            class="link-secondary px-3 py-2 transition-colors"
+            class="px-3 py-2 transition-colors"
             target="_blank"
             to="https://www.linkedin.com/in/chaseisley/"
             color="neutral"
@@ -102,6 +102,21 @@ const onAfterLeave = () => {
             <UIcon
               class="h-6 w-6"
               name="i-line-md:linkedin"
+              dynamic
+            />
+          </UButton>
+          <UButton
+            :padded="false"
+            class="px-3 py-2 transition-colors"
+            target="_blank"
+            to="https://www.instagram.com/theonlychase/"
+            color="neutral"
+            variant="link"
+            title="Instagram"
+          >
+            <UIcon
+              class="h-6 w-6"
+              name="i-line-md:instagram"
               dynamic
             />
           </UButton>

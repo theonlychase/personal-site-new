@@ -95,14 +95,14 @@ function resetForm() {
 
 <template>
   <div
-    class="overflow-hidden rounded-lg bg-gray-200/50 dark:bg-white/[.04] py-16 px-6 lg:px-8"
+    class="overflow-hidden rounded-lg bg-[var(--ui-bg-muted)] py-16 px-6 lg:px-8 border border-[var(--ui-border)]"
   >
     <div class="relative mx-auto max-w-xl">
       <div class="text-center">
         <h2 class="header-1">
           Shoot me a message
         </h2>
-        <p class="mt-4 text-lg leading-6 text-gray-500">
+        <p class="mt-4 text-lg leading-6">
           I'll get back to you as soon as I can
         </p>
       </div>
@@ -138,7 +138,6 @@ function resetForm() {
               v-model="state.email"
               class="w-full"
               icon="i-lucide-mail"
-              input-class="bg-white dark:bg-dark"
               placeholder="you@example.com"
               size="xl"
             />
@@ -152,7 +151,6 @@ function resetForm() {
               <UTextarea
                 v-model="state.message"
                 class="w-full"
-                textarea-class="bg-white dark:bg-dark"
                 placeholder="Leave a brief message..."
                 size="xl"
               />

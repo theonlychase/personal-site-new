@@ -34,6 +34,7 @@ prerenderRoutes(data.value?.map(post => post.path) ?? [])
         :description="post.description"
         :to="post.path"
         orientation="horizontal"
+        variant="subtle"
       >
         <template
           v-if="post.tags"
@@ -67,7 +68,7 @@ prerenderRoutes(data.value?.map(post => post.path) ?? [])
 
             <USkeleton
               v-else
-              class="h-full w-full aspect-[16/9] flex items-center justify-center"
+              class="h-full w-full aspect-[16/9] flex items-center justify-center bg-[var(--ui-bg)]"
             >
               <svg
                 class="w-20 h-20 text-gray-200 dark:text-gray-600"

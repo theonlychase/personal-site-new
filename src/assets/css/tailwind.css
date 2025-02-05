@@ -66,18 +66,20 @@
     --ui-container: var(--container-2xl);
     --ui-bg: var(--color-gray-50);
     --ui-text: var(--color-gray-700);
+    --ui-text-muted: var(--ui-text);
     --ui-border: var(--color-gray-300);
     --ui-bg-muted: var(--color-gray-100);
-    --ui-bg-elevated: var(--color-gray-100);
+    --ui-bg-elevated: oklch(0.96 0 0 / 1);
   }
 
   .dark {
     --ui-bg: var(--color-dark);
-    --ui-text: var(--color-gray-400);
+    --ui-text: oklch(0.87 0.02 252.89);
+    --ui-text-muted: var(--ui-text);
     --ui-border: var(--color-gray-600);
     --ui-bg-muted: oklch(0.3 0 0 / 1);
     --ui-border-muted: var(--color-gray-600);
-    --ui-bg-elevated: oklch(0.3 0 0 / 1);
+    --ui-bg-elevated: oklch(0.35 0 0 / 1);
   }
 
   html {
@@ -102,6 +104,7 @@
   h1,
   h2,
   h3 {
+    color: var(--ui-text-highlighted);
     font-weight: var(--font-weight-semibold);
     line-height: var(--leading-tight);
     letter-spacing: var(--tracking-tight);

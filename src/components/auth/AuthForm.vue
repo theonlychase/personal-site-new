@@ -60,10 +60,10 @@ async function handleLogin() {
           dynamic
         />
       </div>
-      <div class="text-2xl text-gray-900 dark:text-white font-bold">
+      <div class="header-3/bold">
         Welcome back
       </div>
-      <div class="text-gray-500 dark:text-gray-400 mt-1">
+      <div class="mt-1">
         Please enter your email to sign in.
       </div>
     </div>
