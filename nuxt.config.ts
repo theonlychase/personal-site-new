@@ -103,10 +103,10 @@ export default defineNuxtConfig({
   // compatibilityDate: '2025-02-03',
 
   nitro: {
-    prerender: {
-      routes: ['/blog'],
-      crawlLinks: true,
-    },
+    // prerender: {
+    //   routes: ['/blog'],
+    //   crawlLinks: true,
+    // },
     netlify: {
       images: {
         remote_images: ['https://picsum.photos/.*', 'https://fastly.picsum.photos/.*', 'https://images.unsplash.com/.*', 'https://source.unsplash.com/.*', 'https://github.com/.*'],
