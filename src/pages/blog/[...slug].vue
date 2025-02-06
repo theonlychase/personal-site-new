@@ -7,45 +7,11 @@ definePageMeta({
 //   prerender: true,
 // })
 
-const client = useSupabaseClient()
 const { path, params } = useRoute()
-const { data } = await useAsyncData(path, async () => {
-  const slug = params.slug[0]
-  let views = null
-  const [content, surround] = await Promise.all([
-    queryCollection('blog').path(path).first(),
-    queryCollectionItemSurroundings('blog', path, {
-      fields: ['description'],
-    }),
-  ])
 
-  if (content.path.includes(slug)) {
-    let { data: view } = await client.from('Views').select().eq('slug', slug)
-
-    if (!view || !view.length) {
-      // @ts-expect-error - insert should be able to take a type
-      const { data } = await client.from('Views').insert({ slug, viewCount: 1, updatedAt: new Date().toISOString() }).select()
-      view = data
-    }
-    else {
-      // @ts-expect-error - insert should be able to take a type
-      const { data } = await client.from('Views').update({ viewCount: view[0].viewCount + 1 }).eq('slug', slug).select()
-      view = data
-    }
-
-    views = view
-  }
-
-  if (content) {
-    const date = new Date(content.created)
-    content.created = date.toLocaleDateString('default', {
-      year: 'numeric',
-      month: 'short',
-      day: '2-digit',
-    })
-  }
-  return { content, surround, views: views ? views[0]?.viewCount : null }
-})
+const { data } = await useAsyncData(`${path}`, async () => await $fetch(`/api/blog/content/${params.slug[0]}`, {
+  headers: useRequestHeaders(['cookie']),
+}))
 
 if (!data.value?.content) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
