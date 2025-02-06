@@ -96,16 +96,12 @@ export default defineNuxtConfig({
   },
 
   experimental: {
-    appManifest: false,
     inlineRouteRules: true,
   },
 
   compatibilityDate: '2025-02-05',
 
   nitro: {
-    // prerender: {
-    //   routes: ['/blog'],
-    // },
     netlify: {
       images: {
         remote_images: ['https://picsum.photos/.*', 'https://fastly.picsum.photos/.*', 'https://images.unsplash.com/.*', 'https://source.unsplash.com/.*', 'https://github.com/.*'],
