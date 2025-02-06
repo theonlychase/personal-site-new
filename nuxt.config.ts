@@ -73,10 +73,6 @@ export default defineNuxtConfig({
 
   content: {
     build: {
-      database: {
-        type: 'postgres',
-        url: process.env.SUPABASE_URL,
-      },
       markdown: {
         highlight: {
           theme: 'night-owl',
@@ -106,10 +102,10 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-02-05',
 
   nitro: {
-    // prerender: {
-    //   routes: ['/blog'],
-    //   crawlLinks: true,
-    // },
+    prerender: {
+      routes: ['/blog', '/blog/*'],
+      crawlLinks: true,
+    },
     netlify: {
       images: {
         remote_images: ['https://picsum.photos/.*', 'https://fastly.picsum.photos/.*', 'https://images.unsplash.com/.*', 'https://source.unsplash.com/.*', 'https://github.com/.*'],
