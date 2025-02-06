@@ -39,9 +39,6 @@ export default defineNuxtConfig({
         baseUrl: 'http://localhost:8888',
       },
     },
-    features: {
-      devLogs: true,
-    },
   },
 
   $production: {
@@ -80,6 +77,10 @@ export default defineNuxtConfig({
         },
       },
     },
+    database: {
+      type: 'postgres',
+      url: process.env.DATABASE_URL,
+    },
   },
 
   runtimeConfig: {
@@ -95,6 +96,10 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
 
+  features: {
+    devLogs: true,
+  },
+
   experimental: {
     inlineRouteRules: true,
   },
@@ -106,6 +111,9 @@ export default defineNuxtConfig({
       images: {
         remote_images: ['https://picsum.photos/.*', 'https://fastly.picsum.photos/.*', 'https://images.unsplash.com/.*', 'https://source.unsplash.com/.*', 'https://github.com/.*'],
       },
+    },
+    routeRules: {
+      '/blog/**': { isr: true },
     },
   },
 

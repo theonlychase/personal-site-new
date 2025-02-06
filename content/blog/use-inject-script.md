@@ -1,4 +1,5 @@
 ---
+id: 'dynamic-script-injection-in-nuxt-3'
 author: 
   avatar:
     src: 'https://github.com/theonlychase.png'
@@ -12,7 +13,7 @@ head:
     title: 'Chase Isley - Dynamic Script Injection in Nuxt 3'
     description: 'Load Scripts Dynamically with useInjectScript Composable'
 image:
-  src: 'https://picsum.photos/640/360?random=3'
+  src: 'https://picsum.photos/640/360'
   alt: 'useInjectScript Composable'
 seo: 
   title: 'Dynamic Script Injection in Nuxt 3'

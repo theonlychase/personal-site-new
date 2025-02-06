@@ -6,14 +6,10 @@ useHead({
   },
 })
 
-defineRouteRules({ prerender: true })
-
 const { path } = useRoute()
 const { data } = await useAsyncData(`${path}`, async () => await $fetch(`/api/blog/all`, {
   headers: useRequestHeaders(['cookie']),
 }))
-
-prerenderRoutes(data.value?.map(post => post.path) ?? [])
 </script>
 
 <template>
@@ -54,7 +50,7 @@ prerenderRoutes(data.value?.map(post => post.path) ?? [])
           <NuxtImg
             v-slot="{ src, isLoaded, imgAttrs }"
             class="object-cover object-top w-full h-full transform transition-transform duration-200 group-hover:scale-110"
-            :src="post.image.src"
+            :src="`${post.image.src}?random=${index}`"
             :alt="post.image.alt"
             :custom="true"
           >

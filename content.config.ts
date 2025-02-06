@@ -14,6 +14,7 @@ export default defineContentConfig({
         source: 'blog/**/*.md',
         type: 'page',
         schema: z.object({
+          id: z.string(),
           author: z.object({
             avatar: z.object({
               src: z.string(),
