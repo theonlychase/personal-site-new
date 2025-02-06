@@ -93,6 +93,10 @@ export default defineNuxtConfig({
 
   srcDir: 'src/',
 
+  routeRules: {
+    '/blog/**': { isr: true },
+  },
+
   experimental: {
     headNext: true,
     inlineRouteRules: true,
@@ -100,7 +104,7 @@ export default defineNuxtConfig({
     sharedPrerenderData: true,
   },
 
-  // compatibilityDate: '2025-02-03',
+  compatibilityDate: '2025-02-05',
 
   nitro: {
     // prerender: {
