@@ -6,15 +6,10 @@ useHead({
   },
 })
 
-// defineRouteRules({
-//   prerender: true,
-// })
-
 const { path } = useRoute()
-const { data } = await useAsyncData(`${path}`, async () => await $fetch(`/api/blog/all`, {
+const { data } = await useAsyncData(`${path}`, async () => await $fetch(`/api/blog/content/all`, {
   headers: useRequestHeaders(['cookie']),
 }))
-// prerenderRoutes(data.value?.map(post => post.path) ?? [])
 </script>
 
 <template>
