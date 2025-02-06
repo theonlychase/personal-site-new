@@ -15,7 +15,7 @@ const { path } = useRoute()
 const { data } = await useAsyncData(path, () => {
   return queryCollection('blog').order('created', 'DESC').all()
 })
-prerenderRoutes(data.value?.map(post => post.path) ?? [])
+// prerenderRoutes(data.value?.map(post => post.path) ?? [])
 </script>
 
 <template>
