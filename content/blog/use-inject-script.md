@@ -15,8 +15,12 @@ image:
   src: 'https://picsum.photos/640/360?random=3'
   alt: 'useInjectScript Composable'
 seo: 
-  title: 'Chase Isley - Dynamic Script Injection in Nuxt 3'
+  title: 'Dynamic Script Injection in Nuxt 3'
+  ogTitle: 'Dynamic Script Injection in Nuxt 3'
+  twitterTitle: 'Dynamic Script Injection in Nuxt 3'
   description: 'Load Scripts Dynamically with useInjectScript Composable'
+  ogDescription: 'Load Scripts Dynamically with useInjectScript Composable'
+  twitterDescription: 'Load Scripts Dynamically with useInjectScript Composable'
 sitemap:
   loc: '/blog/dynamic-script-injection-in-nuxt-3'
 short: 'Dynamic Script Injection in Nuxt 3'

@@ -9,14 +9,18 @@ title: 'Tailwind 4 Plugin Migration'
 description: 'Migrating Tailwind 3 Plugins to Tailwind 4'
 head:
   templateParams:
-    title: 'Chase Isley - Tailwind 4 Plugin Migration'
+    title: 'Tailwind 4 Plugin Migration'
     description: 'Migrating Tailwind 3 Plugins to Tailwind 4'
 image:
   src: 'https://picsum.photos/640/360?random=2'
   alt: 'Tailwind 4 Plugins'
 seo: 
-  title: 'Chase Isley - Tailwind 4 Plugin Migration'
+  title: 'Tailwind 4 Plugin Migration'
+  ogTitle: 'Tailwind 4 Plugin Migration'
+  twitterTitle: 'Tailwind 4 Plugin Migration'
   description: 'Migrating Tailwind 3 Plugins to Tailwind 4'
+  ogDescription: 'Migrating Tailwind 3 Plugins to Tailwind 4'
+  twitterDescription: 'Migrating Tailwind 3 Plugins to Tailwind 4'
 sitemap:
   loc: '/blog/migrating-tailwind-3-plugins-to-tailwind-4'
 short: 'Tailwind 4 Plugin Migration'

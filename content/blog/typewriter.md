@@ -9,14 +9,18 @@ title: 'Vue 3 Typewriter Component'
 description: 'Create a reusable Typewriter component using Vue 3, TypeScript, & Tailwind'
 head:
   templateParams:
-    title: 'Chase Isley - Vue 3 Typewriter Component'
+    title: 'Vue 3 Typewriter Component'
     description: 'Create a reusable Typewriter component using Vue 3, TypeScript, & Tailwind'
 image:
   src: 'https://picsum.photos/640/360?random=1'
   alt: 'Typewriter Component'
 seo: 
-  title: 'Chase Isley - Vue 3 Typewriter Component'
+  title: 'Vue 3 Typewriter Component'
+  ogTitle: 'Vue 3 Typewriter Component'
+  twitterTitle: 'Vue 3 Typewriter Component'
   description: 'Create a reusable Typewriter component using Vue 3, TypeScript, & Tailwind'
+  ogDescription: 'Create a reusable Typewriter component using Vue 3, TypeScript, & Tailwind'
+  twitterDescription: 'Create a reusable Typewriter component using Vue 3, TypeScript, & Tailwind'
 sitemap:
   loc: '/blog/create-a-typewriter-component-in-vue-3'
 short: 'Vue 3 Typewriter Component'
