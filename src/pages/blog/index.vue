@@ -6,9 +6,9 @@ useHead({
   },
 })
 
-defineRouteRules({
-  prerender: true,
-})
+// defineRouteRules({
+//   prerender: true,
+// })
 
 const { path } = useRoute()
 

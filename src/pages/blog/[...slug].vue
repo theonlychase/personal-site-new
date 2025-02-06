@@ -3,9 +3,9 @@ definePageMeta({
   pageScroll: true,
 })
 
-defineRouteRules({
-  prerender: true,
-})
+// defineRouteRules({
+//   prerender: true,
+// })
 
 const client = useSupabaseClient()
 const { path, params } = useRoute()
