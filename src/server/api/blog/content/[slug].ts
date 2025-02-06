@@ -5,6 +5,10 @@ export default eventHandler(async (event) => {
   const { slug } = getRouterParams(event)
   const client = await serverSupabaseClient<Database>(event)
 
+  if (slug === 'all') {
+    return await queryCollection(event, 'blog').order('created', 'DESC').all()
+  }
+
   let views = null
   const [content, surround] = await Promise.all([
     queryCollection(event, 'blog').path(`/blog/${slug}`).first(),

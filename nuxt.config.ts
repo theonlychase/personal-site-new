@@ -95,7 +95,6 @@ export default defineNuxtConfig({
 
   experimental: {
     headNext: true,
-    inlineRouteRules: true,
     scanPageMeta: true,
     sharedPrerenderData: true,
   },
@@ -103,6 +102,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-02-05',
 
   nitro: {
+    prerender: false,
     // prerender: {
     //   routes: ['/blog'],
     //   crawlLinks: true,
