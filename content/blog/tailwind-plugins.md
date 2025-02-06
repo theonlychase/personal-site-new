@@ -4,7 +4,7 @@ author:
     src: 'https://github.com/theonlychase.png'
     target: '_blank'
   name: 'Chase Isley'
-  to: 'https://chaseisley.dev/'
+  to: 'https://chaseisley.dev'
 title: 'Tailwind 4 Plugin Migration'
 description: 'Migrating Tailwind 3 Plugins to Tailwind 4'
 head:

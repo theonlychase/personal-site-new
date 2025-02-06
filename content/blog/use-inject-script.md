@@ -4,7 +4,7 @@ author:
     src: 'https://github.com/theonlychase.png'
     target: '_blank'
   name: 'Chase Isley'
-  to: 'https://chaseisley.dev/'
+  to: 'https://chaseisley.dev'
 title: 'Dynamic Script Injection in Nuxt 3'
 description: 'Load Scripts Dynamically with useInjectScript Composable'
 head:

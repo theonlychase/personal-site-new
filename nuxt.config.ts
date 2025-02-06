@@ -63,7 +63,7 @@ export default defineNuxtConfig({
   css: ['~/assets/css/tailwind.css'],
 
   site: {
-    url: 'https://chaseisley.dev/',
+    url: 'https://chaseisley.dev',
     name: 'Chase Isley',
   },
 
@@ -103,8 +103,7 @@ export default defineNuxtConfig({
 
   nitro: {
     prerender: {
-      routes: ['/blog', '/blog/*'],
-      crawlLinks: true,
+      routes: ['/blog'],
     },
     netlify: {
       images: {

@@ -4,7 +4,7 @@ author:
     src: 'https://github.com/theonlychase.png'
     target: '_blank'
   name: 'Chase Isley'
-  to: 'https://chaseisley.dev/'
+  to: 'https://chaseisley.dev'
 title: 'Vue 3 Typewriter Component'
 description: 'Create a reusable Typewriter component using Vue 3, TypeScript, & Tailwind'
 head:
