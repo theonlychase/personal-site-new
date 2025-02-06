@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@vueuse/nuxt',
     '@nuxt/eslint',
-    // '@nuxtjs/partytown',
+    '@nuxthub/core',
     '@nuxtjs/supabase',
   ],
 
