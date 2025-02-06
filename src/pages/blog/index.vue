@@ -7,7 +7,7 @@ useHead({
 })
 
 const { path } = useRoute()
-const { data } = await useAsyncData(`${path}`, async () => await $fetch(`/api/blog/content/all`, {
+const { data } = await useAsyncData(`${path}`, async () => await $fetch(`/api/blog/all`, {
   headers: useRequestHeaders(['cookie']),
 }))
 </script>

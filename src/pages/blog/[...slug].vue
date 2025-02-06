@@ -4,7 +4,7 @@ definePageMeta({
 })
 
 const { path, params } = useRoute()
-const { data } = await useAsyncData(`${path}`, async () => await $fetch(`/api/blog/content/${params.slug[0]}`, {
+const { data } = await useAsyncData(`${path}`, async () => await $fetch(`/api/blog/${params.slug[0]}`, {
   headers: useRequestHeaders(['cookie']),
 }))
 

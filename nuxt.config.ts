@@ -73,6 +73,10 @@ export default defineNuxtConfig({
 
   content: {
     build: {
+      database: {
+        type: 'postgres',
+        url: process.env.SUPABASE_URL,
+      },
       markdown: {
         highlight: {
           theme: 'night-owl',
@@ -102,7 +106,6 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-02-05',
 
   nitro: {
-    prerender: false,
     // prerender: {
     //   routes: ['/blog'],
     //   crawlLinks: true,
