@@ -95,6 +95,11 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
 
+  experimental: {
+    appManifest: false,
+    inlineRouteRules: true,
+  },
+
   compatibilityDate: '2025-02-05',
 
   nitro: {

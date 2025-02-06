@@ -12,14 +12,8 @@ if (!data.value?.content) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
 }
 
-useSeoMeta({
-  title: data.value?.content.seo.title,
-  ogTitle: data.value?.content.seo.title,
-  twitterTitle: data.value?.content.seo.title,
-  description: data.value?.content.seo.description,
-  ogDescription: data.value?.content.seo.description,
-  twitterDescription: data.value?.content.seo.description,
-})
+useHead(data.value?.content.head || {})
+useSeoMeta(data.value?.content.seo || {})
 </script>
 
 <template>
