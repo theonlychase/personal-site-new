@@ -11,10 +11,9 @@ useHead({
 // })
 
 const { path } = useRoute()
-
-const { data } = await useAsyncData(path, () => {
-  return queryCollection('blog').order('created', 'DESC').all()
-})
+const { data } = await useAsyncData(`${path}`, async () => await $fetch(`/api/blog/all`, {
+  headers: useRequestHeaders(['cookie']),
+}))
 // prerenderRoutes(data.value?.map(post => post.path) ?? [])
 </script>
 
