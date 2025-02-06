@@ -93,6 +93,15 @@ export default defineNuxtConfig({
 
   srcDir: 'src/',
 
+  routeRules: {
+    '/blog': {
+      isr: 30,
+    },
+    '/blog/**': {
+      swr: true,
+    },
+  },
+
   experimental: {
     headNext: true,
     inlineRouteRules: true,
