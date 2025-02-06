@@ -1,4 +1,5 @@
 ---
+id: 'vue-3-typewriter-component'
 author: 
   avatar:
     src: 'https://github.com/theonlychase.png'
@@ -12,7 +13,7 @@ head:
     title: 'Vue 3 Typewriter Component'
     description: 'Create a reusable Typewriter component using Vue 3, TypeScript, & Tailwind'
 image:
-  src: 'https://picsum.photos/640/360?random=1'
+  src: 'https://picsum.photos/640/360'
   alt: 'Typewriter Component'
 seo: 
   title: 'Vue 3 Typewriter Component'

@@ -1,4 +1,5 @@
 ---
+id: 'migrating-tailwind-3-plugins-to-tailwind-4'
 author: 
   avatar:
     src: 'https://github.com/theonlychase.png'
@@ -12,7 +13,7 @@ head:
     title: 'Tailwind 4 Plugin Migration'
     description: 'Migrating Tailwind 3 Plugins to Tailwind 4'
 image:
-  src: 'https://picsum.photos/640/360?random=2'
+  src: 'https://picsum.photos/640/360'
   alt: 'Tailwind 4 Plugins'
 seo: 
   title: 'Tailwind 4 Plugin Migration'
