@@ -86,11 +86,17 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-02-05',
 
   nitro: {
-    netlify: {
-      images: {
-        remote_images: ['https://picsum.photos/.*', 'https://fastly.picsum.photos/.*', 'https://images.unsplash.com/.*', 'https://source.unsplash.com/.*', 'https://github.com/.*'],
-      },
+    experimental: {
+      // Enable Server API documentation within NuxtHub
+      openAPI: true,
     },
+  },
+
+  hub: {
+    database: true,
+    kv: true,
+    blob: true,
+    cache: true,
   },
 
   vite: {
@@ -109,11 +115,6 @@ export default defineNuxtConfig({
     serverBundle: {
       collections: ['devicon', 'lucide', 'line-md', 'simple-icons'],
     },
-  },
-
-  image: {
-    provider: 'netlifyImageCdn',
-    domains: ['picsum', 'picsum.photos', 'https://picsum.photos', 'fastly.picsum.photos', 'images.unsplash.com', 'source.unsplash.com', 'github.com'],
   },
 
   robots: {
