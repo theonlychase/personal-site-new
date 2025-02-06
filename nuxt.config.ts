@@ -80,9 +80,9 @@ export default defineNuxtConfig({
     devLogs: true,
   },
 
-  // experimental: {
-  //   inlineRouteRules: true,
-  // },
+  experimental: {
+    inlineRouteRules: true,
+  },
 
   compatibilityDate: '2025-02-05',
 
