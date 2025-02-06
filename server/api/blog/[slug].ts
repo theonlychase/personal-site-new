@@ -1,4 +1,4 @@
-import type { Database } from '~/types/views'
+import type { Database } from '~~/types/views'
 import { serverSupabaseClient } from '#supabase/server'
 
 export default eventHandler(async (event) => {

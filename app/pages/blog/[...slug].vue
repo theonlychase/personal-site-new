@@ -4,7 +4,7 @@ definePageMeta({
 })
 
 const { path, params } = useRoute()
-const { data } = await useAsyncData(`${path}`, async () => await $fetch(`/api/blog/${params.slug[0]}`, {
+const { data } = await useAsyncData(`${path}`, async () => await $fetch(`/api/blog/${params?.slug[0]}`, {
   headers: useRequestHeaders(['cookie']),
 }))
 
@@ -15,8 +15,10 @@ if (!data.value?.content) {
 useSeoMeta({
   title: data.value?.content.seo.title,
   ogTitle: data.value?.content.seo.title,
+  twitterTitle: data.value?.content.seo.title,
   description: data.value?.content.seo.description,
   ogDescription: data.value?.content.seo.description,
+  twitterDescription: data.value?.content.seo.description,
 })
 </script>
 
