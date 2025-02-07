@@ -11,7 +11,11 @@ description: 'Migrating Tailwind 3 Plugins to Tailwind 4'
 head:
   templateParams:
     title: 'Tailwind 4 Plugin Migration'
+    ogTitle: 'Tailwind 4 Plugin Migration'
+    twitterTitle: 'Tailwind 4 Plugin Migration'
     description: 'Migrating Tailwind 3 Plugins to Tailwind 4'
+    ogDescription: 'Migrating Tailwind 3 Plugins to Tailwind 4'
+    twitterDescription: 'Migrating Tailwind 3 Plugins to Tailwind 4'
 image:
   src: 'https://picsum.photos/640/360'
   alt: 'Tailwind 4 Plugins'
@@ -25,6 +29,7 @@ seo:
 sitemap:
   loc: '/blog/migrating-tailwind-3-plugins-to-tailwind-4'
 short: 'Tailwind 4 Plugin Migration'
+icon: 'i-devicon-tailwindcss'
 tags: ['CSS', 'Tailwind', 'Nuxt']
 path: '/blog/migrating-tailwind-3-plugins-to-tailwind-4'
 slug: 'migrating-tailwind-3-plugins-to-tailwind-4'

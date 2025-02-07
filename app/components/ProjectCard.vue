@@ -10,7 +10,6 @@ const { project } = defineProps<{ project: Project }>()
     target="_blank"
     :title="project.title"
     :to="project.url"
-    variant="subtle"
   >
     <template #header>
       <div class="flex items-center gap-x-3">

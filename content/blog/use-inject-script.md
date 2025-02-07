@@ -10,8 +10,12 @@ title: 'Dynamic Script Injection in Nuxt 3'
 description: 'Load Scripts Dynamically with useInjectScript Composable'
 head:
   templateParams:
-    title: 'Chase Isley - Dynamic Script Injection in Nuxt 3'
+    title: 'Dynamic Script Injection in Nuxt 3'
+    ogTitle: 'Dynamic Script Injection in Nuxt 3'
+    twitterTitle: 'Dynamic Script Injection in Nuxt 3'
     description: 'Load Scripts Dynamically with useInjectScript Composable'
+    ogDescription: 'Load Scripts Dynamically with useInjectScript Composable'
+    twitterDescription: 'Load Scripts Dynamically with useInjectScript Composable'
 image:
   src: 'https://picsum.photos/640/360'
   alt: 'useInjectScript Composable'
@@ -25,6 +29,7 @@ seo:
 sitemap:
   loc: '/blog/dynamic-script-injection-in-nuxt-3'
 short: 'Dynamic Script Injection in Nuxt 3'
+icon: 'i-simple-icons-nuxt'
 tags: ['Vue', 'Nuxt', 'Typescript']
 path: '/blog/dynamic-script-injection-in-nuxt-3'
 slug: 'dynamic-script-injection-in-nuxt-3'
