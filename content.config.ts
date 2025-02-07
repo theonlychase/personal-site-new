@@ -39,6 +39,7 @@ export default defineContentConfig({
             loc: z.string(),
           }),
           short: z.string(),
+          icon: z.string(),
           tags: z.array(z.string()),
           path: z.string(),
           slug: z.string(),

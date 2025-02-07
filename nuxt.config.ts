@@ -58,8 +58,8 @@ export default defineNuxtConfig({
       },
     },
     database: {
-      type: 'postgres',
-      url: process.env.DATABASE_URL,
+      type: 'sqlite',
+      filename: '/tmp/content.sqlite',
     },
   },
 
@@ -95,6 +95,9 @@ export default defineNuxtConfig({
   },
 
   vite: {
+    optimizeDeps: {
+      include: ['@unhead/schema-org/vue'],
+    },
     plugins: [
       UnheadVite(),
     ],
