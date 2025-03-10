@@ -41,6 +41,14 @@ const { data } = await useAsyncData('navigation', () => {
       />
     </UPageGrid>
 
+    <!--    <Slider :slides="Array.from({ length: 5 }).map((_, index) => ({ src: `https://picsum.photos/640/360?random=${index}` }))"> -->
+    <!--      <template #default="{ slide }"> -->
+    <!--        <img -->
+    <!--          :src="slide.src" -->
+    <!--        > -->
+    <!--      </template> -->
+    <!--    </Slider> -->
+
     <h2 class="mb-2">
       Latest Blog Posts
     </h2>

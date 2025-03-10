@@ -7,7 +7,6 @@ const {
   slides: Array<{ [key: string]: any }>
 }>()
 
-const activeIndex = ref(0)
 const container: Ref = ref(null)
 const childSlides: Ref<HTMLElement[]> = ref([])
 const disableBtns = ref(true)
@@ -73,6 +72,7 @@ const initObserver = () => {
 const scrollNext = async () => {
   const { offsetWidth, offsetParent } = container.value
   const parentOffset = offsetWidth - offsetParent.offsetWidth
+  const childSlideOffsetWidth = childSlides.value[1]?.offsetWidth ?? 0
 
   if (transition.value < totalChildWidth.value - offsetParent.offsetWidth) {
     endingIndex.value += 1
@@ -82,18 +82,20 @@ const scrollNext = async () => {
     transition.value = parentOffset
   }
   else {
-    transition.value += childSlides.value[1].offsetWidth + columnGap
+    transition.value += childSlideOffsetWidth + columnGap
   }
 
   container.value.style.transform = `translate3d(${-transition.value}px, 0, 0)`
 }
 
 const scrollPrev = () => {
+  const childSlideOffsetWidth = childSlides.value[1]?.offsetWidth ?? 0
+
   if (scrollToStart.value) {
     transition.value = 0
   }
   else {
-    transition.value -= childSlides.value[1].offsetWidth + columnGap
+    transition.value -= childSlideOffsetWidth + columnGap
   }
 
   container.value.style.transform = `translate3d(${-transition.value}px, 0, 0)`
@@ -135,7 +137,6 @@ const handleIntersect: IntersectionObserverCallback = (entries, observer) => {
         && !entriesIntersected.value.includes(entryIndex)
       ) {
         entriesIntersected.value.push(entryIndex)
-        activeIndex.value = entryIndex
         unobserveEntry({ target })
       }
     })
@@ -158,12 +159,10 @@ const unobserveEntry = ({ target }: { target: IntersectionObserverEntry['target'
   <div class="slider relative overflow-hidden">
     <UButton
       v-if="!showPrevBtn && !disableBtns"
-      :ui="{ rounded: 'rounded-full' }"
-      color="gray"
-      rounded
-      :padded="false"
-      class="absolute left-4 right-auto top-1/2 z-10 -translate-y-1/2 cursor-pointer opacity-90 hidden md:flex justify-center w-8 h-8"
+      class="absolute !rounded-full text-[var(--ui-text)] left-4 right-auto top-1/2 z-10 -translate-y-1/2 cursor-pointer hidden md:flex justify-center w-10 h-10"
+      color="neutral"
       title="Previous"
+      variant="outline"
       @click.prevent="scrollPrev"
     >
       <UIcon
@@ -183,7 +182,7 @@ const unobserveEntry = ({ target }: { target: IntersectionObserverEntry['target'
         v-for="(slide, i) in computedSlides"
         :key="`slide-${i}`"
         :style="{ marginRight: i !== computedSlides.length -1 ? `${columnGap}px` : 0 }"
-        class="slider-slide flex flex-col max-w-full shrink-0 w-64 last-of-type:mr-0 overflow-hidden p-1"
+        class="slider-slide flex flex-col max-w-full shrink-0 w-64 last-of-type:mr-0 overflow-hidden aspect-[16/9] border border-[var(--ui-border)] rounded-lg"
       >
         <slot
           :slide="slide"
@@ -196,12 +195,10 @@ const unobserveEntry = ({ target }: { target: IntersectionObserverEntry['target'
 
     <UButton
       v-if="!showNextBtn && !disableBtns"
-      :ui="{ rounded: 'rounded-full' }"
-      color="gray"
-      :padded="false"
-      rounded
-      class="absolute right-4 left-auto top-1/2 z-10 -translate-y-1/2 cursor-pointer opacity-90 hidden md:flex justify-center w-8 h-8"
+      color="neutral"
+      class="absolute !rounded-full text-[var(--ui-text)] right-4 left-auto top-1/2 z-10 -translate-y-1/2 cursor-pointer hidden md:flex justify-center w-10 h-10"
       title="Next"
+      variant="outline"
       @click.prevent="scrollNext"
     >
       <UIcon
