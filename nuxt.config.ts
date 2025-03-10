@@ -1,4 +1,3 @@
-import UnheadVite from '@unhead/addons/vite'
 import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
@@ -11,6 +10,10 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     // '@nuxtjs/partytown',
     '@nuxtjs/supabase',
+  ],
+
+  plugins: [
+    '~/plugins/unhead-v2',
   ],
 
   $development: {
@@ -84,7 +87,7 @@ export default defineNuxtConfig({
     inlineRouteRules: true,
   },
 
-  compatibilityDate: '2025-02-05',
+  compatibilityDate: '2025-03-10',
 
   nitro: {
     netlify: {
@@ -98,9 +101,6 @@ export default defineNuxtConfig({
     optimizeDeps: {
       include: ['@unhead/schema-org/vue'],
     },
-    plugins: [
-      UnheadVite(),
-    ],
   },
 
   eslint: {

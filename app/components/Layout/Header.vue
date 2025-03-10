@@ -61,7 +61,7 @@ watch(user, () => {
 </script>
 
 <template>
-  <UHeader>
+  <UHeader :toggle="false">
     <template #left>
       <Navigation />
 
