@@ -86,8 +86,7 @@ export default defineNuxtConfig({
   experimental: {
     inlineRouteRules: true,
   },
-
-  compatibilityDate: '2025-03-10',
+  compatibilityDate: '2025-04-17',
 
   nitro: {
     netlify: {
