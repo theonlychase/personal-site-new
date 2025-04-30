@@ -16,21 +16,9 @@ export default defineNuxtConfig({
     '~/plugins/unhead-v2',
   ],
 
-  $development: {
-    runtimeConfig: {
-      public: {
-        baseUrl: 'http://localhost:8888',
-      },
-    },
-  },
+  $development: { runtimeConfig: { public: { baseUrl: 'http://localhost:8888' } } },
 
-  $production: {
-    runtimeConfig: {
-      public: {
-        baseUrl: process.env.BASE_URL,
-      },
-    },
-  },
+  $production: { runtimeConfig: { public: { baseUrl: process.env.BASE_URL } } },
 
   components: [
     {
@@ -47,9 +35,7 @@ export default defineNuxtConfig({
     name: 'Chase Isley',
   },
 
-  colorMode: {
-    classSuffix: '',
-  },
+  colorMode: { classSuffix: '' },
 
   content: {
     build: {
@@ -60,10 +46,7 @@ export default defineNuxtConfig({
         },
       },
     },
-    database: {
-      type: 'sqlite',
-      filename: '/tmp/content.sqlite',
-    },
+    experimental: { nativeSqlite: true },
   },
 
   runtimeConfig: {
@@ -75,53 +58,28 @@ export default defineNuxtConfig({
     },
   },
 
-  future: {
-    compatibilityVersion: 4,
-  },
+  future: { compatibilityVersion: 4 },
 
-  features: {
-    devLogs: true,
-  },
+  features: { devLogs: true },
 
-  experimental: {
-    inlineRouteRules: true,
-  },
-  compatibilityDate: '2025-04-17',
+  experimental: { inlineRouteRules: true },
 
-  nitro: {
-    netlify: {
-      images: {
-        remote_images: ['https://picsum.photos/.*', 'https://fastly.picsum.photos/.*', 'https://images.unsplash.com/.*', 'https://source.unsplash.com/.*', 'https://github.com/.*'],
-      },
-    },
-  },
+  compatibilityDate: '2025-04-30',
 
-  vite: {
-    optimizeDeps: {
-      include: ['@unhead/schema-org/vue'],
-    },
-  },
+  nitro: { netlify: { images: { remote_images: ['https://picsum.photos/.*', 'https://fastly.picsum.photos/.*', 'https://images.unsplash.com/.*', 'https://source.unsplash.com/.*', 'https://github.com/.*'] } } },
 
-  eslint: {
-    config: {
-      stylistic: true,
-    },
-  },
+  vite: { optimizeDeps: { include: ['@unhead/schema-org/vue'] } },
 
-  icon: {
-    serverBundle: {
-      collections: ['devicon', 'lucide', 'line-md', 'simple-icons'],
-    },
-  },
+  eslint: { config: { stylistic: true } },
+
+  icon: { serverBundle: { collections: ['devicon', 'lucide', 'line-md', 'simple-icons'] } },
 
   image: {
     provider: 'netlifyImageCdn',
     domains: ['picsum', 'picsum.photos', 'https://picsum.photos', 'fastly.picsum.photos', 'images.unsplash.com', 'source.unsplash.com', 'github.com'],
   },
 
-  robots: {
-    disallow: ['/confirm', '/profile'],
-  },
+  robots: { disallow: ['/confirm', '/profile'] },
 
   supabase: {
     redirectOptions: {
@@ -131,7 +89,5 @@ export default defineNuxtConfig({
     },
   },
 
-  uiPro: {
-    license: process.env.NUXT_UI_PRO_LICENSE,
-  },
+  uiPro: { license: process.env.NUXT_UI_PRO_LICENSE },
 })

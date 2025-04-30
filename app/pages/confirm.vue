@@ -7,9 +7,7 @@ watch(
   () => {
     if (user.value) {
       const to = (query.redirectTo as string) ?? '/'
-      return navigateTo(to, {
-        replace: true,
-      })
+      return navigateTo(to, { replace: true })
     }
   },
   { immediate: true },

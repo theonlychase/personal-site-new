@@ -1,15 +1,17 @@
 <script setup lang="ts">
-definePageMeta({
-  pageScroll: true,
-})
+definePageMeta({ pageScroll: true })
 
-const { path, params } = useRoute()
-const { data } = await useAsyncData(`${path}`, async () => await $fetch(`/api/blog/${params?.slug[0]}`, {
-  headers: useRequestHeaders(['cookie']),
-}))
+const {
+  path, params,
+} = useRoute()
+const { data } = await useAsyncData(`${path}`, async () => await $fetch(`/api/blog/${params?.slug[0]}`, { headers: useRequestHeaders(['cookie']) }))
 
 if (!data.value?.content) {
-  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Page not found',
+    fatal: true,
+  })
 }
 
 useHead(data.value?.content.head || {})

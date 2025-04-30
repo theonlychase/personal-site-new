@@ -8,19 +8,21 @@ useSeoMeta(
     twitterTitle: () => '%title',
     twitterDescription: () => '%title',
   },
-  {
-    mode: 'server',
-  },
+  { mode: 'server' },
 )
 
 useHead({
-  htmlAttrs: {
-    lang: 'en',
-  },
+  htmlAttrs: { lang: 'en' },
   meta: [
     { charset: 'utf-8' },
-    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-    { name: 'robots', content: 'index, follow' },
+    {
+      name: 'viewport',
+      content: 'width=device-width, initial-scale=1',
+    },
+    {
+      name: 'robots',
+      content: 'index, follow',
+    },
   ],
   link: [
     {
