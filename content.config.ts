@@ -1,4 +1,6 @@
-import { defineContentConfig, defineCollection, z } from '@nuxt/content'
+import {
+  defineContentConfig, defineCollection, z,
+} from '@nuxt/content'
 import { asSeoCollection } from '@nuxtjs/seo/content'
 
 export default defineContentConfig({
@@ -35,9 +37,7 @@ export default defineContentConfig({
             src: z.string(),
             alt: z.string(),
           }),
-          sitemap: z.object({
-            loc: z.string(),
-          }),
+          sitemap: z.object({ loc: z.string() }),
           short: z.string(),
           icon: z.string(),
           tags: z.array(z.string()),

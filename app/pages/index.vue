@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { projects, skills } from '~/helpers/const'
+import {
+  projects, skills,
+} from '~/helpers/const'
 
 useHead({
   templateParams: {
