@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { RuntimeConfig } from 'nuxt/schema'
+
 interface FormState { [key: string]: '' }
 const messages = {
   required: 'is required',
@@ -78,7 +80,7 @@ function validate() {
       })
     }
     // Email Validation
-    if (key === 'email' && !validateEmail(state.email)) {
+    if (key === 'email' && !validateEmail(state?.email ?? '')) {
       errors.push({
         name: 'email',
         message: messages.email,

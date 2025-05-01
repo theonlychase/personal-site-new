@@ -9,11 +9,12 @@ useHead({
 
 <template>
   <UPageBody>
-    <UPageHeader
+    <LazyUPageHeader
       class="mb-8"
       title="Contact"
+      hydrate-never
     />
 
-    <ContactForm />
+    <LazyContactForm hydrate-on-interaction="mouseover" />
   </UPageBody>
 </template>

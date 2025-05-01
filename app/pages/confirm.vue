@@ -15,5 +15,7 @@ watch(
 </script>
 
 <template>
-  <div>Waiting for login...</div>
+  <UPageBody>
+    <div>Waiting for login...</div>
+  </UPageBody>
 </template>
