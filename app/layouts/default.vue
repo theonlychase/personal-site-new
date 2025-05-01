@@ -9,6 +9,6 @@
       <slot />
     </Page>
 
-    <Footer />
+    <LazyFooter hydrate-on-visible />
   </div>
 </template>

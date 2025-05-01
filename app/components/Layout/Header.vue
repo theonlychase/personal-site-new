@@ -65,9 +65,9 @@ watch(user, () => {
 <template>
   <UHeader :toggle="false">
     <template #left>
-      <Navigation />
+      <LazyNavigation hydrate-on-media-query="(min-width: 768px)" />
 
-      <MobileNavigation />
+      <LazyMobileNavigation hydrate-on-media-query="(max-width: 768px)" />
     </template>
 
     <template #right>

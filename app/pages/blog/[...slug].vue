@@ -30,7 +30,7 @@ useSeoMeta(data.value?.content.seo || {})
 </script>
 
 <template>
-  <UPageBody>
+  <UPageBody class="animate-fade-in">
     <UPageHeader
       :title="data?.content.short"
       :description="`${data?.content.created}${data?.views ? ` (${data?.views} views)` : ''}`"

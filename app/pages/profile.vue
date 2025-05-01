@@ -10,9 +10,10 @@ definePageMeta({ middleware: 'auth' })
 
 <template>
   <UPageBody>
-    <UPageHeader
+    <LazyUPageHeader
       title="Profile"
       class="mb-8"
+      hydrate-never
     />
 
     Work in progress...
