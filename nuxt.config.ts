@@ -29,6 +29,8 @@ export default defineNuxtConfig({
     },
   ],
 
+  app: { viewTransition: false },
+
   css: ['~/assets/css/tailwind.css'],
 
   site: {

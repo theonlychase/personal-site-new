@@ -1,8 +1,12 @@
 <script setup lang="ts">
 const user = useSupabaseUser()
 const { auth } = useSupabaseClient()
-const { meta, path, query } = useRoute()
-const { progress, stop } = useScrollProgress()
+const {
+  meta, path, query,
+} = useRoute()
+const {
+  progress, stop,
+} = useScrollProgress()
 
 if (!meta.pageScroll) {
   stop()
@@ -53,9 +57,7 @@ const computedItems = computed(() => {
 watch(user, () => {
   if (!user.value && path !== '/profile') {
     const to = (query.redirectTo as string) ?? '/login'
-    return navigateTo(to, {
-      replace: true,
-    })
+    return navigateTo(to, { replace: true })
   }
 })
 </script>

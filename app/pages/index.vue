@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import {
-  projects, skills,
-} from '~/helpers/const'
-
 useHead({
   templateParams: {
     title: 'Home',
@@ -15,17 +11,7 @@ useHead({
 <template>
   <UPageBody>
     <Motion
-      as-child
-      :initial="false"
-      :animate="{
-        transform: 'translateY(10px)',
-        opacity: 0,
-      }"
-      :in-view-options="{ once: true }"
-      :while-in-view="{
-        opacity: 1,
-        transform: 'translateY(0)',
-      }"
+      v-bind="componentTransitions"
       :transition="{
         delay: 0.1,
       }"
@@ -37,17 +23,7 @@ useHead({
     </Motion>
 
     <Motion
-      as-child
-      :initial="false"
-      :animate="{
-        transform: 'translateY(10px)',
-        opacity: 0,
-      }"
-      :in-view-options="{ once: true }"
-      :while-in-view="{
-        opacity: 1,
-        transform: 'translateY(0)',
-      }"
+      v-bind="componentTransitions"
       :transition="{
         delay: 0.2,
       }"
@@ -58,17 +34,7 @@ useHead({
     </Motion>
 
     <Motion
-      as-child
-      :initial="false"
-      :animate="{
-        transform: 'translateY(10px)',
-        opacity: 0,
-      }"
-      :in-view-options="{ once: true }"
-      :while-in-view="{
-        opacity: 1,
-        transform: 'translateY(0)',
-      }"
+      v-bind="componentTransitions"
       :transition="{
         delay: 0.3,
       }"
@@ -80,17 +46,7 @@ useHead({
     </Motion>
 
     <Motion
-      as-child
-      :initial="false"
-      :animate="{
-        transform: 'translateY(10px)',
-        opacity: 0,
-      }"
-      :in-view-options="{ once: true }"
-      :while-in-view="{
-        opacity: 1,
-        transform: 'translateY(0)',
-      }"
+      v-bind="componentTransitions"
       :transition="{
         delay: 0.4,
       }"
@@ -101,17 +57,7 @@ useHead({
     </Motion>
 
     <Motion
-      :initial="false"
-      as-child
-      :animate="{
-        transform: 'translateY(10px)',
-        opacity: 0,
-      }"
-      :in-view-options="{ once: true }"
-      :while-in-view="{
-        opacity: 1,
-        transform: 'translateY(0)',
-      }"
+      v-bind="componentTransitions"
       :transition="{
         delay: 0.5,
       }"
@@ -126,17 +72,7 @@ useHead({
     </Motion>
 
     <Motion
-      :initial="false"
-      as-child
-      :animate="{
-        transform: 'translateY(10px)',
-        opacity: 0,
-      }"
-      :in-view-options="{ once: true }"
-      :while-in-view="{
-        opacity: 1,
-        transform: 'translateY(0)',
-      }"
+      v-bind="componentTransitions"
       :transition="{
         delay: 0.6,
       }"

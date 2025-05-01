@@ -19,17 +19,6 @@ export const nav = [
   },
 ]
 
-export interface Project {
-  url: string
-  title: string
-  description: string
-  icons: {
-    name: string
-    title: string
-  }[]
-  details: string[]
-}
-
 export const projects: Array<Project> = [
   {
     url: 'https://storybook-from-scratch.netlify.app',
@@ -73,3 +62,17 @@ export const skills = [
   'Core Web Vitals Performance',
   'Solving Problems at Scale',
 ]
+
+export const componentTransitions = {
+  animate: {
+    transform: 'translateY(10px)',
+    opacity: 0,
+  },
+  asChild: true,
+  initial: false,
+  inViewOptions: { once: true },
+  whileInView: {
+    opacity: 1,
+    transform: 'translateY(0)',
+  },
+}

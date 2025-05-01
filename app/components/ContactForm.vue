@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { RuntimeConfig } from 'nuxt/schema'
-
 interface FormState { [key: string]: '' }
 const messages = {
   required: 'is required',
