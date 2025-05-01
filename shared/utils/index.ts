@@ -65,14 +65,13 @@ export const skills = [
 
 export const componentTransitions = {
   animate: {
-    transform: 'translateY(10px)',
-    opacity: 0,
-  },
-  asChild: true,
-  initial: false,
-  inViewOptions: { once: true },
-  whileInView: {
     opacity: 1,
     transform: 'translateY(0)',
   },
+  asChild: true,
+  initial: {
+    transform: 'translateY(10px)',
+    opacity: 0,
+  },
+  inViewOptions: { once: true },
 }
