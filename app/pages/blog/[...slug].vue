@@ -15,7 +15,7 @@ const { data }: {
     surround: ContentNavigationItem[]
     views: number | null
   }>
-} = await useAsyncData(`${path}`, async () => await $fetch(`/api/blog/${params?.slug ? params?.slug[0] : ''}`, { headers: useRequestHeaders(['cookie']) }))
+} = await useAsyncData(path, () => $fetch(`/api/blog/${params?.slug ? params?.slug[0] : ''}`, { headers: useRequestHeaders(['cookie']) }))
 
 if (!data.value?.content) {
   throw createError({
