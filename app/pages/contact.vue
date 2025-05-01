@@ -15,6 +15,6 @@ useHead({
       hydrate-never
     />
 
-    <LazyContactForm hydrate-on-interaction="mouseover" />
+    <LazyContactForm hydrate-on-interaction="pointerenter" />
   </UPageBody>
 </template>
