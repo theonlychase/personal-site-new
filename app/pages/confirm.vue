@@ -15,7 +15,7 @@ watch(
 </script>
 
 <template>
-  <UPageBody>
+  <UPageBody class="animate-fade-in">
     <div>Waiting for login...</div>
   </UPageBody>
 </template>

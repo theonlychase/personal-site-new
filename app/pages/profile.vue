@@ -9,7 +9,7 @@ definePageMeta({ middleware: 'auth' })
 </script>
 
 <template>
-  <UPageBody>
+  <UPageBody class="animate-fade-in">
     <LazyUPageHeader
       title="Profile"
       class="mb-8"
