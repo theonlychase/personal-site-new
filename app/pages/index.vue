@@ -15,71 +15,105 @@ useHead({
 <template>
   <UPageBody>
     <Motion
-      :initial="{
-        scale: 1.1,
-        opacity: 0,
-        filter: 'blur(20px)',
-      }"
+      as-child
+      :initial="false"
       :animate="{
-        scale: 1,
+        transform: 'translateY(10px)',
+        opacity: 0,
+      }"
+      :in-view-options="{ once: true }"
+      :while-in-view="{
         opacity: 1,
-        filter: 'blur(0px)',
+        transform: 'translateY(0)',
       }"
       :transition="{
-        duration: 0.6,
-        delay: 0.05,
+        delay: 0.1,
       }"
     >
       <UPageHeader
         class="pb-0"
         title="Hi, I'm Chase Isley"
       />
+    </Motion>
 
+    <Motion
+      as-child
+      :initial="false"
+      :animate="{
+        transform: 'translateY(10px)',
+        opacity: 0,
+      }"
+      :in-view-options="{ once: true }"
+      :while-in-view="{
+        opacity: 1,
+        transform: 'translateY(0)',
+      }"
+      :transition="{
+        delay: 0.2,
+      }"
+    >
       <p class="text-sm mb-4">
         Software Engineer
       </p>
     </Motion>
 
     <Motion
-      :initial="{
-        scale: 1.1,
-        opacity: 0,
-        filter: 'blur(20px)',
-      }"
+      as-child
+      :initial="false"
       :animate="{
-        scale: 1,
+        transform: 'translateY(10px)',
+        opacity: 0,
+      }"
+      :in-view-options="{ once: true }"
+      :while-in-view="{
         opacity: 1,
-        filter: 'blur(0px)',
+        transform: 'translateY(0)',
       }"
       :transition="{
-        duration: 0.6,
-        delay: 0.15,
+        delay: 0.3,
       }"
     >
       <Typewriter
         :data="skills"
         class="mb-12"
       />
+    </Motion>
 
+    <Motion
+      as-child
+      :initial="false"
+      :animate="{
+        transform: 'translateY(10px)',
+        opacity: 0,
+      }"
+      :in-view-options="{ once: true }"
+      :while-in-view="{
+        opacity: 1,
+        transform: 'translateY(0)',
+      }"
+      :transition="{
+        delay: 0.4,
+      }"
+    >
       <h2 class="mb-6">
         Recent Playground Projects
       </h2>
     </Motion>
 
     <Motion
-      :initial="{
-        scale: 1.1,
-        opacity: 0,
-        filter: 'blur(20px)',
-      }"
+      :initial="false"
+      as-child
       :animate="{
-        scale: 1,
+        transform: 'translateY(10px)',
+        opacity: 0,
+      }"
+      :in-view-options="{ once: true }"
+      :while-in-view="{
         opacity: 1,
-        filter: 'blur(0px)',
+        transform: 'translateY(0)',
       }"
       :transition="{
-        duration: 0.6,
-        delay: 0.3,
+        delay: 0.5,
       }"
     >
       <UPageGrid>
@@ -91,35 +125,27 @@ useHead({
       </UPageGrid>
     </Motion>
 
-    <!--    <Slider :slides="Array.from({ length: 5 }).map((_, index) => ({ src: `https://picsum.photos/640/360?random=${index}` }))"> -->
-    <!--      <template #default="{ slide }"> -->
-    <!--        <img -->
-    <!--          :src="slide.src" -->
-    <!--        > -->
-    <!--      </template> -->
-    <!--    </Slider> -->
-
     <Motion
-      :initial="{
-        scale: 1.1,
-        opacity: 0,
-        filter: 'blur(20px)',
-      }"
+      :initial="false"
+      as-child
       :animate="{
-        scale: 1,
+        transform: 'translateY(10px)',
+        opacity: 0,
+      }"
+      :in-view-options="{ once: true }"
+      :while-in-view="{
         opacity: 1,
-        filter: 'blur(0px)',
+        transform: 'translateY(0)',
       }"
       :transition="{
-        duration: 0.6,
-        delay: 0.45,
+        delay: 0.6,
       }"
     >
       <h2 class="mb-2">
         Latest Blog Posts
       </h2>
-
-      <BlogListNavigation />
     </Motion>
+
+    <BlogListNavigation />
   </UPageBody>
 </template>
