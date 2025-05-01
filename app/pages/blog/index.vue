@@ -56,7 +56,7 @@ useHead({
             v-if="post.image"
             #header
           >
-            <NuxtImg
+            <LazyNuxtImg
               v-slot="{ src, isLoaded, imgAttrs }"
               class="object-cover object-top w-full h-full transform transition-transform duration-200 group-hover:scale-110"
               :src="`${post.image.src}?random=${index}`"
@@ -72,6 +72,7 @@ useHead({
               <LazyUSkeleton
                 v-else
                 class="h-full w-full aspect-[16/9] flex items-center justify-center bg-[var(--ui-bg)]"
+                hydrate-never
               >
                 <svg
                   class="w-20 h-20 text-gray-200 dark:text-gray-600"
@@ -83,7 +84,7 @@ useHead({
                   <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
                 </svg>
               </LazyUSkeleton>
-            </NuxtImg>
+            </LazyNuxtImg>
           </template>
         </UBlogPost>
       </Motion>

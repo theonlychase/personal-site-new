@@ -88,7 +88,7 @@ const { data } = await useLazyAsyncData('navigation', () => {
       </h2>
     </Motion>
 
-    <BlogListNavigation
+    <LazyBlogListNavigation
       v-if="data"
       :data="data"
     />
