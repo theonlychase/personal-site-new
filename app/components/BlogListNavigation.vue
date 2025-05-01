@@ -12,18 +12,17 @@ const { data } = await useAsyncData('navigation', () => {
     <Motion
       v-for="(item, index) in data[0]?.children"
       :key="index"
-      :initial="{
-        scale: 1.1,
-        opacity: 0,
-        filter: 'blur(20px)',
-      }"
+      :initial="false"
       :animate="{
-        scale: 1,
+        transform: 'translateY(10px)',
+        opacity: 0,
+      }"
+      :in-view-options="{ once: true }"
+      :while-in-view="{
         opacity: 1,
-        filter: 'blur(0px)',
+        transform: 'translateY(0)',
       }"
       :transition="{
-        duration: 0.6,
         delay: 0.6 + index * 0.1,
       }"
     >
