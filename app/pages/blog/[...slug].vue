@@ -8,6 +8,7 @@ definePageMeta({ pageScroll: true })
 const {
   path, params,
 } = useRoute()
+
 const { data }: {
   data: Ref<{
     content: BlogCollectionItem

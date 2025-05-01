@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { Project } from '~/helpers/const'
-
 const { project } = defineProps<{ project: Project }>()
 </script>
 

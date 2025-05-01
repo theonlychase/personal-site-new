@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import { nav } from '~/helpers/const'
-
-withDefaults(defineProps<{ show?: boolean }>(), {
-  show: false,
-})
+defineProps<{ show?: boolean }>()
 
 const childTransitions = ref('w-0 opacity-0 -translate-x-4')
 const showMenu = ref(false)

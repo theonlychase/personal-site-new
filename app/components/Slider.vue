@@ -1,10 +1,10 @@
 <script setup lang="ts">
 const {
   columnGap = 12,
-  slides = [],
+  slides,
 } = defineProps<{
   columnGap?: number
-  slides: Array<{ [key: string]: any }>
+  slides: Array<{ [key: string]: unknown }>
 }>()
 
 const container: Ref = ref(null)

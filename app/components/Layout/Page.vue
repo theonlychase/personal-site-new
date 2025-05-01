@@ -3,7 +3,7 @@ defineProps<{ full?: boolean }>()
 </script>
 
 <template>
-  <UMain class="animate-fadeIn">
+  <UMain>
     <UPage>
       <slot />
     </UPage>

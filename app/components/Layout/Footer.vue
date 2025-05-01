@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nav } from '~/helpers/const'
+
 </script>
 
 <template>

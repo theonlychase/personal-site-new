@@ -26,11 +26,9 @@ const { data }: { data: Ref<BlogCollectionItem[]> } = await useAsyncData(`${path
       <Motion
         v-for="(post, index) in data"
         :key="index"
-        :initial="false"
-        :animate="{ opacity: 0, transform: 'translateY(10px)' }"
-        :while-in-view="{ opacity: 1, transform: 'translateY(0)' }"
+        v-bind="componentTransitions"
+        :as-child="false"
         :transition="{ delay: 0.2 * index }"
-        :in-view-options="{ once: true }"
       >
         <UBlogPost
           :authors="[post.author]"
