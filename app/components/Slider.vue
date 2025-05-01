@@ -50,16 +50,12 @@ watchEffect(
   () => {
     initObserver()
   },
-  {
-    flush: 'post',
-  },
+  { flush: 'post' },
 )
 
 const initObserver = () => {
   if (!observer.value) {
-    observer.value = new IntersectionObserver(handleIntersect, {
-      root: container.value?.offsetParent,
-    })
+    observer.value = new IntersectionObserver(handleIntersect, { root: container.value?.offsetParent })
   }
 
   childSlides.value = [...container.value.children]
@@ -70,7 +66,9 @@ const initObserver = () => {
 }
 
 const scrollNext = async () => {
-  const { offsetWidth, offsetParent } = container.value
+  const {
+    offsetWidth, offsetParent,
+  } = container.value
   const parentOffset = offsetWidth - offsetParent.offsetWidth
   const childSlideOffsetWidth = childSlides.value[1]?.offsetWidth ?? 0
 
@@ -80,8 +78,7 @@ const scrollNext = async () => {
 
   if (scrollToEnd.value) {
     transition.value = parentOffset
-  }
-  else {
+  } else {
     transition.value += childSlideOffsetWidth + columnGap
   }
 
@@ -93,8 +90,7 @@ const scrollPrev = () => {
 
   if (scrollToStart.value) {
     transition.value = 0
-  }
-  else {
+  } else {
     transition.value -= childSlideOffsetWidth + columnGap
   }
 
@@ -110,10 +106,11 @@ const handleIntersect: IntersectionObserverCallback = (entries, observer) => {
 
   if (equalLength && allIntersecting) {
     observer.disconnect()
-  }
-  else {
+  } else {
     disableBtns.value = false
-    entries.forEach(({ target, isIntersecting }) => {
+    entries.forEach(({
+      target, isIntersecting,
+    }) => {
       const entryIndex: number = [...childSlides.value].indexOf(target as HTMLElement)
 
       if (target === childSlides.value[0]) {

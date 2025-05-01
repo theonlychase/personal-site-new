@@ -1,10 +1,20 @@
 <script setup lang="ts">
+import type {
+  BlogCollectionItem, ContentNavigationItem,
+} from '@nuxt/content'
+
 definePageMeta({ pageScroll: true })
 
 const {
   path, params,
 } = useRoute()
-const { data } = await useAsyncData(`${path}`, async () => await $fetch(`/api/blog/${params?.slug[0]}`, { headers: useRequestHeaders(['cookie']) }))
+const { data }: {
+  data: Ref<{
+    content: BlogCollectionItem
+    surround: ContentNavigationItem[]
+    views: number | null
+  }>
+} = await useAsyncData(`${path}`, async () => await $fetch(`/api/blog/${params?.slug ? params?.slug[0] : ''}`, { headers: useRequestHeaders(['cookie']) }))
 
 if (!data.value?.content) {
   throw createError({

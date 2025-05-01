@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import type { RuntimeConfig } from 'nuxt/schema'
 
-interface FormState {
-  [key: string]: ''
-}
+interface FormState { [key: string]: '' }
 const messages = {
   required: 'is required',
   email: 'Invalid Email',
@@ -22,7 +20,10 @@ const emailJs: Ref<{
     templateId: string,
     form: HTMLElement | null,
     publicKey: string,
-  ) => Promise<{ status: number, text: string }>
+  ) => Promise<{
+    status: number
+    text: string
+  }>
 } | null> = ref(null)
 
 const state: FormState = reactive({
@@ -50,8 +51,7 @@ async function onSubmit() {
         success.value = true
         resetForm()
       }
-    }
-    catch (e) {
+    } catch (e) {
       loading.value = false
       console.error(e)
     }
@@ -74,11 +74,17 @@ function validate() {
   for (const key in state) {
     // Required Validation
     if (state[key] === '') {
-      errors.push({ name: key, message: `${key} ${messages.required}` })
+      errors.push({
+        name: key,
+        message: `${key} ${messages.required}`,
+      })
     }
     // Email Validation
     if (key === 'email' && !validateEmail(state.email)) {
-      errors.push({ name: 'email', message: messages.email })
+      errors.push({
+        name: 'email',
+        message: messages.email,
+      })
     }
   }
   return errors

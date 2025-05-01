@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const {
-  data = [],
+  data,
   start = 1000,
   enter = 60,
   end = 1500,
@@ -13,18 +13,22 @@ const {
   leave?: number
 }>()
 
-const state = reactive({ text: '', complete: false, index: 0 })
+const state = reactive({
+  text: '',
+  complete: false,
+  index: 0,
+})
 
 addText({ initial: true })
 
 function addText({ initial = false } = {}) {
-  if (state.text.length < data[state.index].length && !state.complete) {
+  if (state.text.length < (data[state?.index]?.length ?? 0) && !state.complete) {
     if (!initial) {
-      state.text += data[state.index].charAt(state.text.length)
+      state.text += data[state?.index]?.charAt(state.text.length)
     }
     useTimeoutFn(addText, enter)
   }
-  if (state.text.length === data[state.index].length) {
+  if (state.text.length === data[state?.index]?.length) {
     state.complete = true
     useTimeoutFn(removeText, end)
   }
@@ -41,8 +45,7 @@ function removeText() {
     state.complete = false
     if (state.index === data.length - 1) {
       state.index = 0
-    }
-    else {
+    } else {
       state.index++
     }
     useTimeoutFn(addText, start)

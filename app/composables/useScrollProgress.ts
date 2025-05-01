@@ -1,4 +1,7 @@
-export function useScrollProgress(): { progress: Ref<number>, stop: () => void } {
+export function useScrollProgress(): {
+  progress: Ref<number>
+  stop: () => void
+} {
   const scope = effectScope()
   const progress = ref(0)
 

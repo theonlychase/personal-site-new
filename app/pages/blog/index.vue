@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { BlogCollectionItem } from '@nuxt/content'
+
 useHead({
   templateParams: {
     title: 'Blog',
@@ -9,7 +11,7 @@ useHead({
 // defineRouteRules({ prerender: true })
 
 const { path } = useRoute()
-const { data } = await useAsyncData(`${path}`, async () => await $fetch(`/api/blog/all`, { headers: useRequestHeaders(['cookie']) }))
+const { data }: { data: Ref<BlogCollectionItem[]> } = await useAsyncData(`${path}`, async () => await $fetch(`/api/blog/all`, { headers: useRequestHeaders(['cookie']) }))
 // prerenderRoutes(data.value?.map(post => post.path) ?? [])
 </script>
 

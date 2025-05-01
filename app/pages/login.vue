@@ -5,9 +5,7 @@ useHead({
     description: 'Login To Your Account',
   },
 })
-definePageMeta({
-  middleware: 'auth',
-})
+definePageMeta({ middleware: 'auth' })
 </script>
 
 <template>

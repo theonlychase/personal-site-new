@@ -12,10 +12,16 @@ const toast = useToast()
 
 const validate = () => {
   const errors: FormError[] = []
-  if (!state.email) errors.push({ name: 'email', message: 'Email is required' })
+  if (!state.email) errors.push({
+    name: 'email',
+    message: 'Email is required',
+  })
 
   if (!validateEmail(state.email)) {
-    errors.push({ name: 'email', message: 'Invalid Email' })
+    errors.push({
+      name: 'email',
+      message: 'Invalid Email',
+    })
   }
   return errors
 }
@@ -24,25 +30,26 @@ async function handleOAuth() {
   oAuthLoading.value = true
   await auth.signInWithOAuth({
     provider: 'github',
-    options: {
-      redirectTo: config.public.baseUrl,
-    },
+    options: { redirectTo: config.public.baseUrl },
   })
 }
 
 async function handleLogin() {
   try {
     otpLoading.value = true
-    const { error } = await auth.signInWithOtp({ email: state.email, options: {
-      emailRedirectTo: config.public.baseUrl,
-    } })
+    const { error } = await auth.signInWithOtp({
+      email: state.email,
+      options: { emailRedirectTo: config.public.baseUrl },
+    })
     if (error) throw error
-    await toast.add({ title: 'Success', description: 'Check Your Email For The Login Link.', color: 'success' })
-  }
-  catch (error) {
-    alert(error.error_description || error.message)
-  }
-  finally {
+    toast.add({
+      title: 'Success',
+      description: 'Check Your Email For The Login Link.',
+      color: 'success',
+    })
+  } catch (error) {
+    alert((error as { [p: string]: string }).error_description || (error as Error).message)
+  } finally {
     state.email = ''
     otpLoading.value = false
     success.value = true

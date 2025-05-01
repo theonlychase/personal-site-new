@@ -2,7 +2,11 @@ export function useInjectScript({
   src,
   id,
   async = true,
-}: { src: string, id: string, async?: boolean }): Promise<boolean> {
+}: {
+  src: string
+  id: string
+  async?: boolean
+}): Promise<boolean> {
   const scriptEl = document.getElementById(id)
 
   return new Promise((resolve, reject) => {
