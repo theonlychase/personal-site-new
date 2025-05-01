@@ -10,38 +10,86 @@ useHead({
       'Chase Isley is a software engineer highly skilled at modern front-end architecture, design systems, and solving problems at scale.',
   },
 })
-
-const { data } = await useAsyncData('navigation', () => {
-  return queryCollectionNavigation('blog', ['description', 'icon']).order('created', 'DESC')
-})
 </script>
 
 <template>
   <UPageBody>
-    <UPageHeader
-      class="pb-0"
-      title="Hi, I'm Chase Isley"
-    />
-    <p class="text-sm mb-4">
-      Software Engineer
-    </p>
-
-    <Typewriter
-      :data="skills"
-      class="mb-12"
-    />
-
-    <h2 class="mb-6">
-      Recent Playground Projects
-    </h2>
-
-    <UPageGrid>
-      <ProjectCard
-        v-for="project in projects"
-        :key="project.title"
-        :project="project"
+    <Motion
+      :initial="{
+        scale: 1.1,
+        opacity: 0,
+        filter: 'blur(20px)',
+      }"
+      :animate="{
+        scale: 1,
+        opacity: 1,
+        filter: 'blur(0px)',
+      }"
+      :transition="{
+        duration: 0.6,
+        delay: 0.05,
+      }"
+    >
+      <UPageHeader
+        class="pb-0"
+        title="Hi, I'm Chase Isley"
       />
-    </UPageGrid>
+
+      <p class="text-sm mb-4">
+        Software Engineer
+      </p>
+    </Motion>
+
+    <Motion
+      :initial="{
+        scale: 1.1,
+        opacity: 0,
+        filter: 'blur(20px)',
+      }"
+      :animate="{
+        scale: 1,
+        opacity: 1,
+        filter: 'blur(0px)',
+      }"
+      :transition="{
+        duration: 0.6,
+        delay: 0.15,
+      }"
+    >
+      <Typewriter
+        :data="skills"
+        class="mb-12"
+      />
+
+      <h2 class="mb-6">
+        Recent Playground Projects
+      </h2>
+    </Motion>
+
+    <Motion
+      :initial="{
+        scale: 1.1,
+        opacity: 0,
+        filter: 'blur(20px)',
+      }"
+      :animate="{
+        scale: 1,
+        opacity: 1,
+        filter: 'blur(0px)',
+      }"
+      :transition="{
+        duration: 0.6,
+        delay: 0.3,
+      }"
+    >
+      <UPageGrid>
+        <ProjectCard
+          v-for="(project) in projects"
+          :key="project.title"
+          :project="project"
+        />
+      </UPageGrid>
+    </Motion>
 
     <!--    <Slider :slides="Array.from({ length: 5 }).map((_, index) => ({ src: `https://picsum.photos/640/360?random=${index}` }))"> -->
     <!--      <template #default="{ slide }"> -->
@@ -51,27 +99,27 @@ const { data } = await useAsyncData('navigation', () => {
     <!--      </template> -->
     <!--    </Slider> -->
 
-    <h2 class="mb-2">
-      Latest Blog Posts
-    </h2>
-
-    <UPageList
-      v-if="data"
-      divide
+    <Motion
+      :initial="{
+        scale: 1.1,
+        opacity: 0,
+        filter: 'blur(20px)',
+      }"
+      :animate="{
+        scale: 1,
+        opacity: 1,
+        filter: 'blur(0px)',
+      }"
+      :transition="{
+        duration: 0.6,
+        delay: 0.45,
+      }"
     >
-      <UPageCard
-        v-for="(item, index) in data[0].children"
-        :key="index"
-        as="li"
-        class="px-0"
-        :to="item.path"
-        :title="item.title"
-        :description="item.description"
-        :icon="item.icon"
-        orientation="vertical"
-        variant="ghost"
-        :ui="{ container: '!py-4' }"
-      />
-    </UPageList>
+      <h2 class="mb-2">
+        Latest Blog Posts
+      </h2>
+
+      <BlogListNavigation />
+    </Motion>
   </UPageBody>
 </template>

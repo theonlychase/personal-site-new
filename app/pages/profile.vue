@@ -5,9 +5,7 @@ useHead({
     description: 'Profile for Authenticated Users',
   },
 })
-definePageMeta({
-  middleware: 'auth',
-})
+definePageMeta({ middleware: 'auth' })
 </script>
 
 <template>
