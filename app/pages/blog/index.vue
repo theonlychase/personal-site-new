@@ -3,8 +3,8 @@ import type { BlogCollectionItem } from '@nuxt/content'
 
 // defineRouteRules({ prerender: true })
 
-const { path } = useRoute()
-const { data }: { data: Ref<BlogCollectionItem[]> } = await useLazyAsyncData(`${path}`, async () => await $fetch(`/api/blog/all`, { headers: useRequestHeaders(['cookie']) }))
+const route = useRoute()
+const { data }: { data: Ref<BlogCollectionItem[]> } = await useLazyAsyncData(route.path, () => $fetch(`/api/blog/all`, { headers: useRequestHeaders(['cookie']) }))
 // prerenderRoutes(data.value?.map(post => post.path) ?? [])
 
 useHead({

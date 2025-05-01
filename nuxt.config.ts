@@ -52,6 +52,8 @@ export default defineNuxtConfig({
     experimental: { nativeSqlite: true },
   },
 
+  ui: { fonts: false },
+
   runtimeConfig: {
     public: {
       emailId: '',
