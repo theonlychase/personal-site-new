@@ -19,6 +19,21 @@ export const nav = [
   },
 ]
 
+export const MONTHS = [
+  '01',
+  '02',
+  '03',
+  '04',
+  '05',
+  '06',
+  '07',
+  '08',
+  '09',
+  '10',
+  '11',
+  '12',
+]
+
 export const projects: Array<Project> = [
   {
     url: 'https://storybook-from-scratch.netlify.app',
@@ -74,4 +89,26 @@ export const componentTransitions = {
     opacity: 0,
   },
   inViewOptions: { once: true },
+}
+
+export function getYears(count = 7) {
+  const currentYear = new Date().getFullYear()
+  return Array.from({ length: count + 1 }, (_, i) => String(currentYear + i).slice(-2))
+}
+
+export function removeDuplicatesByProp(arr: Array<any>, key = 'name') {
+  const values = new Set()
+
+  return arr.filter((item: { [key: string]: unknown }) => {
+    if (!(key in item)) {
+      return true
+    }
+
+    const value = item[key]
+    if (values.has(value)) {
+      return false
+    }
+    values.add(value)
+    return true
+  })
 }
