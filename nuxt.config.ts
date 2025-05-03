@@ -10,12 +10,9 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     // '@nuxtjs/partytown',
     '@nuxtjs/supabase',
-    'motion-v/nuxt',
   ],
 
-  plugins: [
-    '~/plugins/unhead-v2',
-  ],
+  plugins: ['~/plugins/unhead-v2'],
 
   $development: { runtimeConfig: { public: { baseUrl: 'http://localhost:8888' } } },
 
@@ -29,7 +26,10 @@ export default defineNuxtConfig({
     },
   ],
 
-  app: { viewTransition: false },
+  app: {
+    pageTransition: false,
+    layoutTransition: false,
+  },
 
   css: ['~/assets/css/tailwind.css'],
 
@@ -45,7 +45,12 @@ export default defineNuxtConfig({
       markdown: {
         highlight: {
           theme: 'night-owl',
-          langs: ['css', 'js', 'ts', 'vue'],
+          langs: [
+            'css',
+            'js',
+            'ts',
+            'vue',
+          ],
         },
       },
     },
@@ -71,20 +76,53 @@ export default defineNuxtConfig({
 
   compatibilityDate: '2025-04-30',
 
-  nitro: { netlify: { images: { remote_images: ['https://picsum.photos/.*', 'https://fastly.picsum.photos/.*', 'https://images.unsplash.com/.*', 'https://source.unsplash.com/.*', 'https://github.com/.*'] } } },
+  nitro: {
+    netlify: {
+      images: {
+        remote_images: [
+          'https://picsum.photos/.*',
+          'https://fastly.picsum.photos/.*',
+          'https://images.unsplash.com/.*',
+          'https://source.unsplash.com/.*',
+          'https://github.com/.*',
+        ],
+      },
+    },
+  },
 
   vite: { optimizeDeps: { include: ['@unhead/schema-org/vue'] } },
 
   eslint: { config: { stylistic: true } },
 
-  icon: { serverBundle: { collections: ['devicon', 'lucide', 'line-md', 'simple-icons'] } },
+  icon: {
+    serverBundle: {
+      collections: [
+        'devicon',
+        'lucide',
+        'line-md',
+        'simple-icons',
+      ],
+    },
+  },
 
   image: {
     provider: 'netlifyImageCdn',
-    domains: ['picsum', 'picsum.photos', 'https://picsum.photos', 'fastly.picsum.photos', 'images.unsplash.com', 'source.unsplash.com', 'github.com'],
+    domains: [
+      'picsum',
+      'picsum.photos',
+      'https://picsum.photos',
+      'fastly.picsum.photos',
+      'images.unsplash.com',
+      'source.unsplash.com',
+      'github.com',
+    ],
   },
 
-  robots: { disallow: ['/confirm', '/profile'] },
+  robots: {
+    disallow: [
+      '/confirm', '/profile',
+    ],
+  },
 
   supabase: {
     redirectOptions: {

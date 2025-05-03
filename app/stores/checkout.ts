@@ -1,4 +1,3 @@
-import type { FormError } from '@nuxt/ui'
 import { map } from 'nanostores'
 
 export interface CheckoutStore {
