@@ -11,10 +11,7 @@ export interface CheckoutStore {
   year: string
 }
 
-export type CheckoutErrorStore = { [Property in keyof CheckoutStore]?: { message: string } }
-
-// Checkout Form Value State
-export const $checkout = map<CheckoutStore>({
+export const initialCheckoutStore: CheckoutStore = {
   acceptedTerms: false,
   cc: '',
   cvv: '',
@@ -23,7 +20,21 @@ export const $checkout = map<CheckoutStore>({
   lastName: '',
   month: '01',
   year: '25',
-})
+}
 
-// Checkout Form Error State
+export type CheckoutErrorStore = { [Property in keyof CheckoutStore]?: { message: string } }
+
+// Checkout Form Value Store
+export const $checkout = map<CheckoutStore>(initialCheckoutStore)
+
+// Checkout Form Error Store
 export const $errors = map<CheckoutErrorStore>({})
+
+export const requiredFields: { [key in keyof Partial<CheckoutStore>]: string } = {
+  acceptedTerms: 'You must agree to the terms.',
+  email: 'Email is required.',
+  cc: 'Credit Card Number is required.',
+  firstName: 'First Name is required.',
+  lastName: 'Last Name is required.',
+  cvv: 'CVV is required.',
+}

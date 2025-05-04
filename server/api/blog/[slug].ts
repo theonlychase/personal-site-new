@@ -10,9 +10,10 @@ export default eventHandler(async (event) => {
   }
 
   let views = null
-  const [content, surround] = await Promise.all([
-    queryCollection(event, 'blog').path(`/blog/${slug}`).first(),
-    queryCollectionItemSurroundings(event, 'blog', `/blog/${slug}`, { fields: ['description'] }),
+  const [
+    content, surround,
+  ] = await Promise.all([
+    queryCollection(event, 'blog').path(`/blog/${slug}`).first(), queryCollectionItemSurroundings(event, 'blog', `/blog/${slug}`, { fields: ['description'] }),
   ])
 
   if (content?.path.includes(slug)) {

@@ -2,17 +2,32 @@ import type { FormSubmitEvent } from '@nuxt/ui'
 import type { PreinitializedMapStore } from 'nanostores'
 import { useStore } from '@nanostores/vue'
 import {
-  $checkout, $errors, type CheckoutStore, type CheckoutErrorStore,
+  type CheckoutStore,
+  type CheckoutErrorStore,
+  $checkout,
+  $errors,
+  initialCheckoutStore,
+  requiredFields,
 } from '~/stores/checkout'
+import {
+  validateFirstName,
+  validateLastName,
+  validateCC,
+  validateEmail,
+  validateCVV,
+  validateAcceptedTerms,
+} from '~/utils/validators'
 
-export function useCheckout(): {
+interface UseCheckout {
   $checkout: PreinitializedMapStore<CheckoutStore>
   $errors: PreinitializedMapStore<CheckoutErrorStore>
   errorStore: Readonly<Ref<Readonly<CheckoutErrorStore>>>
   months: Ref<string[]>
   store: Readonly<Ref<CheckoutStore>>
   years: Ref<string[]>
-} {
+}
+
+export function useCheckout(): UseCheckout {
   // Readonly
   const store = useStore($checkout)
   const errorStore = useStore($errors)
@@ -34,31 +49,51 @@ export const setErrors = (errs: CheckoutErrorStore) => {
   $errors.set(errs)
 }
 
-export const validate = (state: Partial<CheckoutStore>): CheckoutErrorStore => {
+export const resetForm = () => {
+  $checkout.set(initialCheckoutStore)
+  $errors.set({})
+}
+
+export const setFieldError = (field: keyof CheckoutErrorStore, message: string) => {
+  const currentErrors = $errors.get()
+  $errors.set({
+    ...currentErrors,
+    [field]: { message },
+  })
+}
+
+export const validate = (
+  state: Partial<CheckoutStore>,
+  customMessages?: Partial<Record<keyof CheckoutStore, string>>,
+): CheckoutErrorStore => {
   const errors: CheckoutErrorStore = {}
 
-  if (!state.acceptedTerms) {
-    errors.acceptedTerms = { message: 'You must agree to the terms.' }
-  }
+  for (const field of Object.keys(requiredFields) as (keyof CheckoutStore)[]) {
+    let error
+    switch (field) {
+      case 'firstName':
+        error = validateFirstName(state.firstName || '')
+        break
+      case 'lastName':
+        error = validateLastName(state.lastName || '')
+        break
+      case 'cc':
+        error = validateCC(state.cc || '')
+        break
+      case 'email':
+        error = validateEmail(state.email || '')
+        break
+      case 'cvv':
+        error = validateCVV(state.cvv || '')
+        break
+      case 'acceptedTerms':
+        error = validateAcceptedTerms(state.acceptedTerms || false)
+        break
+    }
 
-  if (!state.email) {
-    errors.email = { message: 'Email Required' }
-  }
-
-  if (!state.cc) {
-    errors.cc = { message: 'Credit Card Number Required' }
-  }
-
-  if (!state.firstName) {
-    errors.firstName = { message: 'First Name Required' }
-  }
-
-  if (!state.lastName) {
-    errors.lastName = { message: 'Last Name Required' }
-  }
-
-  if (!state.cvv) {
-    errors.cvv = { message: 'CVV Required' }
+    if (error) {
+      errors[field] = { message: customMessages?.[field] || error.message }
+    }
   }
 
   setErrors(errors)
@@ -71,5 +106,13 @@ export async function onSubmit(event: FormSubmitEvent<CheckoutStore>) {
   if (Object.keys(errors).length > 0) {
     return
   }
-  console.log('submitted', event.data)
+
+  const toast = useToast()
+  toast.add({
+    title: 'Success',
+    description: 'Your checkout form has been submitted successfully.',
+    color: 'success',
+  })
+
+  resetForm()
 }

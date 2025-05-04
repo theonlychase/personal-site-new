@@ -2,6 +2,7 @@
 @import "@nuxt/ui-pro";
 
 @source "../../../content";
+@source "../../../shared";
 
 @theme inline {
   /* Header Sizes */
