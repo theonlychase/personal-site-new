@@ -27,7 +27,7 @@ export default defineAppConfig({
     },
     header: { slots: { container: 'max-w-2xl mx-auto px-4 md:px-0 sm:px-0 lg:px-0' } },
     main: { base: 'min-h-full flex-1' },
-    pageBody: { base: 'max-w-2xl py-0 px-4 md:px-0 mx-auto' },
+    pageBody: { base: 'max-w-2xl py-0 px-4 md:px-0 mx-auto animate-fade-in' },
     pageGrid: { base: 'sm:grid-cols-12 lg:grid-cols-12' },
     pageHeader: {
       slots: {

@@ -1,13 +1,9 @@
 <script setup lang="ts">
-import type {
-  BlogCollectionItem, ContentNavigationItem,
-} from '@nuxt/content'
+import type { BlogCollectionItem, ContentNavigationItem } from '@nuxt/content'
 
 definePageMeta({ pageScroll: true })
 
-const {
-  path, params,
-} = useRoute()
+const { path, params } = useRoute()
 
 const { data }: {
   data: Ref<{
@@ -30,7 +26,7 @@ useSeoMeta(data.value?.content.seo || {})
 </script>
 
 <template>
-  <UPageBody class="animate-fade-in">
+  <UPageBody>
     <UPageHeader
       :title="data?.content.short"
       :description="`${data?.content.created}${data?.views ? ` (${data?.views} views)` : ''}`"
