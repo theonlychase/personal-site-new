@@ -8,7 +8,7 @@ useHead({
 </script>
 
 <template>
-  <UPageBody class="animate-fade-in">
+  <UPageBody>
     <LazyUPageHeader
       class="mb-8"
       title="Contact"

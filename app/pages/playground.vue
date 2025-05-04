@@ -8,7 +8,7 @@ useHead({
 </script>
 
 <template>
-  <UPageBody class="animate-fade-in">
+  <UPageBody>
     <LazyUPageHeader
       title="Playground"
       class="mb-8"
