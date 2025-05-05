@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { validateCC } from '~/utils/validators'
-
 const {
-  $checkout, $errors, months, store, errorStore, years,
+  $checkout, $errors, months, store, errorStore, years, onSubmit, setFieldError,
 } = useCheckout()
 </script>
 
