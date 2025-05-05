@@ -6,7 +6,7 @@
     <template #top>
       <hr class="w-full border-t border-gray-300 dark:border-gray-600 mb-4">
 
-      <div class="flex max-sm:flex-col gap-2 w-full text-lg w-full">
+      <div class="flex max-sm:flex-col gap-2 w-full text-lg">
         <div class="flex justify-center gap-x-6 w-full max-sm:order-2">
           <NuxtLink
             v-for="item in nav"
