@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { RuntimeConfig } from 'nuxt/schema'
-import { validateEmailUtil } from '~/utils'
 
 interface FormState { [key: string]: '' }
 const messages = {
