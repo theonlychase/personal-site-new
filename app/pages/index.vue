@@ -7,7 +7,7 @@ useHead({
   },
 })
 
-const { data } = await useLazyAsyncData('navigation', () => {
+const { data } = await useAsyncData('navigation', () => {
   return queryCollectionNavigation('blog', [
     'description', 'icon',
   ]).order('created', 'DESC')
