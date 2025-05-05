@@ -48,14 +48,13 @@ useHead({
         </template>
 
         <template
-          v-if="post.image"
           #header
         >
           <LazyNuxtImg
             v-slot="{ src, isLoaded, imgAttrs }"
             class="object-cover object-top w-full h-full transform transition-transform duration-200 group-hover:scale-110"
-            :src="`${post.image.src}?random=${index}`"
-            :alt="post.image.alt"
+            :src="`${post.image?.src}?random=${index}`"
+            :alt="post.image?.alt"
             :custom="true"
           >
             <img
@@ -67,7 +66,6 @@ useHead({
             <LazyUSkeleton
               v-else
               class="h-full w-full aspect-[16/9] flex items-center justify-center bg-[var(--ui-bg)]"
-              hydrate-never
             >
               <svg
                 class="w-20 h-20 text-gray-200 dark:text-gray-600"

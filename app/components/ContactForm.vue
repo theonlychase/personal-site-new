@@ -130,7 +130,6 @@ function resetForm() {
             <UInput
               v-model="state.name"
               class="w-full"
-              icon="i-lucide-contact"
               placeholder="John Snow"
               size="xl"
             />
@@ -144,7 +143,6 @@ function resetForm() {
             <UInput
               v-model="state.email"
               class="w-full"
-              icon="i-lucide-mail"
               placeholder="you@example.com"
               size="xl"
             />
@@ -168,7 +166,6 @@ function resetForm() {
               type="submit"
               size="xl"
               :loading="loading"
-              icon="i-lucide-send"
               trailing
             >
               Submit

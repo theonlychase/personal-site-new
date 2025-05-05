@@ -38,13 +38,11 @@ created: '2025-02-04'
 
 It's been awhile since I last updated this site. I decided to take on the task of
 migrating not only Tailwind to version 4, but updating/migrating a slew of other 
-Nuxt modules & packages. I'll save that for another post, but for now, I thought I'd keep 
-it simple and share some things I learned during the Tailwind 4 Migration. I'll start with plugins.
+Nuxt modules & packages.
 
 Tailwind 4 has provided a new way of creating plugins using the <a href="https://tailwindcss.com/docs/adding-custom-styles#adding-custom-utilities" target="_blank">@utility</a> directive within your stylesheet, instead of using javascript.
 
 You are still able to create plugins using javascript in v4, but the process has changed slightly. See <a href="https://tailwindcss.com/docs/functions-and-directives#plugin-directive" target="_blank">Tailwind 4 Legacy Plugins</a>.
-I personally found trying to use anything from the legacy config to be a bit of a headache.
 
 Here are a few examples of plugins I created/migrated in Tailwind 4:
 
@@ -89,7 +87,7 @@ This is how you would add this plugin to your `tailwind.config.js` file under `p
 
 ### Tailwind 4 Utility
 We will now convert the above plugin to a Tailwind 4 utility using the `@utility` directive. We use the `--value()` function to get the value. 
-There is much, much more you can do with this function. In our case below, we need the value to be <a href="https://tailwindcss.com/docs/adding-custom-styles#fractions" target="_blank">fraction</a>.
+In our case below, we need the value to be <a href="https://tailwindcss.com/docs/adding-custom-styles#fractions" target="_blank">fraction</a>.
 
 This will match utilities like `aspect-[1/1]` and `aspect-[16/9]`. 
 

@@ -32,7 +32,7 @@ const { data } = await useLazyAsyncData('navigation', () => {
     />
 
     <h2 class="mb-6">
-      Recent Playground Projects
+      For Fun
     </h2>
 
     <LazyUPageGrid hydrate-never>

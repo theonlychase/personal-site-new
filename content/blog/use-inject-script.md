@@ -37,8 +37,7 @@ created: '2025-02-05'
 ---
 
 A few years ago when I created this site, I setup <a href="https://www.emailjs.com/" target="_blank">EmailJS</a> for handling the contact form. It's pretty simple to setup and use.
-For performance reasons, I didn't want to install the package. I got some inspiration from the <a href="https://qwik.dev/" target="_blank">Qwik</a> framework to load and inject the script
-upon user action. To handle that, I created a composable.
+For performance reasons, I didn't want to install the package, so I decided to create a composable to load it dynamically on submit. 
 
 ### useInjectScript Composable
 
