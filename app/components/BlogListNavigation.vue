@@ -5,8 +5,8 @@ const { data } = defineProps<{ data: ContentNavigationItem[] }>()
 </script>
 
 <template>
-  <LazyUPageList divide>
-    <LazyUPageCard
+  <UPageList divide>
+    <UPageCard
       v-for="(item, index) in data[0]?.children"
       :key="index"
       as="li"
@@ -19,5 +19,5 @@ const { data } = defineProps<{ data: ContentNavigationItem[] }>()
       variant="ghost"
       :ui="{ container: '!py-4' }"
     />
-  </LazyUPageList>
+  </UPageList>
 </template>
