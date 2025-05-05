@@ -39,10 +39,7 @@ created: '2025-04-03'
 I'm not actually using this anywhere, but I wanted to test out using a <a href="https://github.com/nanostores/nanostores" target="_blank">Nanostore</a> for handling a form.
 I'm amazed at how small and performant it is. I stumbled upon nanostores while testing out <a href="https://github.com/stackblitz/alien-signals" target="_blank">alien signals</a>. 
 
-I realize the checkout form could be broken up into smaller components, but for the sake of this example, I'll keep it simple and use a single form component. 
-I also realize that more validation is needed to complete this checkout form, but it's good enough for now. 
-
-The form uses components from Nuxt UI. Hopefully this example is easy to follow. I'll go into more details later on. 
+I threw this together fairly quickly. Hopefully it helps someone out there.
 
 ### Example
 

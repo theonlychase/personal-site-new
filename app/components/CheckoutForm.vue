@@ -73,6 +73,7 @@ const {
                 id="cc"
                 autocomplete="cc-number"
                 class="w-full"
+                placeholder="4111-1111-1111-1111 will validate"
                 type="text"
                 size="xl"
                 :model-value="store.cc"
