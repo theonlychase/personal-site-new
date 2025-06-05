@@ -13,11 +13,13 @@ export default {
         ],
       },
     ],
-    'at-rule-no-deprecated': [{
-      ignoreAtRules: [
-        'apply',
-      ],
-    }],
-    'function-no-unknown': [{ ignoreFunctions: ['spacing', 'modifier'] }],
+    'at-rule-no-deprecated': [{ ignoreAtRules: ['apply'] }],
+    'function-no-unknown': [
+      {
+        ignoreFunctions: [
+          'spacing', 'modifier',
+        ],
+      },
+    ],
   },
 }
