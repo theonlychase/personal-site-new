@@ -16,7 +16,7 @@ head:
     description: 'Load Scripts Dynamically with useInjectScript Composable'
     ogDescription: 'Load Scripts Dynamically with useInjectScript Composable'
     twitterDescription: 'Load Scripts Dynamically with useInjectScript Composable'
-image:
+image: 
   src: 'https://picsum.photos/640/360'
   alt: 'useInjectScript Composable'
 seo: 
@@ -36,13 +36,9 @@ slug: 'dynamic-script-injection-in-nuxt-3'
 created: '2025-02-05'
 ---
 
-A few years ago when I created this site, I setup <a href="https://www.emailjs.com/" target="_blank">EmailJS</a> for handling the contact form. It's pretty simple to setup and use.
-For performance reasons, I didn't want to install the package, so I decided to create a composable to load it dynamically on submit. 
-
 ### useInjectScript Composable
 
-It's pretty simple to use. You pass in the `src` and `id` of the script you want to load. The `async` parameter is optional and defaults to `true`.
-It checks for the script by the `id` and resolves if it's already loaded. If not, it creates a new script element, appends it to the body, and resolves when the script is loaded.
+Dynamically load 3rd party scripts once. In this example, We load *EmailJS* onClick.
 
 ```ts [useInjectScript.ts]
 export function useInjectScript({
@@ -90,6 +86,7 @@ export function useInjectScript({
     ) => Promise<{ status: number, text: string }>
   } | null> = ref(null)
 
+  // EmailJS
   async function initEmailJs() {
     const loaded = await useInjectScript({
       src: 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js',
