@@ -10,7 +10,7 @@ export function useScrollProgress(): {
 
     const getProgress = (scrollY: number) => {
       const height = (document?.documentElement.scrollHeight ?? 0) - (window?.innerHeight ?? 0)
-      progress.value = ~~Math.floor((scrollY / height) * 100)
+      progress.value = ~~((scrollY / height) * 100)
     }
 
     watch(y, (v) => {
