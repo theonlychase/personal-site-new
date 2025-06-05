@@ -96,7 +96,7 @@ export function getYears(count = 7) {
   return Array.from({ length: count + 1 }, (_, i) => String(currentYear + i).slice(-2))
 }
 
-export function removeDuplicatesByProp(arr: Array<any>, key = 'name') {
+export function removeDuplicatesByProp(arr: Array<{ [key: string]: unknown }>, key = 'name') {
   const values = new Set()
 
   return arr.filter((item: { [key: string]: unknown }) => {

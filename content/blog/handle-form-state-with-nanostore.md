@@ -36,8 +36,7 @@ slug: 'handle-form-state-with-nanostore-in-nuxt-3'
 created: '2025-04-03'
 ---
 
-I'm not actually using this anywhere, but I wanted to test out using a <a href="https://github.com/nanostores/nanostores" target="_blank">Nanostore</a> for handling a form.
-I'm amazed at how small and performant it is. I stumbled upon nanostores while testing out <a href="https://github.com/stackblitz/alien-signals" target="_blank">alien signals</a>. 
+I stumbled upon <a href="https://github.com/nanostores/nanostores" target="_blank">Nanostores</a> while testing out <a href="https://github.com/stackblitz/alien-signals" target="_blank">alien signals</a>. 
 
 I threw this together fairly quickly. Hopefully it helps someone out there.
 
