@@ -1,6 +1,4 @@
-import {
-  TemplateParamsPlugin, AliasSortingPlugin,
-} from '@unhead/vue/plugins'
+import { TemplateParamsPlugin, AliasSortingPlugin } from '@unhead/vue/plugins'
 
 export default defineNuxtPlugin({
   setup() {

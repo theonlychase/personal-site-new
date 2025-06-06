@@ -14,7 +14,10 @@ export default defineNuxtConfig({
 
   plugins: ['~/plugins/unhead-v2'],
 
-  $development: { runtimeConfig: { public: { baseUrl: 'http://localhost:8888' } } },
+  $development: {
+    runtimeConfig: { public: { baseUrl: 'http://localhost:8888' } },
+    vite: { optimizeDeps: { include: ['@unhead/schema-org/vue'] } },
+  },
 
   $production: { runtimeConfig: { public: { baseUrl: process.env.BASE_URL } } },
 
@@ -74,7 +77,7 @@ export default defineNuxtConfig({
 
   experimental: { inlineRouteRules: true },
 
-  compatibilityDate: '2025-04-30',
+  compatibilityDate: '2025-06-05',
 
   nitro: {
     netlify: {
@@ -89,8 +92,6 @@ export default defineNuxtConfig({
       },
     },
   },
-
-  vite: { optimizeDeps: { include: ['@unhead/schema-org/vue'] } },
 
   eslint: { config: { stylistic: true } },
 
