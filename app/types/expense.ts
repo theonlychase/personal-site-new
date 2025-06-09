@@ -10,6 +10,7 @@ export interface Category {
 }
 
 export interface CategoryFormData {
+  id?: string
   name: string
   color: Color
 }

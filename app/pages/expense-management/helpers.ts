@@ -26,9 +26,9 @@ export const colorOptions: {
   },
   {
     label: 'Blue',
-    value: 'primary',
+    value: 'secondary',
     chip: {
-      color: 'primary',
+      color: 'secondary',
       size: 'xl',
     },
   },
@@ -45,22 +45,6 @@ export const colorOptions: {
     value: 'warning',
     chip: {
       color: 'warning',
-      size: 'xl',
-    },
-  },
-  {
-    label: 'Purple',
-    value: 'secondary',
-    chip: {
-      color: 'secondary',
-      size: 'xl',
-    },
-  },
-  {
-    label: 'Cyan',
-    value: 'info',
-    chip: {
-      color: 'info',
       size: 'xl',
     },
   },

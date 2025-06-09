@@ -16,10 +16,11 @@ useHead({
 const UButton = resolveComponent('UButton')
 
 const {
-  addCategory, deleteCategory, getCategories,
+  addCategory, deleteCategory, getCategories, updateCategory,
 } = useCategories()
 const showAddModal = ref(false)
 const modalLoading = ref(false)
+const modalType = ref<'add' | 'update'>('add')
 const sorting = ref([
   {
     id: 'name',
@@ -65,6 +66,40 @@ const handleAddCategory = async () => {
     refreshCategories()
   } catch (error) {
     console.error('Error adding category:', error)
+  }
+}
+
+const handleUpdateCategory = async () => {
+  try {
+    modalLoading.value = true
+    await updateCategory(newCategory.value.id as string, {
+      name: newCategory.value.name,
+      color: newCategory.value.color,
+    })
+    modalLoading.value = false
+    showAddModal.value = false
+    newCategory.value = {
+      name: '',
+      color: 'neutral',
+    }
+
+    refreshCategories()
+  } catch (error) {
+    console.error('Error adding category:', error)
+  }
+}
+
+const handleUpdateModal = async (id: string) => {
+  modalType.value = 'update'
+  showAddModal.value = true
+  const category = categories.value?.find(category => category.id === id)
+
+  if (!category) return
+
+  newCategory.value = {
+    id: category.id,
+    name: category.name,
+    color: category.color as Color,
   }
 }
 
@@ -114,7 +149,10 @@ function getChip(value: string) {
 
     <UButton
       icon="i-heroicons-plus"
-      @click="showAddModal = true"
+      @click="() => {
+        showAddModal = true
+        modalType = 'add'
+      }"
     >
       Add Category
     </UButton>
@@ -146,7 +184,7 @@ function getChip(value: string) {
             color="neutral"
             variant="ghost"
             icon="i-heroicons-pencil-square"
-            @click="() => {}"
+            @click="() => handleUpdateModal(row.original.id)"
           />
           <UButton
             color="error"
@@ -160,13 +198,20 @@ function getChip(value: string) {
 
     <UModal
       v-model:open="showAddModal"
-      title="Add Category"
+      :title="modalType === 'add' ? 'Add Category' : 'Update Category'"
     >
       <template #body>
         <UForm
           :loading-auto="modalLoading"
           :state="newCategory"
-          @submit.prevent="handleAddCategory"
+          @submit.prevent="(payload) => {
+            if (modalType === 'add') {
+              handleAddCategory()
+            }
+            else {
+              handleUpdateCategory(payload)
+            }
+          }"
         >
           <div class="grid grid-cols-2 gap-x-4">
             <UFormField label="Name">
@@ -211,7 +256,7 @@ function getChip(value: string) {
               type="submit"
               color="primary"
             >
-              Add Category
+              {{ modalType === 'add' ? 'Add Category' : 'Update Category' }}
             </UButton>
           </div>
         </UForm>
