@@ -1,4 +1,4 @@
-export type Color = 'neutral' | 'error' | 'primary' | 'success' | 'warning' | 'secondary' | 'info'
+export type Color = 'amber' | 'fuchsia' | 'orange' | 'purple' | 'sky' | 'teal' | 'neutral' | 'error' | 'primary' | 'success' | 'warning' | 'secondary' | 'info'
 
 export interface Category {
   id: string
@@ -6,13 +6,14 @@ export interface Category {
   color: string | null
   user_id: string | null
   created_at: string
-  icon: string | null
+  budget: number | null
 }
 
 export interface CategoryFormData {
+  budget?: number
+  color: Color
   id?: string
   name: string
-  color: Color
 }
 
 export interface Expense {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { TableColumn } from '@nuxt/ui'
-import { DEFAULT_EXPENSE } from './helpers'
+import { DEFAULT_EXPENSE, getHeader } from './helpers'
 import type {
   Color, ExpenseWithCategory, ExpenseFormData,
 } from '~/types/expense'
@@ -12,11 +12,20 @@ useHead({
   },
 })
 
+const UButton = resolveComponent('UButton')
+
 const {
   addExpense, deleteExpense, getExpenses,
 } = useExpenses()
 const showAddModal = ref(false)
 const modalLoading = ref(false)
+// const modalType = ref<'add' | 'update'>('add')
+const sorting = ref([
+  {
+    id: 'date',
+    desc: false,
+  },
+])
 
 const {
   data: expenses, refresh: refreshExpenses, status: expensesStatus,
@@ -29,7 +38,7 @@ const newExpense = ref<ExpenseFormData>(DEFAULT_EXPENSE)
 const columns: TableColumn<ExpenseWithCategory>[] = [
   {
     accessorKey: 'date',
-    header: 'Date',
+    header: ({ column }) => getHeader(column, 'Date', UButton),
     cell: ({ row }) => {
       return new Date(row.original.date).toLocaleDateString()
     },
@@ -40,11 +49,11 @@ const columns: TableColumn<ExpenseWithCategory>[] = [
   },
   {
     accessorKey: 'amount',
-    header: 'Amount',
+    header: ({ column }) => getHeader(column, 'Amount', UButton),
   },
   {
     accessorKey: 'category',
-    header: 'Category',
+    header: ({ column }) => getHeader(column, 'Category', UButton),
   },
   {
     accessorKey: 'actions',
@@ -98,6 +107,7 @@ const handleDeleteExpense = async (id: string) => {
 
     <UCard>
       <UTable
+        v-model:sorting="sorting"
         :data="expenses"
         :columns="columns"
         :loading="expensesStatus === 'pending'"

@@ -36,25 +36,25 @@ export type Database = {
     Tables: {
       categories: {
         Row: {
+          budget: number | null
           color: string | null
           created_at: string
-          icon: string | null
           id: string
           name: string
           user_id: string | null
         }
         Insert: {
+          budget?: number | null
           color?: string | null
           created_at?: string
-          icon?: string | null
           id?: string
           name: string
           user_id?: string | null
         }
         Update: {
+          budget?: number | null
           color?: string | null
           created_at?: string
-          icon?: string | null
           id?: string
           name?: string
           user_id?: string | null

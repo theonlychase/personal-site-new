@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import type { TableColumn } from '@nuxt/ui'
-import type { Column } from '@tanstack/vue-table'
-import { colorOptions } from './helpers'
-import type {
-  Category, CategoryFormData, Color,
-} from '~/types/expense'
+import { colorOptions, getHeader } from './helpers'
+import type { Category, Color } from '~/types/expense'
 
 useHead({
   templateParams: {
@@ -13,13 +10,22 @@ useHead({
   },
 })
 
+const columns: TableColumn<Category>[] = [
+  {
+    accessorKey: 'name',
+    header: ({ column }) => getHeader(column, 'Name', UButton),
+  },
+  {
+    accessorKey: 'budget',
+    header: ({ column }) => getHeader(column, 'Budget', UButton),
+  },
+  {
+    accessorKey: 'actions',
+    header: 'Actions',
+  },
+]
 const UButton = resolveComponent('UButton')
-
-const {
-  addCategory, deleteCategory, getCategories, updateCategory,
-} = useCategories()
-const showAddModal = ref(false)
-const modalLoading = ref(false)
+const showModal = ref(false)
 const modalType = ref<'add' | 'update'>('add')
 const sorting = ref([
   {
@@ -29,109 +35,50 @@ const sorting = ref([
 ])
 
 const {
+  category, loading, addCategory, deleteCategory, getCategories, resetCategory, updateCategory,
+} = useCategories()
+
+const {
   data: categories, refresh: refreshCategories, status: categoriesStatus,
 } = await getCategories()
 
-const newCategory = ref<CategoryFormData>({
-  name: '',
-  color: 'neutral',
-})
-
-const columns: TableColumn<Category>[] = [
-  {
-    accessorKey: 'name',
-    header: ({ column }) => getHeader(column, 'Name'),
-  },
-  {
-    accessorKey: 'color',
-    header: ({ column }) => getHeader(column, 'Color'),
-  },
-  {
-    accessorKey: 'actions',
-    header: 'Actions',
-  },
-]
-
 const handleAddCategory = async () => {
-  try {
-    modalLoading.value = true
-    await addCategory(newCategory.value)
-    modalLoading.value = false
-    showAddModal.value = false
-    newCategory.value = {
-      name: '',
-      color: 'neutral',
-    }
+  modalType.value = 'add'
+  await addCategory(category.value)
+  showModal.value = false
 
-    refreshCategories()
-  } catch (error) {
-    console.error('Error adding category:', error)
-  }
+  refreshCategories()
 }
 
 const handleUpdateCategory = async () => {
-  try {
-    modalLoading.value = true
-    await updateCategory(newCategory.value.id as string, {
-      name: newCategory.value.name,
-      color: newCategory.value.color,
-    })
-    modalLoading.value = false
-    showAddModal.value = false
-    newCategory.value = {
-      name: '',
-      color: 'neutral',
-    }
+  await updateCategory(category.value.id as string, {
+    name: category.value.name,
+    color: category.value.color,
+  })
 
-    refreshCategories()
-  } catch (error) {
-    console.error('Error adding category:', error)
-  }
+  refreshCategories()
 }
 
 const handleUpdateModal = async (id: string) => {
   modalType.value = 'update'
-  showAddModal.value = true
-  const category = categories.value?.find(category => category.id === id)
+  showModal.value = true
+  const currentCategory = categories.value?.find(category => category.id === id)
 
-  if (!category) return
+  if (!currentCategory) return
 
-  newCategory.value = {
-    id: category.id,
-    name: category.name,
-    color: category.color as Color,
+  category.value = {
+    id: currentCategory.id,
+    name: currentCategory.name,
+    color: currentCategory.color as Color,
   }
 }
 
 const handleDeleteCategory = async (id: string) => {
   if (!confirm('Are you sure you want to delete this category?')) return
 
-  try {
-    modalLoading.value = true
-    await deleteCategory(id)
-    modalLoading.value = false
+  await deleteCategory(id)
 
-    refreshCategories()
-  } catch (error) {
-    console.error('Error deleting category:', error)
-  }
-}
-
-function getHeader(column: Column<Category>, label: string) {
-  const isSorted = column.getIsSorted()
-
-  return h(UButton, {
-    color: 'neutral',
-    variant: 'ghost',
-    label,
-    icon: isSorted
-      ? isSorted === 'asc'
-        ? 'i-lucide-arrow-up-narrow-wide'
-        : 'i-lucide-arrow-down-wide-narrow'
-      : 'i-lucide-arrow-up-down',
-    class: '-mx-2.5',
-    onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
-  })
+  refreshCategories()
 }
 
 function getChip(value: string) {
@@ -150,7 +97,7 @@ function getChip(value: string) {
     <UButton
       icon="i-heroicons-plus"
       @click="() => {
-        showAddModal = true
+        showModal = true
         modalType = 'add'
       }"
     >
@@ -165,18 +112,25 @@ function getChip(value: string) {
         :loading="categoriesStatus === 'pending'"
       >
         <template #name-cell="{ row }">
-          <div class="capitalize">
-            {{ row.original.name }}
+          <div class="flex items-center gap-2">
+            <UChip
+              :color="row.original.color as Color"
+              inset
+              standalone
+              size="xl"
+            />
+            <div class="capitalize">
+              {{ row.original.name }}
+            </div>
           </div>
         </template>
 
         <template #color-cell="{ row }">
-          <UBadge
+          <div
             class="font-semibold capitalize"
-            :color="row.original.color as Color"
           >
-            {{ row.original.color }}
-          </UBadge>
+            {{ row.original.budget }}
+          </div>
         </template>
 
         <template #actions-cell="{ row }">
@@ -197,26 +151,29 @@ function getChip(value: string) {
     </UCard>
 
     <UModal
-      v-model:open="showAddModal"
+      v-model:open="showModal"
       :title="modalType === 'add' ? 'Add Category' : 'Update Category'"
+      @after:leave="resetCategory"
     >
       <template #body>
         <UForm
-          :loading-auto="modalLoading"
-          :state="newCategory"
-          @submit.prevent="(payload) => {
+          :loading-auto="loading"
+          :state="category"
+          @submit.prevent="() => {
             if (modalType === 'add') {
               handleAddCategory()
             }
             else {
-              handleUpdateCategory(payload)
+              handleUpdateCategory()
             }
           }"
         >
           <div class="grid grid-cols-2 gap-x-4">
-            <UFormField label="Name">
+            <UFormField
+              label="Name"
+            >
               <UInput
-                v-model="newCategory.name"
+                v-model="category.name"
                 class="w-full"
                 required
               />
@@ -224,7 +181,7 @@ function getChip(value: string) {
 
             <UFormField label="Color">
               <USelect
-                v-model="newCategory.color"
+                v-model="category.color"
                 class="w-full"
                 :items="colorOptions"
                 required
@@ -240,19 +197,29 @@ function getChip(value: string) {
                 </template>
               </USelect>
             </UFormField>
+
+            <UFormField
+              label="Budget"
+            >
+              <UInput
+                v-model="category.name"
+                class="w-full"
+                required
+              />
+            </UFormField>
           </div>
 
           <div class="mt-6 flex justify-end gap-3">
             <UButton
               color="neutral"
               variant="ghost"
-              @click="showAddModal = false"
+              @click="showModal = false"
             >
               Cancel
             </UButton>
             <UButton
               trailing
-              :loading="modalLoading"
+              :loading="loading"
               type="submit"
               color="primary"
             >
