@@ -1,10 +1,6 @@
 <script setup lang="ts">
-import { getPaginationRowModel } from '@tanstack/vue-table'
-import type { TableColumn } from '@nuxt/ui'
-import {
-  colorOptions, formatUSCurrency, getHeader,
-} from './helpers'
-import type { Category, Color } from '~/types/expense'
+import { colorOptions, formatUSCurrency } from './helpers'
+import type { Color } from '~/types/expense'
 
 useHead({
   templateParams: {
@@ -13,35 +9,9 @@ useHead({
   },
 })
 
-const columns: TableColumn<Category>[] = [
-  {
-    accessorKey: 'name',
-    header: ({ column }) => getHeader(column, 'Name', UButton),
-  },
-  {
-    accessorKey: 'budget',
-    header: ({ column }) => getHeader(column, 'Budget', UButton),
-  },
-  {
-    accessorKey: 'actions',
-    header: 'Actions',
-  },
-]
-const table = useTemplateRef('table')
-const UButton = resolveComponent('UButton')
 const showModal = ref(false)
 const modalType = ref<'add' | 'update'>('add')
 const budgetInput = useTemplateRef('budgetInput')
-const sorting = ref([
-  {
-    id: 'name',
-    desc: false,
-  },
-])
-const pagination = ref({
-  pageIndex: 0,
-  pageSize: 10,
-})
 
 const {
   category, loading, addCategory, deleteCategory, getCategories, resetCategory, updateCategory,
@@ -127,65 +97,12 @@ function getChip(value: string) {
       Add Category
     </UButton>
 
-    <UCard>
-      <UTable
-        ref="table"
-        v-model:sorting="sorting"
-        v-model:pagination="pagination"
-        :data="categories"
-        :columns="columns"
-        :loading="categoriesStatus === 'pending'"
-        :pagination-options="{
-          getPaginationRowModel: getPaginationRowModel(),
-        }"
-      >
-        <template #name-cell="{ row }">
-          <div class="flex items-center gap-2">
-            <UChip
-              :color="row.original.color as Color"
-              inset
-              standalone
-              size="xl"
-            />
-            <div class="capitalize">
-              {{ row.original.name }}
-            </div>
-          </div>
-        </template>
-
-        <template #budget-cell="{ row }">
-          <div
-            class="font-semibold capitalize"
-          >
-            {{ Number(row.original.budget).toLocaleString('en-US', { style: 'currency', currency: 'USD' }) }}
-          </div>
-        </template>
-
-        <template #actions-cell="{ row }">
-          <UButton
-            color="neutral"
-            variant="ghost"
-            icon="i-heroicons-pencil-square"
-            @click="() => handleUpdateModal(row.original.id)"
-          />
-          <UButton
-            color="error"
-            variant="ghost"
-            icon="i-heroicons-trash"
-            @click="() => handleDeleteCategory(row.original.id)"
-          />
-        </template>
-      </UTable>
-
-      <div class="flex justify-center border-t border-default pt-4">
-        <UPagination
-          :default-page="pagination.pageIndex + 1"
-          :items-per-page="pagination.pageSize"
-          :total="categories?.length ?? 0"
-          @update:page="(p) => table?.tableApi?.setPageIndex(p - 1)"
-        />
-      </div>
-    </UCard>
+    <CategoryTable
+      :categories="categories"
+      :categories-status="categoriesStatus"
+      @update:category="handleUpdateModal"
+      @delete:category="handleDeleteCategory"
+    />
 
     <UModal
       v-model:open="showModal"
