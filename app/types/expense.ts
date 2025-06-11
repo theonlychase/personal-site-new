@@ -10,7 +10,7 @@ export interface Category {
 }
 
 export interface CategoryFormData {
-  budget?: number
+  budget: number
   color: Color
   id?: string
   name: string

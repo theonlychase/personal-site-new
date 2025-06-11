@@ -1,7 +1,5 @@
 import type { Column } from '@tanstack/vue-table'
-import type {
-  CategoryFormData, Color, ExpenseFormData,
-} from '~/types/expense'
+import type { Color, ExpenseFormData } from '~/types/expense'
 
 export const colorOptions: {
   label: string
@@ -101,11 +99,6 @@ export const colorOptions: {
   },
 ]
 
-export const DEFAULT_CATEGORY: CategoryFormData = {
-  name: '',
-  color: 'neutral',
-}
-
 export const DEFAULT_EXPENSE: ExpenseFormData = {
   amount: 0,
   description: '',
@@ -127,5 +120,24 @@ export function getHeader<T>(column: Column<T>, label: string, component: Return
       : 'i-lucide-arrow-up-down',
     class: '-mx-2.5',
     onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+  })
+}
+
+export function formatUSCurrency({ value }: {
+  value: string
+  input?: HTMLInputElement
+}) {
+  const inputStr = String(value)
+    .replace(/[^\d.]/g, '') // Remove non-digits/decimals
+    .replace(/^(\d*\.?\d{0,2}).*/, '$1') // Keep only digits, optional decimal, max 2 decimal places
+    .replace(/(\d*\.\d*)\..*/, '$1')
+
+  if (inputStr === '') {
+    return ''
+  }
+
+  // Format with commas and dollar sign in one return statement
+  return inputStr.replace(/^(\d+)(\.?\d*)$/, (match, integer, decimal) => {
+    return '$' + integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + decimal
   })
 }

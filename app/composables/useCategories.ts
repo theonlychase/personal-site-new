@@ -4,7 +4,7 @@ import type { CategoryFormData, Color } from '~/types/expense'
 export const useCategories = () => {
   const category = ref<CategoryFormData>({
     budget: 0,
-    color: 'neutral',
+    color: 'success',
     name: '',
   })
   const loading = ref(false)
@@ -35,9 +35,11 @@ export const useCategories = () => {
 
   const resetCategory = () => {
     loading.value = false
+
     category.value = {
+      budget: 0,
+      color: 'success',
       name: '',
-      color: 'neutral',
     }
   }
 
@@ -56,8 +58,10 @@ export const useCategories = () => {
   const addCategory = async (category: {
     name: string
     color: string
+    budget: number
   }) => {
     loading.value = true
+
     const { data, error } = await $fetch('/api/categories', {
       method: 'POST',
       body: category,
@@ -75,13 +79,14 @@ export const useCategories = () => {
 
   const updateCategory = async (
     id: string,
-    updates: Partial<{
+    updates: {
       budget: number
-      color: string
+      color: Color
       name: string
-    }>,
+    },
   ) => {
     loading.value = true
+
     const { data, error } = await $fetch(`/api/categories/${id}`, {
       method: 'PUT',
       body: updates,
@@ -99,10 +104,14 @@ export const useCategories = () => {
 
   const deleteCategory = async (id: string) => {
     loading.value = true
-    await $fetch(`/api/categories/${id}`, {
+    const { error } = await $fetch(`/api/categories/${id}`, {
       method: 'DELETE',
       headers: useRequestHeaders(['cookie']),
     })
+
+    if (error) {
+      handleErrors(error)
+    }
 
     resetCategory()
   }

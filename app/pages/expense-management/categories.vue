@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { getPaginationRowModel } from '@tanstack/vue-table'
 import type { TableColumn } from '@nuxt/ui'
-import { colorOptions, getHeader } from './helpers'
+import {
+  colorOptions, formatUSCurrency, getHeader,
+} from './helpers'
 import type { Category, Color } from '~/types/expense'
 
 useHead({
@@ -24,15 +27,21 @@ const columns: TableColumn<Category>[] = [
     header: 'Actions',
   },
 ]
+const table = useTemplateRef('table')
 const UButton = resolveComponent('UButton')
 const showModal = ref(false)
 const modalType = ref<'add' | 'update'>('add')
+const budgetInput = useTemplateRef('budgetInput')
 const sorting = ref([
   {
     id: 'name',
     desc: false,
   },
 ])
+const pagination = ref({
+  pageIndex: 0,
+  pageSize: 10,
+})
 
 const {
   category, loading, addCategory, deleteCategory, getCategories, resetCategory, updateCategory,
@@ -65,7 +74,7 @@ const handleUpdateCategory = async () => {
 const handleUpdateModal = async (id: string) => {
   modalType.value = 'update'
   showModal.value = true
-  const currentCategory = categories.value?.find(category => category.id === id)
+  const currentCategory = categories.value?.find(cat => cat.id === id)
 
   if (!currentCategory) return
 
@@ -75,6 +84,15 @@ const handleUpdateModal = async (id: string) => {
     color: currentCategory.color as Color,
     budget: currentCategory.budget ?? 0,
   }
+
+  nextTick(() => {
+    if (budgetInput.value?.inputRef) {
+      budgetInput.value.inputRef.value = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(category.value.budget)
+    }
+  })
 }
 
 const handleDeleteCategory = async (id: string) => {
@@ -99,6 +117,7 @@ function getChip(value: string) {
     />
 
     <UButton
+      class="mb-4"
       icon="i-heroicons-plus"
       @click="() => {
         showModal = true
@@ -110,10 +129,15 @@ function getChip(value: string) {
 
     <UCard>
       <UTable
+        ref="table"
         v-model:sorting="sorting"
+        v-model:pagination="pagination"
         :data="categories"
         :columns="columns"
         :loading="categoriesStatus === 'pending'"
+        :pagination-options="{
+          getPaginationRowModel: getPaginationRowModel(),
+        }"
       >
         <template #name-cell="{ row }">
           <div class="flex items-center gap-2">
@@ -129,11 +153,11 @@ function getChip(value: string) {
           </div>
         </template>
 
-        <template #color-cell="{ row }">
+        <template #budget-cell="{ row }">
           <div
             class="font-semibold capitalize"
           >
-            {{ row.original.budget }}
+            {{ Number(row.original.budget).toLocaleString('en-US', { style: 'currency', currency: 'USD' }) }}
           </div>
         </template>
 
@@ -152,6 +176,15 @@ function getChip(value: string) {
           />
         </template>
       </UTable>
+
+      <div class="flex justify-center border-t border-default pt-4">
+        <UPagination
+          :default-page="pagination.pageIndex + 1"
+          :items-per-page="pagination.pageSize"
+          :total="categories?.length ?? 0"
+          @update:page="(p) => table?.tableApi?.setPageIndex(p - 1)"
+        />
+      </div>
     </UCard>
 
     <UModal
@@ -172,7 +205,7 @@ function getChip(value: string) {
             }
           }"
         >
-          <div class="grid grid-cols-2 gap-x-4">
+          <div class="grid grid-cols-2 gap-4">
             <UFormField
               label="Name"
             >
@@ -206,9 +239,18 @@ function getChip(value: string) {
               label="Budget"
             >
               <UInput
-                v-model="category.budget"
+                ref="budgetInput"
+                type="text"
+                placeholder="$0.00"
                 class="w-full"
-                required
+                @input="(e: Event) => {
+                  const val = useInputFormat({
+                    target: e.target as HTMLInputElement,
+                    formatter: formatUSCurrency,
+                  })
+
+                  category.budget = parseFloat(val.replace(/[^\d.]/g, ''))
+                }"
               />
             </UFormField>
           </div>
