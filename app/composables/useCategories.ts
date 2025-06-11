@@ -1,35 +1,35 @@
 import type { PostgrestError } from '@supabase/supabase-js'
-import type { CategoryFormData } from '~/types/expense'
+import type { CategoryFormData, Color } from '~/types/expense'
 
 export const useCategories = () => {
   const category = ref<CategoryFormData>({
-    name: '',
-    color: 'neutral',
     budget: 0,
+    color: 'neutral',
+    name: '',
   })
   const loading = ref(false)
   const toast = useToast()
 
   const handleErrors = (error: PostgrestError) => {
+    const errorMessage: {
+      title: string
+      description: string
+      color: Color
+    } = {
+      title: 'Error',
+      description: 'Error Updating Category',
+      color: 'error',
+    }
     // Handle specific database errors
     if (error.code === '23505') {
-      toast.add({
-        title: 'Error',
-        description: 'Category already exists',
-        color: 'error',
-      })
+      errorMessage.description = 'Category already exists'
     }
 
-    // Generic database error
-    throw createError({
-      statusCode: 500,
-      message: error.message,
-      data: {
-        code: error.code,
-        details: error.details,
-        hint: error.hint,
-      },
-    })
+    if (error.code === '22P02') {
+      errorMessage.description = 'Budget must be a number'
+    }
+
+    toast.add({ ...errorMessage })
     console.error(error)
   }
 
@@ -77,8 +77,8 @@ export const useCategories = () => {
     id: string,
     updates: Partial<{
       budget: number
-      name: string
       color: string
+      name: string
     }>,
   ) => {
     loading.value = true

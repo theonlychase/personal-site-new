@@ -54,7 +54,10 @@ const handleUpdateCategory = async () => {
   await updateCategory(category.value.id as string, {
     name: category.value.name,
     color: category.value.color,
+    budget: category.value.budget,
   })
+
+  showModal.value = false
 
   refreshCategories()
 }
@@ -70,6 +73,7 @@ const handleUpdateModal = async (id: string) => {
     id: currentCategory.id,
     name: currentCategory.name,
     color: currentCategory.color as Color,
+    budget: currentCategory.budget ?? 0,
   }
 }
 
@@ -202,7 +206,7 @@ function getChip(value: string) {
               label="Budget"
             >
               <UInput
-                v-model="category.name"
+                v-model="category.budget"
                 class="w-full"
                 required
               />
