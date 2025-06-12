@@ -129,6 +129,7 @@ function getChip(value: string) {
               <UInput
                 v-model="category.name"
                 class="w-full"
+                placeholder="e.g. Food"
                 required
               />
             </UFormField>

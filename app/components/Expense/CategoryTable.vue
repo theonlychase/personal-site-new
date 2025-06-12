@@ -22,12 +22,18 @@ const columns: TableColumn<Category>[] = [
   {
     accessorKey: 'name',
     header: ({ column }) => getHeader(column, 'Name', UButton),
+    meta: { class: { td: 'w-[300px] min-w-[200px] whitespace-normal break-all' } },
   },
   {
     accessorKey: 'budget',
     header: ({ column }) => getHeader(column, 'Budget', UButton),
+    meta: { class: { td: 'w-[300px] min-w-[200px] whitespace-normal break-all' } },
     cell: ({ row }) => {
       const amount = Number.parseFloat(row.getValue('budget'))
+
+      if (!amount || isNaN(amount)) {
+        return h('div', { class: 'font-semibold capitalize' }, '')
+      }
 
       const formatted = new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -39,6 +45,7 @@ const columns: TableColumn<Category>[] = [
   },
   {
     accessorKey: 'actions',
+    meta: { class: { td: 'max-w-[100px]' } },
     header: 'Actions',
   },
 ]
@@ -99,7 +106,10 @@ const pagination = ref({
       </template>
     </UTable>
 
-    <div class="flex justify-center border-t border-default pt-4">
+    <div
+      v-if="(categories?.length ?? 0) > pagination.pageSize"
+      class="flex justify-center border-t border-default pt-4"
+    >
       <UPagination
         :default-page="pagination.pageIndex + 1"
         :items-per-page="pagination.pageSize"

@@ -88,6 +88,7 @@ const handleDeleteExpense = async (id: string) => {
     />
 
     <UButton
+      class="mb-4"
       icon="i-heroicons-plus"
       @click="() => {
         showAddModal = true
@@ -122,12 +123,13 @@ const handleDeleteExpense = async (id: string) => {
             }
           }"
         >
-          <div class="grid grid-cols-2 gap-x-4">
+          <div class="grid grid-cols-2 gap-4">
             <UFormField label="Amount">
               <UInput
                 ref="amountInput"
                 placeholder="$0.00"
                 class="w-full"
+                required
                 @input="(e: Event) => {
                   const val = useInputFormat({
                     target: e.target as HTMLInputElement,
@@ -143,6 +145,9 @@ const handleDeleteExpense = async (id: string) => {
               <USelect
                 v-model="expense.category_id"
                 class="w-full"
+                :class="{
+                  '[&_>_span:first-child]:hidden !ps-2': !expense.category_id,
+                }"
                 :items="categories?.map(({ color, name, id }) => ({ label: name, value: id, color }))"
                 placeholder="Select a category"
                 required
@@ -168,14 +173,11 @@ const handleDeleteExpense = async (id: string) => {
                 </template>
               </USelect>
             </UFormField>
-          </div>
 
-          <div class="grid grid-cols-2 gap-x-4">
             <UFormField label="Description">
               <UInput
                 v-model="expense.description"
                 class="w-full"
-                required
               />
             </UFormField>
 

@@ -24,6 +24,7 @@ const UBadge = resolveComponent('UBadge')
 const columns: TableColumn<ExpenseWithCategory>[] = [
   {
     id: 'expand',
+    meta: { class: { td: 'w-12' } },
     cell: ({ row }) =>
       h(UButton, {
         'color': 'neutral',
@@ -41,26 +42,15 @@ const columns: TableColumn<ExpenseWithCategory>[] = [
   },
   {
     accessorKey: 'date',
+    meta: { class: { td: 'w-[120px]' } },
     header: ({ column }) => getHeader(column, 'Date', UButton),
     cell: ({ row }) => {
       return new Date(row.original.date).toLocaleDateString()
     },
   },
   {
-    accessorKey: 'category_id',
-    header: ({ column }) => getHeader(column, 'Category', UButton),
-    cell: ({ row }) => {
-      const category = categories?.find(c => c.id === row.original.category_id)
-
-      if (!category || !category.name) {
-        return h('div', { class: 'text-sm' }, '')
-      }
-
-      return h(UBadge, { color: category.color }, category.name)
-    },
-  },
-  {
     accessorKey: 'amount',
+    meta: { class: { td: 'w-[170px]' } },
     header: ({ column }) => getHeader(column, 'Amount', UButton),
     cell: ({ row }) => {
       const amount = Number.parseFloat(row.original.amount.toString())
@@ -74,7 +64,13 @@ const columns: TableColumn<ExpenseWithCategory>[] = [
     },
   },
   {
+    accessorKey: 'category',
+    meta: { class: { td: 'w-[170px]' } },
+    header: ({ column }) => getHeader(column, 'Category', UButton),
+  },
+  {
     accessorKey: 'actions',
+    meta: { class: { td: 'max-w-[100px]' } },
     header: 'Actions',
   },
 ]
@@ -91,6 +87,10 @@ const pagination = ref({
   pageIndex: 0,
   pageSize: 10,
 })
+
+const getCategory = (id: string) => {
+  return categories?.find(c => c.id === id)
+}
 </script>
 
 <template>
@@ -101,12 +101,22 @@ const pagination = ref({
       v-model:sorting="sorting"
       v-model:pagination="pagination"
       :data="expenses"
+      :ui="{ tr: 'data-[expanded=true]:bg-elevated/50' }"
       :columns="columns"
       :loading="expensesStatus === 'pending'"
       :pagination-options="{
         getPaginationRowModel: getPaginationRowModel(),
       }"
     >
+      <template #category-cell="{ row: { original: { category_id } } }">
+        <UBadge
+          v-if="category_id && getCategory(category_id)?.name"
+          :color="getCategory(category_id)?.color"
+        >
+          {{ getCategory(category_id)?.name }}
+        </UBadge>
+      </template>
+
       <template #actions-cell="{ row }">
         <UButton
           color="neutral"
@@ -134,9 +144,11 @@ const pagination = ref({
       </template>
     </UTable>
 
-    <div class="flex justify-center border-t border-default pt-4">
+    <div
+      v-if="(expenses?.length ?? 0) > pagination.pageSize"
+      class="flex justify-center border-t border-default pt-4"
+    >
       <UPagination
-        v-if="(expenses?.length ?? 0) > pagination.pageSize"
         :default-page="pagination.pageIndex + 1"
         :items-per-page="pagination.pageSize"
         :total="expenses?.length ?? 0"
