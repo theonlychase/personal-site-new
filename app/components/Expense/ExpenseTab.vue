@@ -135,13 +135,17 @@ const handleDeleteExpense = async (id: string) => {
               />
             </UFormField>
 
-            <UFormField label="Category">
+            <UFormField
+              label="Category"
+              :help="!categories?.length ? 'Please add a category first' : ''"
+            >
               <USelect
                 v-model="expense.category_id"
                 class="w-full"
                 :class="{
                   '[&_>_span:first-child]:hidden !ps-2': !expense.category_id,
                 }"
+                :disabled="!categories?.length"
                 :items="categories?.map(({ color, name, id }) => ({ label: name, value: id, color }))"
                 placeholder="Select a category"
                 required
