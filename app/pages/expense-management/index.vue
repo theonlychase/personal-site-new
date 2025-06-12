@@ -10,6 +10,7 @@ useHead({
 
 const { getExpenses } = useExpenses()
 const { data: expenses } = await getExpenses()
+
 const { getCategories } = useCategories()
 const { data: categories } = await getCategories()
 
@@ -31,9 +32,30 @@ const expensesByCategory = computed(() => {
   return categoryTotals
 })
 
-const recentExpenses = computed(() => {
-  return expenses.value?.slice(0, 5) || []
+const highestExpenseCategory = computed(() => {
+  if (!expenses.value?.length || !categories.value?.length) return null
+
+  const categoryTotals = expensesByCategory.value
+  const categoryIds = Object.keys(categoryTotals)
+  if (!categoryIds.length) return null
+
+  const highestCategoryId = categoryIds.reduce((max, categoryId) => {
+    return (categoryTotals[categoryId] ?? 0) > (categoryTotals[max] ?? 0) ? categoryId : max
+  })
+
+  const category = categories.value.find(category => category.id === highestCategoryId)
+  if (!category) return null
+
+  return {
+    name: category.name,
+    color: category.color,
+    amount: categoryTotals[highestCategoryId] ?? 0,
+  }
 })
+
+// const recentExpenses = computed(() => {
+//   return expenses?.value?.slice(0, 5) || []
+// })
 </script>
 
 <template>
@@ -44,77 +66,49 @@ const recentExpenses = computed(() => {
       hydrate-never
     />
 
-    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      <UCard>
+    <div class="grid gap-6 md:grid-cols-2">
+      <UPageCard>
         <template #header>
-          <div class="flex items-center justify-between">
-            <h3 class="text-base font-semibold leading-6">
+          <div class="flex flex-col">
+            <div class="text-lg font-medium leading-6 mb-4">
               Total Expenses
-            </h3>
+            </div>
+
+            <div class="text-3xl font-bold">
+              {{ new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+              }).format(totalExpenses ?? 0.00) }}
+            </div>
           </div>
         </template>
+      </UPageCard>
 
-        <div class="text-3xl font-bold">
-          ${{ totalExpenses.toFixed(2) }}
-        </div>
-      </UCard>
-
-      <UCard>
+      <UPageCard>
         <template #header>
-          <div class="flex items-center justify-between">
-            <h3 class="text-base font-semibold leading-6">
-              Expenses by Category
-            </h3>
+          <div class="flex flex-col">
+            <div class="text-lg font-medium leading-6 mb-4">
+              Highest Expense Category
+            </div>
+
+            <div class="flex items-center gap-3 text-3xl font-bold">
+              <UBadge
+                size="xl"
+                :color="highestExpenseCategory?.color as Color"
+              >
+                {{ highestExpenseCategory?.name || 'No expenses' }}
+              </UBadge>
+
+              <div class="text-xl">
+                {{ highestExpenseCategory ? new Intl.NumberFormat('en-US', {
+                  style: 'currency',
+                  currency: 'USD',
+                }).format(highestExpenseCategory.amount) : '' }}
+              </div>
+            </div>
           </div>
         </template>
-
-        <div class="space-y-4">
-          <div
-            v-for="category in categories"
-            :key="category.id"
-            class="flex items-center justify-between"
-          >
-            <div class="flex items-center gap-2">
-              <UBadge :color="category.color as Color">
-                {{ category.name }}
-              </UBadge>
-            </div>
-            <div class="font-medium">
-              ${{ (expensesByCategory[category.id] || 0).toFixed(2) }}
-            </div>
-          </div>
-        </div>
-      </UCard>
-
-      <UCard>
-        <template #header>
-          <div class="flex items-center justify-between">
-            <h3 class="text-base font-semibold leading-6">
-              Recent Expenses
-            </h3>
-          </div>
-        </template>
-
-        <div class="space-y-4">
-          <div
-            v-for="expense in recentExpenses"
-            :key="expense.id"
-            class="flex items-center justify-between"
-          >
-            <div class="flex items-center gap-2">
-              <UBadge :color="expense.categories?.color as Color">
-                {{ expense.categories?.name }}
-              </UBadge>
-              <span class="text-sm text-gray-500">
-                {{ expense.description }}
-              </span>
-            </div>
-            <div class="font-medium">
-              ${{ expense.amount.toFixed(2) }}
-            </div>
-          </div>
-        </div>
-      </UCard>
+      </UPageCard>
     </div>
   </UPageBody>
 </template>

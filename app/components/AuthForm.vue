@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { FormError } from '#ui/types'
 
-const config = useRuntimeConfig()
 const { auth } = useSupabaseClient()
 
 const oAuthLoading = ref(false)
