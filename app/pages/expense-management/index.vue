@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { TabsItem } from '@nuxt/ui'
 import type { Color } from '~/types/expense'
 
 useHead({
@@ -8,11 +9,31 @@ useHead({
   },
 })
 
-const { getExpenses } = useExpenses()
-const { data: expenses } = await getExpenses()
+const items = [
+  {
+    label: 'Expenses',
+    description: 'View and manage your expenses',
+    icon: 'i-lucide-dollar-sign',
+    slot: 'expenses' as const,
+  },
+  {
+    label: 'Categories',
+    description: 'View and manage your categories',
+    icon: 'i-lucide-tag',
+    slot: 'categories' as const,
+  },
+] satisfies TabsItem[]
 
+const { getExpenses } = useExpenses()
 const { getCategories } = useCategories()
-const { data: categories } = await getCategories()
+
+const {
+  data: expenses, status: expensesStatus, refresh: refreshExpenses,
+} = await getExpenses()
+
+const {
+  data: categories, status: categoriesStatus, refresh: refreshCategories,
+} = await getCategories()
 
 const totalExpenses = computed(() => {
   return expenses.value?.reduce((sum, expense) => sum + expense.amount, 0) || 0
@@ -93,13 +114,24 @@ const highestExpenseCategory = computed(() => {
 
             <div class="flex items-center gap-3 text-3xl font-bold">
               <UBadge
+                v-if="highestExpenseCategory?.name"
                 size="xl"
                 :color="highestExpenseCategory?.color as Color"
               >
                 {{ highestExpenseCategory?.name || 'No expenses' }}
               </UBadge>
 
-              <div class="text-xl">
+              <div
+                v-if="!highestExpenseCategory?.name"
+                class="text-sm text-gray-500"
+              >
+                Assign a category to your expenses
+              </div>
+
+              <div
+                v-if="highestExpenseCategory?.amount"
+                class="text-xl"
+              >
                 {{ highestExpenseCategory ? new Intl.NumberFormat('en-US', {
                   style: 'currency',
                   currency: 'USD',
@@ -110,5 +142,31 @@ const highestExpenseCategory = computed(() => {
         </template>
       </UPageCard>
     </div>
+
+    <UTabs
+      :unmount-on-hide="false"
+      :items="items"
+      size="lg"
+      variant="link"
+      class="gap-4 w-full py-2"
+      :ui="{ trigger: 'grow', content: 'py-2' }"
+    >
+      <template #expenses>
+        <ExpenseTab
+          :categories="categories"
+          :expenses="expenses"
+          :expenses-status="expensesStatus"
+          :refresh-expenses="refreshExpenses"
+        />
+      </template>
+
+      <template #categories>
+        <CategoryTab
+          :categories="categories"
+          :categories-status="categoriesStatus"
+          :refresh-categories="refreshCategories"
+        />
+      </template>
+    </UTabs>
   </UPageBody>
 </template>
