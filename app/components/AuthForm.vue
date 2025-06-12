@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { FormError } from '#ui/types'
 
+const redirectInfo = useSupabaseCookieRedirect()
+
 const { auth } = useSupabaseClient()
 
 const oAuthLoading = ref(false)
@@ -16,7 +18,7 @@ const validate = () => {
     message: 'Email is required',
   })
 
-  if (!validateEmail(state.email)) {
+  if (!validateEmailUtil(state.email)) {
     errors.push({
       name: 'email',
       message: 'Invalid Email',
@@ -26,14 +28,24 @@ const validate = () => {
 }
 
 async function handleOAuth() {
+  const path = redirectInfo.pluck()
+
   oAuthLoading.value = true
-  await auth.signInWithOAuth({ provider: 'github' })
+  await auth.signInWithOAuth({
+    provider: 'github',
+    options: { redirectTo: path ?? '/' },
+  })
 }
 
 async function handleLogin() {
+  const path = redirectInfo.pluck()
+
   try {
     otpLoading.value = true
-    const { error } = await auth.signInWithOtp({ email: state.email })
+    const { error } = await auth.signInWithOtp({
+      email: state.email,
+      options: { emailRedirectTo: path ?? '/' },
+    })
     if (error) throw error
     toast.add({
       title: 'Success',

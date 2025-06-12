@@ -36,7 +36,7 @@ export const MONTHS = [
 
 export const projects: Array<Project> = [
   {
-    url: 'https://chaseisley.dev/expense-management',
+    url: '/expense-management',
     title: 'Expense Tracker',
     description: 'Track your expenses with a simple, intuitive interface.',
     icons: [

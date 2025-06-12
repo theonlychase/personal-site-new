@@ -10,9 +10,6 @@ definePageMeta({ middleware: 'auth' })
 
 <template>
   <UPageBody>
-    <LazyAuthForm
-      class="mx-auto mt-16"
-      hydrate-on-interaction="pointerenter"
-    />
+    <AuthForm class="mx-auto mt-16" />
   </UPageBody>
 </template>
