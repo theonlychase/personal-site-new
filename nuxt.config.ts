@@ -60,7 +60,25 @@ export default defineNuxtConfig({
     experimental: { nativeSqlite: true },
   },
 
-  ui: { fonts: false },
+  ui: {
+    fonts: false,
+    theme: {
+      colors: [
+        'primary',
+        'secondary',
+        'info',
+        'success',
+        'warning',
+        'error',
+        'amber',
+        'fuchsia',
+        'orange',
+        'purple',
+        'sky',
+        'teal',
+      ],
+    },
+  },
 
   runtimeConfig: {
     public: {
@@ -129,7 +147,10 @@ export default defineNuxtConfig({
     redirectOptions: {
       login: '/login',
       callback: '/confirm',
-      include: ['/profile(/*)?'],
+      include: [
+        '/profile(/*)?', '/expense-management(/*)?',
+      ],
+      saveRedirectToCookie: true,
     },
   },
 

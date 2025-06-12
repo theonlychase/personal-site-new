@@ -36,7 +36,36 @@ export const MONTHS = [
 
 export const projects: Array<Project> = [
   {
+    url: 'https://chaseisley.dev/expense-management',
+    title: 'Expense Tracker',
+    description: 'Track your expenses with a simple, intuitive interface.',
+    icons: [
+      {
+        name: 'i-devicon-nuxtjs',
+        title: 'Nuxt 4',
+      },
+      {
+        name: 'i-devicon-tailwindcss',
+        title: 'TailwindCSS',
+      },
+      {
+        name: 'i-devicon-typescript',
+        title: 'Typescript',
+      },
+      {
+        name: 'i-devicon-supabase',
+        title: 'Supabase',
+      },
+    ],
+    details: [
+      'Built with Nuxt 4, TypeScript, Nuxt/UI Pro, TailwindCSS, and Supabase',
+      'Authentication - Save your expenses to your user',
+      'Expense tracking with categories and budgets',
+    ],
+  },
+  {
     url: 'https://storybook-from-scratch.netlify.app',
+    target: '_blank',
     title: 'Storybook From Scratch',
     description: 'Custom, lightweight alternative to Storybook for building Vue components in isolation.',
     icons: [

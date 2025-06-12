@@ -4,9 +4,7 @@ const { auth } = useSupabaseClient()
 const {
   meta, path, query,
 } = useRoute()
-const {
-  progress, stop,
-} = useScrollProgress()
+const { progress, stop } = useScrollProgress()
 
 if (!meta.pageScroll) {
   stop()

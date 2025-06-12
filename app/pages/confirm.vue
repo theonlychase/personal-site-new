@@ -1,13 +1,14 @@
 <script setup lang="ts">
 const user = useSupabaseUser()
-const { query } = useRoute()
+const redirectInfo = useSupabaseCookieRedirect()
 
 watch(
   user,
   () => {
     if (user.value) {
-      const to = (query.redirectTo as string) ?? '/'
-      return navigateTo(to, { replace: true })
+      const path = redirectInfo.pluck()
+      // Redirect to the saved path, or fallback to home
+      return navigateTo(path || '/')
     }
   },
   { immediate: true },

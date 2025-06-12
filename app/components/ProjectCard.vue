@@ -5,7 +5,7 @@ const { project } = defineProps<{ project: Project }>()
 <template>
   <UPageCard
     class="col-span-6 row-span-2"
-    target="_blank"
+    :target="project.target"
     :title="project.title"
     :to="project.url"
   >

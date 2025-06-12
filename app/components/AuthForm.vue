@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { FormError } from '#ui/types'
 
-const config = useRuntimeConfig()
 const { auth } = useSupabaseClient()
 
 const oAuthLoading = ref(false)
@@ -28,19 +27,13 @@ const validate = () => {
 
 async function handleOAuth() {
   oAuthLoading.value = true
-  await auth.signInWithOAuth({
-    provider: 'github',
-    options: { redirectTo: config.public.baseUrl },
-  })
+  await auth.signInWithOAuth({ provider: 'github' })
 }
 
 async function handleLogin() {
   try {
     otpLoading.value = true
-    const { error } = await auth.signInWithOtp({
-      email: state.email,
-      options: { emailRedirectTo: config.public.baseUrl },
-    })
+    const { error } = await auth.signInWithOtp({ email: state.email })
     if (error) throw error
     toast.add({
       title: 'Success',

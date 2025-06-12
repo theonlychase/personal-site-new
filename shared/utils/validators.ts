@@ -144,7 +144,7 @@ export const validateEmail = (value: string): { message: string } | undefined =>
   if (!value) {
     return { message: 'Email is required.' }
   }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+  if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value)) {
     return { message: 'Invalid email address.' }
   }
   return undefined

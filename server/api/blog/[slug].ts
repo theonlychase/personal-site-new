@@ -1,4 +1,4 @@
-import type { Database } from '#shared/types/views'
+import type { Database } from '#shared/types/database'
 import { serverSupabaseClient } from '#supabase/server'
 
 export default eventHandler(async (event) => {
