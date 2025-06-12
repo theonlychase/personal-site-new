@@ -26,6 +26,16 @@ const columns: TableColumn<Category>[] = [
   {
     accessorKey: 'budget',
     header: ({ column }) => getHeader(column, 'Budget', UButton),
+    cell: ({ row }) => {
+      const amount = Number.parseFloat(row.getValue('budget'))
+
+      const formatted = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(amount)
+
+      return h('div', { class: 'font-semibold capitalize' }, formatted)
+    },
   },
   {
     accessorKey: 'actions',
@@ -70,14 +80,6 @@ const pagination = ref({
           <div class="capitalize">
             {{ row.original.name }}
           </div>
-        </div>
-      </template>
-
-      <template #budget-cell="{ row }">
-        <div
-          class="font-semibold capitalize"
-        >
-          {{ Number(row.original.budget).toLocaleString('en-US', { style: 'currency', currency: 'USD' }) }}
         </div>
       </template>
 

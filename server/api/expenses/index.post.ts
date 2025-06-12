@@ -16,12 +16,8 @@ export default defineEventHandler(async (event) => {
     .select()
     .single()
 
-  if (error) {
-    throw createError({
-      statusCode: 500,
-      message: error.message,
-    })
+  return {
+    data,
+    error,
   }
-
-  return data
 })

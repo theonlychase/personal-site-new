@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import type { TableColumn } from '@nuxt/ui'
-import { DEFAULT_EXPENSE, getHeader } from './helpers'
-import type {
-  Color, ExpenseWithCategory, ExpenseFormData,
-} from '~/types/expense'
+import { formatUSCurrency } from './helpers'
+import type { Color } from '~/types/expense'
 
 useHead({
   templateParams: {
@@ -12,81 +9,73 @@ useHead({
   },
 })
 
-const UButton = resolveComponent('UButton')
+const showAddModal = ref(false)
+const modalType = ref<'add' | 'update'>('add')
+const amountInput = useTemplateRef('amountInput')
 
 const {
-  addExpense, deleteExpense, getExpenses,
+  addExpense, deleteExpense, expense, getExpenses, updateExpense, loading,
 } = useExpenses()
-const showAddModal = ref(false)
-const modalLoading = ref(false)
-// const modalType = ref<'add' | 'update'>('add')
-const sorting = ref([
-  {
-    id: 'date',
-    desc: false,
-  },
-])
+const { getCategories } = useCategories()
 
 const {
   data: expenses, refresh: refreshExpenses, status: expensesStatus,
 } = await getExpenses()
-const { getCategories } = useCategories()
+
 const { data: categories } = await getCategories()
 
-const newExpense = ref<ExpenseFormData>(DEFAULT_EXPENSE)
-
-const columns: TableColumn<ExpenseWithCategory>[] = [
-  {
-    accessorKey: 'date',
-    header: ({ column }) => getHeader(column, 'Date', UButton),
-    cell: ({ row }) => {
-      return new Date(row.original.date).toLocaleDateString()
-    },
-  },
-  {
-    accessorKey: 'description',
-    header: 'Description',
-  },
-  {
-    accessorKey: 'amount',
-    header: ({ column }) => getHeader(column, 'Amount', UButton),
-  },
-  {
-    accessorKey: 'category',
-    header: ({ column }) => getHeader(column, 'Category', UButton),
-  },
-  {
-    accessorKey: 'actions',
-    header: 'Actions',
-  },
-]
-
 const handleAddExpense = async () => {
-  try {
-    modalLoading.value = true
-    await addExpense(newExpense.value)
-    modalLoading.value = false
-    showAddModal.value = false
-    newExpense.value = DEFAULT_EXPENSE
+  modalType.value = 'add'
+  await addExpense(expense.value)
+  showAddModal.value = false
 
-    refreshExpenses()
-  } catch (error) {
-    console.error('Error adding expense:', error)
+  refreshExpenses()
+}
+
+const handleUpdateExpense = async () => {
+  await updateExpense(expense.value.id as string, {
+    amount: expense.value.amount,
+    description: expense.value.description,
+    category_id: expense.value.category_id,
+    date: expense.value.date,
+  })
+
+  showAddModal.value = false
+
+  refreshExpenses()
+}
+
+const handleUpdateModal = async (id: string) => {
+  modalType.value = 'update'
+  showAddModal.value = true
+  const currentExpense = expenses.value?.find(exp => exp.id === id)
+
+  if (!currentExpense) return
+
+  expense.value = {
+    id: currentExpense.id,
+    amount: currentExpense.amount,
+    description: currentExpense.description ?? '',
+    category_id: currentExpense.category_id ?? '',
+    date: currentExpense.date ?? '',
   }
+
+  nextTick(() => {
+    if (amountInput.value?.inputRef) {
+      amountInput.value.inputRef.value = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(expense.value.amount)
+    }
+  })
 }
 
 const handleDeleteExpense = async (id: string) => {
   if (!confirm('Are you sure you want to delete this expense?')) return
 
-  try {
-    modalLoading.value = true
-    await deleteExpense(id)
-    modalLoading.value = false
+  await deleteExpense(id)
 
-    refreshExpenses()
-  } catch (error) {
-    console.error('Error deleting expense:', error)
-  }
+  refreshExpenses()
 }
 </script>
 
@@ -100,72 +89,59 @@ const handleDeleteExpense = async (id: string) => {
 
     <UButton
       icon="i-heroicons-plus"
-      @click="showAddModal = true"
+      @click="() => {
+        showAddModal = true
+        modalType = 'add'
+      }"
     >
       Add Expense
     </UButton>
 
-    <UCard>
-      <UTable
-        v-model:sorting="sorting"
-        :data="expenses"
-        :columns="columns"
-        :loading="expensesStatus === 'pending'"
-      >
-        <template #amount-cell="{ row }">
-          ${{ (row.original.amount as number)?.toFixed(2) }}
-        </template>
-
-        <template #category-cell="{ row }: any">
-          <UBadge
-            :color="row.original.category?.color || 'neutral'"
-          >
-            {{ row.original.categories?.name }}
-          </UBadge>
-        </template>
-
-        <template #actions-cell="{ row }">
-          <UButton
-            color="neutral"
-            variant="ghost"
-            icon="i-heroicons-pencil-square"
-            @click="() => {}"
-          />
-          <UButton
-            color="error"
-            variant="ghost"
-            icon="i-heroicons-trash"
-            @click="() => handleDeleteExpense(row.original.id)"
-          />
-        </template>
-      </UTable>
-    </UCard>
+    <ExpenseTable
+      :categories="categories"
+      :expenses="expenses"
+      :expenses-status="expensesStatus"
+      @update:expense="handleUpdateModal"
+      @delete:expense="handleDeleteExpense"
+    />
 
     <UModal
       v-model:open="showAddModal"
-      title="Add Expense"
+      :title="modalType === 'add' ? 'Add Expense' : 'Update Expense'"
     >
       <template #body>
         <UForm
-          class="space-y-4"
-          :loading-auto="modalLoading"
-          :state="newExpense"
-          @submit.prevent="handleAddExpense"
+          :loading-auto="loading"
+          :state="expense"
+          @submit.prevent="() => {
+            if (modalType === 'add') {
+              handleAddExpense()
+            }
+            else {
+              handleUpdateExpense()
+            }
+          }"
         >
           <div class="grid grid-cols-2 gap-x-4">
             <UFormField label="Amount">
               <UInput
-                v-model="newExpense.amount"
+                ref="amountInput"
+                placeholder="$0.00"
                 class="w-full"
-                type="number"
-                step="0.01"
-                required
+                @input="(e: Event) => {
+                  const val = useInputFormat({
+                    target: e.target as HTMLInputElement,
+                    formatter: formatUSCurrency,
+                  })
+
+                  expense.amount = parseFloat(val.replace(/[^\d.]/g, ''))
+                }"
               />
             </UFormField>
 
             <UFormField label="Category">
               <USelect
-                v-model="newExpense.category_id"
+                v-model="expense.category_id"
                 class="w-full"
                 :items="categories?.map(({ color, name, id }) => ({ label: name, value: id, color }))"
                 placeholder="Select a category"
@@ -197,7 +173,7 @@ const handleDeleteExpense = async (id: string) => {
           <div class="grid grid-cols-2 gap-x-4">
             <UFormField label="Description">
               <UInput
-                v-model="newExpense.description"
+                v-model="expense.description"
                 class="w-full"
                 required
               />
@@ -205,7 +181,7 @@ const handleDeleteExpense = async (id: string) => {
 
             <UFormField label="Date">
               <UInput
-                v-model="newExpense.date"
+                v-model="expense.date"
                 class="w-full"
                 type="date"
                 required
@@ -223,11 +199,11 @@ const handleDeleteExpense = async (id: string) => {
             </UButton>
             <UButton
               trailing
-              :loading="modalLoading"
+              :loading="loading"
               type="submit"
               color="primary"
             >
-              Add Expense
+              {{ modalType === 'add' ? 'Add Expense' : 'Update Expense' }}
             </UButton>
           </div>
         </UForm>

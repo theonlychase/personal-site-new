@@ -36,6 +36,7 @@ export interface ExpenseWithCategory extends Expense {
 
 export interface ExpenseFormData {
   amount: number
+  id?: string
   description: string
   category_id: string
   date: string

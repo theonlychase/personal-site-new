@@ -10,6 +10,7 @@ export default defineEventHandler(async (event) => {
       *,
       categories (
         id,
+        budget,
         name,
         color
       )
