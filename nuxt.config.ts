@@ -52,6 +52,7 @@ export default defineNuxtConfig({
             'css',
             'js',
             'ts',
+            'tsx',
             'vue',
           ],
         },
