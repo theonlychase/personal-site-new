@@ -18,6 +18,7 @@ logs
 .fleet
 .idea
 .cursor
+.junie
 
 # Local env files
 .env

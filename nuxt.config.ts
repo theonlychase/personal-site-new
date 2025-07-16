@@ -96,8 +96,6 @@ export default defineNuxtConfig({
 
   experimental: { inlineRouteRules: true },
 
-  compatibilityDate: '2025-06-05',
-
   nitro: {
     netlify: {
       images: {
