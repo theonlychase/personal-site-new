@@ -16,7 +16,16 @@ export default defineNuxtConfig({
 
   $development: {
     runtimeConfig: { public: { baseUrl: 'http://localhost:8888' } },
-    vite: { optimizeDeps: { include: ['@unhead/schema-org/vue'] } },
+    vite: {
+      optimizeDeps: {
+        include: [
+          '@unhead/schema-org/vue',
+          '@vue/devtools-core',
+          '@vue/devtools-kit',
+          '@tanstack/vue-table',
+        ],
+      },
+    },
   },
 
   $production: { runtimeConfig: { public: { baseUrl: process.env.BASE_URL } } },
