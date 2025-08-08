@@ -24,6 +24,10 @@ const {
   addExpense, deleteExpense, expense, updateExpense, loading,
 } = useExpenses()
 
+watch(() => categories, () => {
+  refreshExpenses()
+})
+
 const handleAddExpense = async () => {
   modalType.value = 'add'
   await addExpense(expense.value)
@@ -60,7 +64,7 @@ const handleUpdateModal = async (id: string) => {
     date: currentExpense.date ?? '',
   }
 
-  nextTick(() => {
+  await nextTick(() => {
     if (amountInput.value?.inputRef) {
       amountInput.value.inputRef.value = new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -198,6 +202,7 @@ const handleDeleteExpense = async (id: string) => {
               Cancel
             </UButton>
             <UButton
+              :disabled="!expense.category_id"
               trailing
               :loading="loading"
               type="submit"
