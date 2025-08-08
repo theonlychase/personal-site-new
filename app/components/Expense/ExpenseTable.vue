@@ -25,20 +25,21 @@ const columns: TableColumn<ExpenseWithCategory>[] = [
   {
     id: 'expand',
     meta: { class: { td: 'w-12' } },
-    cell: ({ row }) =>
-      h(UButton, {
-        'color': 'neutral',
-        'variant': 'ghost',
-        'icon': 'i-lucide-chevron-down',
-        'square': true,
-        'aria-label': 'Expand',
-        'ui': {
-          leadingIcon: [
-            'transition-transform', row.getIsExpanded() ? 'duration-200 rotate-180' : '',
-          ],
-        },
-        'onClick': () => row.toggleExpanded(),
-      }),
+    cell: ({ row }) => row.original.description
+      ? h(UButton, {
+          'color': 'neutral',
+          'variant': 'ghost',
+          'icon': 'i-lucide-chevron-down',
+          'square': true,
+          'aria-label': 'Expand',
+          'ui': {
+            leadingIcon: [
+              'transition-transform', row.getIsExpanded() ? 'duration-200 rotate-180' : '',
+            ],
+          },
+          'onClick': () => row.toggleExpanded(),
+        })
+      : null,
   },
   {
     accessorKey: 'date',

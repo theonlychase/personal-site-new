@@ -1,3 +1,5 @@
+import type { Project } from '../types/const'
+
 export const nav = [
   {
     text: 'Home',
@@ -36,6 +38,36 @@ export const MONTHS = [
 
 export const projects: Array<Project> = [
   {
+    url: 'https://storybook-from-scratch.netlify.app',
+    target: '_blank',
+    title: 'Kettlebell Pro',
+    description: 'Work in progress app for Kettlebell exercises & workouts.',
+    label: 'Coming Soon:',
+    icons: [
+      {
+        name: 'i-devicon-nuxt',
+        title: 'Nuxt 4',
+      },
+      {
+        name: 'i-devicon-vuejs',
+        title: 'VueJS',
+      },
+      {
+        name: 'i-devicon-tailwindcss',
+        title: 'TailwindCSS',
+      },
+      {
+        name: 'i-devicon-typescript',
+        title: 'Typescript',
+      },
+    ],
+    details: [
+      'Professional kettlebell training videos with step by step instructions',
+      'Complete workouts with proper dieting',
+      'Progress tracking',
+    ],
+  },
+  {
     url: '/expense-management',
     title: 'Expense Tracker',
     description: 'Track your expenses with a simple, intuitive interface.',
@@ -53,13 +85,13 @@ export const projects: Array<Project> = [
         title: 'Typescript',
       },
       {
-        name: 'i-devicon-supabase',
-        title: 'Supabase',
+        name: 'i-devicon-postgresql',
+        title: 'Postgres',
       },
     ],
     details: [
-      'Built with Nuxt 4, TypeScript, Nuxt/UI Pro, TailwindCSS, and Supabase',
-      'Authentication - Save your expenses to your user',
+      'Built with Nuxt 4, TypeScript, Nuxt/UI Pro, TailwindCSS 4, & Postgres',
+      'Authentication - Save your expenses to your profile',
       'Expense tracking with categories and budgets',
     ],
   },
@@ -99,12 +131,12 @@ export const projects: Array<Project> = [
 ]
 
 export const skills = [
-  'Modern Frontend Architecture',
-  'User Interface/User Experience',
-  'Design Systems',
-  'Progressive Enhancement',
-  'Core Web Vitals Performance',
-  'Solving Problems at Scale',
+  'Fishing, Kettlebells & Family.',
+  'I specialize in the web. More specifically:',
+  'Nuxt/Vue & React/Next Ecosystems with Typescript',
+  'Building fast, performant & accessible UI alongside Tailwind',
+  'I work hard, always look to improve, & I get the job done the way it should be.',
+  'Any questions? Feel free to reach out!',
 ]
 
 export const componentTransitions = {

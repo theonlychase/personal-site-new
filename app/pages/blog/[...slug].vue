@@ -21,15 +21,23 @@ if (!data.value?.content) {
   })
 }
 
-useHead(data.value?.content.head || {})
-useSeoMeta(data.value?.content.seo || {})
+const {
+  description = '', image = null, title = '',
+} = data.value?.content ?? {}
+
+useSeoMeta({
+  title,
+  ogTitle: title,
+  ogImage: image?.src,
+  description,
+  ogDescription: description,
+})
 </script>
 
 <template>
   <UPageBody>
     <UPageHeader
       :title="data?.content.short"
-      :description="`${data?.content.created}${data?.views ? ` (${data?.views} views)` : ''}`"
     />
 
     <ContentRenderer

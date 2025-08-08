@@ -8,24 +8,9 @@ author:
   to: 'https://chaseisley.dev'
 title: 'Tailwind 4 Plugin Migration'
 description: 'Migrating Tailwind 3 Plugins to Tailwind 4'
-head:
-  templateParams:
-    title: 'Tailwind 4 Plugin Migration'
-    ogTitle: 'Tailwind 4 Plugin Migration'
-    twitterTitle: 'Tailwind 4 Plugin Migration'
-    description: 'Migrating Tailwind 3 Plugins to Tailwind 4'
-    ogDescription: 'Migrating Tailwind 3 Plugins to Tailwind 4'
-    twitterDescription: 'Migrating Tailwind 3 Plugins to Tailwind 4'
 image:
   src: 'https://picsum.photos/640/360'
   alt: 'Tailwind 4 Plugins'
-seo: 
-  title: 'Tailwind 4 Plugin Migration'
-  ogTitle: 'Tailwind 4 Plugin Migration'
-  twitterTitle: 'Tailwind 4 Plugin Migration'
-  description: 'Migrating Tailwind 3 Plugins to Tailwind 4'
-  ogDescription: 'Migrating Tailwind 3 Plugins to Tailwind 4'
-  twitterDescription: 'Migrating Tailwind 3 Plugins to Tailwind 4'
 sitemap:
   loc: '/blog/migrating-tailwind-3-plugins-to-tailwind-4'
 short: 'Tailwind 4 Plugin Migration'
@@ -36,7 +21,7 @@ slug: 'migrating-tailwind-3-plugins-to-tailwind-4'
 created: '2025-02-04'
 ---
 
-### Tailwind 3 Plugin
+## Tailwind 3 Plugin
 
 This plugin takes in a dynamic value and sets the aspect ratio of an element. It also has support for older browsers that don't support the `aspect-ratio` property.
 

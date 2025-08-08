@@ -8,24 +8,9 @@ author:
   to: 'https://chaseisley.dev'
 title: 'Handle Form State with NanoStore in Nuxt 3'
 description: 'Create a Composable to Handle Form State with NanoStore in Nuxt 3'
-head:
-  templateParams:
-    title: 'Handle Form State with NanoStore in Nuxt 3'
-    ogTitle: 'Handle Form State with NanoStore in Nuxt 3'
-    twitterTitle: 'Handle Form State with NanoStore in Nuxt 3'
-    description: 'Create a Composable to Handle Form State with NanoStore in Nuxt 3'
-    ogDescription: 'Create a Composable to Handle Form State with NanoStore in Nuxt 3'
-    twitterDescription: 'Create a Composable to Handle Form State with NanoStore in Nuxt 3'
 image:
   src: 'https://picsum.photos/640/360'
   alt: 'Handle Form State with NanoStore in Nuxt 3'
-seo: 
-  title: 'Handle Form State with NanoStore in Nuxt 3'
-  ogTitle: 'Handle Form State with NanoStore in Nuxt 3'
-  twitterTitle: 'Handle Form State with NanoStore in Nuxt 3'
-  description: 'Create a Composable to Handle Form State with NanoStore in Nuxt 3'
-  ogDescription: 'Create a Composable to Handle Form State with NanoStore in Nuxt 3'
-  twitterDescription: 'Create a Composable to Handle Form State with NanoStore in Nuxt 3'
 sitemap:
   loc: '/blog/handle-form-state-with-nanostore-in-nuxt-3'
 short: 'Handle Form State with NanoStore in Nuxt 3'
@@ -40,7 +25,7 @@ I stumbled upon <a href="https://github.com/nanostores/nanostores" target="_blan
 
 Small. Performant. Can be used with any framework.
 
-### Example
+## Example
 
 ::checkout-form
 ::

@@ -8,24 +8,9 @@ author:
   to: 'https://chaseisley.dev'
 title: 'React Typewriter Hook: HTML Support & Dual Animation Modes'
 description: 'Complete React typewriter effect hook with HTML tag support, dual animation modes with bidirectional support, whitespace handling, & more'
-head:
-  templateParams:
-    title: 'React Typewriter Hook: HTML Support & Dual Animation Modes'
-    ogTitle: 'React Typewriter Hook: HTML Support & Dual Animation Modes'
-    twitterTitle: 'React Typewriter Hook: HTML Support & Dual Animation Modes'
-    description: 'Complete React typewriter effect hook with HTML tag support, dual animation modes with bidirectional support, whitespace handling, & more'
-    ogDescription: 'Complete React typewriter effect hook with HTML tag support, dual animation modes with bidirectional support, whitespace handling, & more'
-    twitterDescription: 'Complete React typewriter effect hook with HTML tag support, dual animation modes with bidirectional support, whitespace handling, & more'
 image: 
   src: 'https://picsum.photos/640/360'
   alt: 'useTypewriter Hook'
-seo: 
-  title: 'React Typewriter Hook: HTML Support & Dual Animation Modes'
-  ogTitle: 'React Typewriter Hook: HTML Support & Dual Animation Modes'
-  twitterTitle: 'React Typewriter Hook: HTML Support & Dual Animation Modes'
-  description: 'Complete React typewriter effect hook with HTML tag support, dual animation modes with bidirectional support, whitespace handling, & more'
-  ogDescription: 'Complete React typewriter effect hook with HTML tag support, dual animation modes with bidirectional support, whitespace handling, & more'
-  twitterDescription: 'Complete React typewriter effect hook with HTML tag support, dual animation modes with bidirectional support, whitespace handling, & more'
 sitemap:
   loc: '/blog/react-typewriter-hook'
 short: 'React Typewriter Hook: HTML Support & Dual Animation Modes'

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-useHead({
-  templateParams: {
-    title: 'User Profile',
-    description: 'Profile for Authenticated Users',
-  },
+useSeoMeta({
+  robots: 'noindex, nofollow',
+  title: 'User Profile',
+  description: 'Profile for Authenticated Users',
 })
+
 definePageMeta({ middleware: 'auth' })
 </script>
 

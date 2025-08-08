@@ -1,17 +1,15 @@
 <script setup lang="ts">
 import type { BlogCollectionItem } from '@nuxt/content'
 
-// defineRouteRules({ prerender: true })
+defineRouteRules({ prerender: true })
 
 const route = useRoute()
 const { data }: { data: Ref<BlogCollectionItem[]> } = await useAsyncData(route.path, () => $fetch(`/api/blog/all`, { headers: useRequestHeaders(['cookie']) }))
-// prerenderRoutes(data.value?.map(post => post.path) ?? [])
+prerenderRoutes(data.value?.map(post => post.path) ?? [])
 
-useHead({
-  templateParams: {
-    title: 'Blog',
-    description: 'Recent Blog Posts',
-  },
+useSeoMeta({
+  title: 'Blog - Chase Isley',
+  description: 'Recent Blog Posts',
 })
 </script>
 
@@ -19,6 +17,7 @@ useHead({
   <UPageBody>
     <LazyUPageHeader
       title="Blog"
+      description="I don't write often, but when I get a little extra time here and there, I'll throw something up I worked with recently"
       class="mb-8"
       hydrate-never
     />
@@ -31,6 +30,7 @@ useHead({
         :title="post.short"
         :description="post.description"
         :to="post.path"
+        :ui="{ description: 'text-sm' }"
         orientation="horizontal"
       >
         <template

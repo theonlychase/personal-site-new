@@ -1,9 +1,8 @@
 <script setup lang="ts">
-useHead({
-  templateParams: {
-    title: 'Playground',
-    description: 'DEV Playground',
-  },
+useSeoMeta({
+  robots: 'noindex, nofollow',
+  title: 'Playground',
+  description: 'Playground Page',
 })
 </script>
 

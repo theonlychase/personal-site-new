@@ -1,16 +1,4 @@
 <script setup lang="ts">
-useSeoMeta(
-  {
-    title: () => '%title',
-    description: () => '%description',
-    ogDescription: () => '%description',
-    ogTitle: () => '%title',
-    twitterTitle: () => '%title',
-    twitterDescription: () => '%title',
-  },
-  { mode: 'server' },
-)
-
 useHead({
   htmlAttrs: { lang: 'en' },
   meta: [

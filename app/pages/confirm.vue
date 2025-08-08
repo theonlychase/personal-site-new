@@ -2,6 +2,11 @@
 const user = useSupabaseUser()
 const redirectInfo = useSupabaseCookieRedirect()
 
+useSeoMeta({
+  robots: 'noindex, nofollow',
+  title: 'Confirm',
+})
+
 watch(
   user,
   () => {
