@@ -15,7 +15,6 @@
     "@nuxt/image": "^1.11.0",
     "@nuxt/ui-pro": "^3.3.0",
     "@nuxtjs/partytown": "^1.6.0",
-    "@nuxtjs/seo": "^3.1.0",
     "@nuxtjs/supabase": "^1.6.0",
     "@unhead/vue": "^2.0.14",
     "@vueuse/components": "^13.6.0",

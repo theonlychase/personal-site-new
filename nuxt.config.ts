@@ -2,26 +2,23 @@ import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
   modules: [
-    '@nuxt/ui-pro',
-    '@nuxtjs/seo',
-    '@nuxt/content',
-    '@nuxt/image',
-    '@vueuse/nuxt',
     '@nuxt/eslint',
+    '@nuxt/image',
+    '@nuxt/ui-pro',
+    '@nuxt/content',
+    '@vueuse/nuxt',
     // '@nuxtjs/partytown',
     '@nuxtjs/supabase',
   ],
-
-  plugins: ['~/plugins/unhead-v2'],
 
   $development: {
     runtimeConfig: { public: { baseUrl: 'http://localhost:8888' } },
     vite: {
       optimizeDeps: {
         include: [
-          '@unhead/schema-org/vue',
           '@vue/devtools-core',
           '@vue/devtools-kit',
+          '@nuxt/content/utils',
           '@tanstack/vue-table',
         ],
       },
@@ -38,17 +35,7 @@ export default defineNuxtConfig({
     },
   ],
 
-  app: {
-    pageTransition: false,
-    layoutTransition: false,
-  },
-
   css: ['~/assets/css/tailwind.css'],
-
-  site: {
-    url: 'https://chaseisley.dev',
-    name: 'Chase Isley',
-  },
 
   colorMode: { classSuffix: '' },
 
@@ -105,6 +92,8 @@ export default defineNuxtConfig({
 
   experimental: { inlineRouteRules: true },
 
+  compatibilityDate: '2025-08-08',
+
   nitro: {
     netlify: {
       images: {
@@ -117,6 +106,7 @@ export default defineNuxtConfig({
         ],
       },
     },
+    prerender: { autoSubfolderIndex: false },
   },
 
   eslint: { config: { stylistic: true } },
@@ -142,12 +132,6 @@ export default defineNuxtConfig({
       'images.unsplash.com',
       'source.unsplash.com',
       'github.com',
-    ],
-  },
-
-  robots: {
-    disallow: [
-      '/confirm', '/profile',
     ],
   },
 

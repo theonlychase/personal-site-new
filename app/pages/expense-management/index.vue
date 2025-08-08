@@ -2,11 +2,10 @@
 import type { TabsItem } from '@nuxt/ui'
 import type { Color } from '~/types/expense'
 
-useHead({
-  templateParams: {
-    title: 'Expense Management Dashboard',
-    description: 'Overview of Expense Management',
-  },
+useSeoMeta({
+  robots: 'noindex, nofollow',
+  title: 'Expense Management Dashboard',
+  description: 'Overview of Expense Management',
 })
 
 const items = [

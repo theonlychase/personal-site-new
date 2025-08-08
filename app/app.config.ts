@@ -39,8 +39,9 @@ export default defineAppConfig({
     pageGrid: { base: 'sm:grid-cols-12 lg:grid-cols-12' },
     pageHeader: {
       slots: {
-        root: 'py-0 mb-0 border-b-0',
-        description: 'text-sm',
+        root: 'pt-0',
+        // root: 'py-0 mb-0 border-b-0',
+        // description: 'text-sm',
       },
       variants: { title: { true: { description: 'mt-1' } } },
     },

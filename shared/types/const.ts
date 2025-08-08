@@ -3,6 +3,7 @@ export interface Project {
   url: string
   title: string
   description: string
+  label?: string
   icons: {
     name: string
     title: string

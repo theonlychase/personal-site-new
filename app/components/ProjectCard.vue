@@ -26,6 +26,13 @@ const { project } = defineProps<{ project: Project }>()
         {{ project.description }}
       </div>
 
+      <div
+        v-if="project.label"
+        class="mb-4 text-xs"
+      >
+        {{ project.label }}
+      </div>
+
       <ul class="flex flex-col gap-y-2 text-sm">
         <li
           v-for="detail in project.details"
