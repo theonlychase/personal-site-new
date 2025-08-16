@@ -1,9 +1,5 @@
 <script setup lang="ts">
-const user = useSupabaseUser()
-const { auth } = useSupabaseClient()
-const {
-  meta, path, query,
-} = useRoute()
+const { meta } = useRoute()
 const { progress, stop } = useScrollProgress()
 
 if (!meta.pageScroll) {
@@ -11,53 +7,6 @@ if (!meta.pageScroll) {
 }
 
 const colorModeIcon = ref('i-line-md:light-dark')
-
-const computedItems = computed(() => {
-  return user.value
-    ? [
-        [
-          {
-            label: user.value.email,
-            slot: 'account',
-            disabled: true,
-          },
-        ],
-        [
-          {
-            label: 'Your Profile',
-            icon: 'i-line-md:account',
-            to: '/profile',
-            class: 'custom-link',
-          },
-        ],
-        [
-          {
-            label: 'Logout',
-            icon: 'i-line-md:logout',
-            onSelect: async () => {
-              await auth.signOut()
-            },
-          },
-        ],
-      ]
-    : [
-        [
-          {
-            label: 'Login',
-            icon: 'i-line-md:login',
-            to: '/login',
-            class: 'custom-link',
-          },
-        ],
-      ]
-})
-
-watch(user, () => {
-  if (!user.value && path !== '/profile') {
-    const to = (query.redirectTo as string) ?? '/login'
-    return navigateTo(to, { replace: true })
-  }
-})
 </script>
 
 <template>
@@ -93,27 +42,6 @@ watch(user, () => {
           dynamic
         />
       </UButton>
-
-      <UDropdownMenu
-        :items="computedItems"
-        :ui="{ item: 'data-disabled:cursor-text data-disabled:select-text' }"
-        :popper="{ placement: 'bottom-start' }"
-      >
-        <UIcon
-          class="h-7 w-7 hover:scale-110 transition-all"
-          name="i-line-md:account"
-          dynamic
-        />
-
-        <template #account="{ item }">
-          <div class="text-left">
-            <p>Signed in as</p>
-            <p class="truncate font-medium">
-              {{ item.label }}
-            </p>
-          </div>
-        </template>
-      </UDropdownMenu>
     </template>
 
     <template #bottom>

@@ -30,6 +30,7 @@ const { data } = await useAsyncData('navigation', () => {
 
     <Typewriter
       :data="skills"
+      :enter="50"
       class="mb-12"
     />
 

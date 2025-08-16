@@ -17,7 +17,7 @@ const { data } = defineProps<{ data: ContentNavigationItem[] }>()
       :icon="item.icon"
       orientation="vertical"
       variant="ghost"
-      :ui="{ container: '!py-4' }"
+      :ui="{ container: '!py-4 !pl-0' }"
     />
   </UPageList>
 </template>
