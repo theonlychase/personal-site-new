@@ -131,11 +131,11 @@ export const projects: Array<Project> = [
 ]
 
 export const skills = [
-  'Fishing, Kettlebells & Family.',
-  'I specialize in the web. More specifically:',
-  'Nuxt/Vue & React/Next Ecosystems with Typescript',
-  'Building fast, performant & accessible UI alongside Tailwind',
-  'I work hard, always look to improve, & I get the job done the way it should be.',
+  'Fishing, Kettlebells and Family',
+  'I specialize in the <span class="text-success font-semibold ml-1">web</span>. More specifically:',
+  '<span class="inline-flex items-center gap-x-1 mr-1 font-semibold"><div class="inline-flex items-center"><span class="iconify i-simple-icons:nuxt size-5 shrink-0 text-primary" aria-hidden="true"></span></div>Nuxt/Vue</span> and <span class="inline-flex items-center gap-x-1 font-semibold mx-1"><div class="inline-flex items-center"><span class="iconify i-simple-icons:react size-5 shrink-0 text-sky-500" aria-hidden="true"></span></div>React/Next</span> Ecosystems with <span class="font-semibold ml-1">Typescript</span>',
+  'Building <span class="ml-1 font-semibold">fast</span>, <span class="ml-1 font-semibold">performant</span>, and <span class="mx-1 font-semibold">accessible</span> UI',
+  'I work <span class="ml-1 font-semibold">hard</span>, always look to <span class="ml-1 font-semibold">improve</span>, and <span class="mx-1 font-semibold">get the job done</span> the way it should be',
   'Any questions? Feel free to reach out!',
 ]
 

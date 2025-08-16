@@ -7,8 +7,6 @@ export default defineNuxtConfig({
     '@nuxt/ui-pro',
     '@nuxt/content',
     '@vueuse/nuxt',
-    // '@nuxtjs/partytown',
-    '@nuxtjs/supabase',
   ],
 
   $development: {
@@ -57,25 +55,7 @@ export default defineNuxtConfig({
     experimental: { nativeSqlite: true },
   },
 
-  ui: {
-    fonts: false,
-    theme: {
-      colors: [
-        'primary',
-        'secondary',
-        'info',
-        'success',
-        'warning',
-        'error',
-        'amber',
-        'fuchsia',
-        'orange',
-        'purple',
-        'sky',
-        'teal',
-      ],
-    },
-  },
+  ui: { fonts: false },
 
   runtimeConfig: {
     public: {
@@ -85,8 +65,6 @@ export default defineNuxtConfig({
       templateId: '',
     },
   },
-
-  future: { compatibilityVersion: 4 },
 
   features: { devLogs: true },
 
@@ -133,17 +111,6 @@ export default defineNuxtConfig({
       'source.unsplash.com',
       'github.com',
     ],
-  },
-
-  supabase: {
-    redirectOptions: {
-      login: '/login',
-      callback: '/confirm',
-      include: [
-        '/profile(/*)?', '/expense-management(/*)?',
-      ],
-      saveRedirectToCookie: true,
-    },
   },
 
   uiPro: { license: process.env.NUXT_UI_PRO_LICENSE },

@@ -19,6 +19,7 @@ logs
 .idea
 .cursor
 .junie
+.output.txt
 
 # Local env files
 .env
