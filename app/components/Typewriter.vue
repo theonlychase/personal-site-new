@@ -97,7 +97,7 @@ function removeText() {
 
 <template>
   <p
-    class="flex flex-wrap items-center text-lg h-5 border-r-2 border-transparent w-fit dark:text-gray-200"
-    v-html="state.displayText"
+    class="flex flex-wrap items-center text-lg h-7 w-fit dark:text-gray-200"
+    v-html="`${state.displayText}<span class='animate-blink w-0.5 h-full border-r-2 border-transparent'></span>`"
   />
 </template>
