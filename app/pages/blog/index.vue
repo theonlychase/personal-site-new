@@ -30,7 +30,7 @@ useSeoMeta({
         :title="post.short"
         :description="post.description"
         :to="post.path"
-        :ui="{ description: 'text-sm' }"
+        :ui="{ body: '!pr-1', description: 'text-sm line-clamp-2' }"
         orientation="horizontal"
       >
         <template
@@ -50,7 +50,8 @@ useSeoMeta({
         <template #header>
           <NuxtImg
             v-slot="{ src, isLoaded, imgAttrs }"
-            class="object-cover object-top w-full h-full transform transition-transform duration-200 group-hover/blog-post:scale-110"
+            class="object-cover w-full h-full transform transition-transform duration-200 group-hover/blog-post:scale-110"
+            :class="{ 'object-top': post.slug !== 'kettlebell-pro' }"
             :src="`${post.image?.src}?random=${index}`"
             :alt="post.image?.alt"
             :custom="true"

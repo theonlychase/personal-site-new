@@ -90,6 +90,8 @@ export default defineNuxtConfig({
   eslint: { config: { stylistic: true } },
 
   icon: {
+    cssLayer: 'base',
+    provider: 'server',
     serverBundle: {
       collections: [
         'devicon',
@@ -98,6 +100,12 @@ export default defineNuxtConfig({
         'simple-icons',
       ],
     },
+    customCollections: [
+      {
+        prefix: 'custom',
+        dir: './app/assets/icons',
+      },
+    ],
   },
 
   image: {
