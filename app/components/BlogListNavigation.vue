@@ -11,6 +11,7 @@ const { data } = defineProps<{ data: ContentNavigationItem[] }>()
       :key="index"
       as="li"
       class="px-0"
+      :class="{ '[&_.iconify]:!text-rose-600': item.path.includes('cakery') }"
       :to="item.path"
       :title="item.title"
       :description="item.description"

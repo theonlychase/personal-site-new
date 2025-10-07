@@ -51,7 +51,10 @@ useSeoMeta({
           <NuxtImg
             v-slot="{ src, isLoaded, imgAttrs }"
             class="object-cover w-full h-full transform transition-transform duration-200 group-hover/blog-post:scale-110"
-            :class="{ 'object-top': post.slug !== 'kettlebell-pro' }"
+            :class="{
+              'object-top': post.slug !== 'kettlebell-pro' && post.slug !== 'natashas-cakery',
+              'object-none': post.slug === 'natashas-cakery',
+            }"
             :src="`${post.image?.src}?random=${index}`"
             :alt="post.image?.alt"
             :custom="true"

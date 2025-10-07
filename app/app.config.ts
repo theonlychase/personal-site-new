@@ -1,5 +1,7 @@
 export default defineAppConfig({
   ui: {
+    blogPost: { slots: { header: 'h-full' } },
+    blogPosts: { base: 'gap-6 lg:gap-6' },
     button: {
       slots: { base: 'cursor-pointer' },
       compoundVariants: [
@@ -10,13 +12,6 @@ export default defineAppConfig({
         },
       ],
     },
-    formField: { slots: { error: 'capitalize' } },
-    input: { slots: { base: 'input-autofill' } },
-    textarea: { slots: { base: 'input-autofill' } },
-  },
-  uiPro: {
-    blogPost: { slots: { header: 'h-full' } },
-    blogPosts: { base: 'gap-6 lg:gap-6' },
     contentSurround: { slots: { root: 'mt-8' } },
     footer: {
       slots: {
@@ -25,7 +20,9 @@ export default defineAppConfig({
         container: '!hidden',
       },
     },
+    formField: { slots: { error: 'capitalize' } },
     header: { slots: { container: 'max-w-2xl mx-auto px-4 md:px-0 sm:px-0 lg:px-0' } },
+    input: { slots: { base: 'input-autofill' } },
     main: { base: 'min-h-full flex-1' },
     pageBody: { base: 'max-w-2xl py-0 px-4 md:px-0 mx-auto animate-fade-in' },
     pageGrid: { base: 'sm:grid-cols-12 lg:grid-cols-12' },
@@ -37,5 +34,6 @@ export default defineAppConfig({
       },
       variants: { title: { true: { description: 'mt-1' } } },
     },
+    textarea: { slots: { base: 'input-autofill' } },
   },
 })

@@ -29,6 +29,6 @@ Check it out at [kettlebellpro.fit](https://kettlebellpro.fit){:target="_blank"}
 
 ### Tech Stack
 
-Built with Nuxt 4, Vue 3, Typescript, Nuxt Content, Nuxt UI Pro alongside Tailwind 4, PostGres, and a few other cool things.
+Built with Nuxt 4, Vue 3, Typescript, Nuxt Content, Nuxt UI Pro alongside Tailwind 4, PostGres, and more.
 
 
