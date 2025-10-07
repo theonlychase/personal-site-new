@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
     '@nuxt/image',
-    '@nuxt/ui-pro',
+    '@nuxt/ui',
     '@nuxt/content',
     '@vueuse/nuxt',
   ],
@@ -100,12 +100,6 @@ export default defineNuxtConfig({
         'simple-icons',
       ],
     },
-    customCollections: [
-      {
-        prefix: 'custom',
-        dir: './app/assets/icons',
-      },
-    ],
   },
 
   image: {
@@ -120,6 +114,4 @@ export default defineNuxtConfig({
       'github.com',
     ],
   },
-
-  uiPro: { license: process.env.NUXT_UI_PRO_LICENSE },
 })
