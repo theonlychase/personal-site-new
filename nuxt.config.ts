@@ -14,10 +14,12 @@ export default defineNuxtConfig({
     vite: {
       optimizeDeps: {
         include: [
+          '@nanostores/vue',
           '@vue/devtools-core',
           '@vue/devtools-kit',
           '@nuxt/content/utils',
           '@tanstack/vue-table',
+          'nanostores',
         ],
       },
     },
@@ -55,7 +57,10 @@ export default defineNuxtConfig({
     experimental: { nativeSqlite: true },
   },
 
-  ui: { fonts: false },
+  ui: {
+    experimental: { componentDetection: true },
+    fonts: false,
+  },
 
   runtimeConfig: {
     public: {
@@ -68,7 +73,11 @@ export default defineNuxtConfig({
 
   features: { devLogs: true },
 
-  experimental: { inlineRouteRules: true },
+  experimental: {
+    inlineRouteRules: true,
+    typescriptPlugin: true,
+    viteEnvironmentApi: true,
+  },
 
   compatibilityDate: '2025-08-08',
 
@@ -98,6 +107,7 @@ export default defineNuxtConfig({
         'lucide',
         'line-md',
         'simple-icons',
+        'mdi',
       ],
     },
   },
