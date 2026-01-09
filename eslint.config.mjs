@@ -30,15 +30,31 @@ export default withNuxt(
       '@stylistic/object-curly-newline': [
         'error',
         {
-          minProperties: 3,
-          multiline: true,
+          ObjectExpression: {
+            minProperties: 1,
+            multiline: true,
+            consistent: true,
+          },
+          ObjectPattern: {
+            multiline: true,
+          },
+          ImportDeclaration: {
+            minProperties: 2,
+            multiline: true,
+          },
+          ExportDeclaration: {
+            minProperties: 2,
+            multiline: true,
+          },
         },
       ],
       '@stylistic/object-property-newline': ['error'],
       '@stylistic/brace-style': [
         'error',
         '1tbs',
-        { allowSingleLine: true },
+        {
+          allowSingleLine: true,
+        },
       ],
       '@typescript-eslint/no-inferrable-types': 'off',
       'vue/component-name-in-template-casing': [
@@ -50,7 +66,10 @@ export default withNuxt(
         },
       ],
       'no-console': [
-        'warn', { allow: ['error'] },
+        'warn',
+        {
+          allow: ['error'],
+        },
       ],
       'vue/multi-word-component-names': 'off',
     },
