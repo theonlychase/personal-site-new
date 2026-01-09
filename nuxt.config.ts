@@ -10,7 +10,11 @@ export default defineNuxtConfig({
   ],
 
   $development: {
-    runtimeConfig: { public: { baseUrl: 'http://localhost:8888' } },
+    runtimeConfig: {
+      public: {
+        baseUrl: 'http://localhost:8888',
+      },
+    },
     vite: {
       optimizeDeps: {
         include: [
@@ -25,7 +29,13 @@ export default defineNuxtConfig({
     },
   },
 
-  $production: { runtimeConfig: { public: { baseUrl: process.env.BASE_URL } } },
+  $production: {
+    runtimeConfig: {
+      public: {
+        baseUrl: process.env.BASE_URL,
+      },
+    },
+  },
 
   components: [
     {
@@ -37,7 +47,9 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/tailwind.css'],
 
-  colorMode: { classSuffix: '' },
+  colorMode: {
+    classSuffix: '',
+  },
 
   content: {
     build: {
@@ -54,11 +66,15 @@ export default defineNuxtConfig({
         },
       },
     },
-    experimental: { nativeSqlite: true },
+    experimental: {
+      nativeSqlite: true,
+    },
   },
 
   ui: {
-    experimental: { componentDetection: true },
+    experimental: {
+      componentDetection: true,
+    },
     fonts: false,
   },
 
@@ -71,7 +87,9 @@ export default defineNuxtConfig({
     },
   },
 
-  features: { devLogs: true },
+  features: {
+    devLogs: true,
+  },
 
   experimental: {
     inlineRouteRules: true,
@@ -93,10 +111,16 @@ export default defineNuxtConfig({
         ],
       },
     },
-    prerender: { autoSubfolderIndex: false },
+    prerender: {
+      autoSubfolderIndex: false,
+    },
   },
 
-  eslint: { config: { stylistic: true } },
+  eslint: {
+    config: {
+      stylistic: true,
+    },
+  },
 
   icon: {
     cssLayer: 'base',
